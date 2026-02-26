@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"uri": "vscode-remote://ssh-remote+192.168.4.12/home/jszarka/src/judgeweed-platform"
+		},
+		{
+			"uri": "vscode-remote://ssh-remote+192.168.4.12/home/jszarka/james.szarka.ca"
+		}
+	],
+	"remoteAuthority": "ssh-remote+192.168.4.12",
+	"settings": {}
+}
