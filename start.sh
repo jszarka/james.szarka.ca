@@ -4,13 +4,14 @@ set -e
 # Start Nginx with HTTP only so health checks pass
 nginx
 
-# Wait for AWS certificate files to be mounted
+# Wait for TLS certificate files to be mounted.
 while [ ! -f /etc/ssl/certs/certificate.pem ] || [ ! -f /etc/ssl/private/private.pem ]; do
     sleep 5
 done
 
-# Append HTTPS block to Nginx config
-cat >> /etc/nginx/conf.d/default.conf <<EOL
+# Append HTTPS block only if not already present
+if ! grep -q "listen 443 ssl" /etc/nginx/conf.d/default.conf 2>/dev/null; then
+cat >> /etc/nginx/conf.d/default.conf <<'EOL'
 
 server {
     listen 443 ssl http2;
@@ -37,8 +38,9 @@ server {
 }
 EOL
 
-# Reload Nginx with SSL enabled
-nginx -s reload
+  # Reload Nginx with SSL enabled
+  nginx -s reload
+fi
 
 # Keep Nginx in foreground
 nginx -g "daemon off;"

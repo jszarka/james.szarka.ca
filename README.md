@@ -39,8 +39,33 @@ james.szarka.ca/
 ├── css/               # Stylesheets
 ├── js/               # JavaScript files
 ├── img/              # Image assets
+├── start.sh           # container startup script (adds SSL block)
+├── nginx.conf         # base HTTP server configuration
 └── index.html        # Main entry point
 ```
+
+## HTTPS / TLS
+
+The image is capable of serving HTTPS directly if you mount your own
+certificate/key pair at `/etc/ssl/certs/certificate.pem` and
+`/etc/ssl/private/private.pem`.  In that case the `start.sh` script
+appends a `server` block to `nginx.conf` and enforces **TLS 1.2 and
+higher** via `ssl_protocols TLSv1.2 TLSv1.3;`.
+
+When the container is deployed to an AWS Lightsail *container service*
+HTTPS termination happens upstream on the managed load balancer, and the
+container only ever sees plain HTTP.  Lightsail currently does not expose
+any setting to restrict the TLS policy of the front‑end balancer –
+if you need to force TLS 1.2+ you must either:
+
+1. Put another proxy (CloudFront, ALB, etc.) in front of the service and
+   configure its security policy, or
+2. Run the container somewhere where you control the TLS termination
+   (EC2/VM, Kubernetes, Docker on a host, etc.) and mount your own
+   certs.
+
+The bundled `ssl_protocols` settings in `start.sh`/`nginx.conf` ensure a
+secure fallback when nginx does handle TLS.
 
 ## Technologies Used
 - HTML5
