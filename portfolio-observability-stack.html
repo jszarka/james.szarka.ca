@@ -10,14 +10,16 @@
   <style>
     body { background: #f5f5f5; }
     .case-page { max-width: 1120px; margin: 30px auto; background: #fff; padding: 34px; border-radius: 16px; }
-    .case-hero img { width: 100%; border: 1px solid #eee; border-radius: 12px; }
+    .case-hero img, .evidence-card img { width: 100%; border: 1px solid #eee; border-radius: 12px; background: #fff; }
     .case-eyebrow { color: #fea621; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; font-size: 13px; }
     .case-summary { background: #fcfcfc; border: 1px solid #eee; padding: 22px; margin: 24px 0; }
     .case-list { margin-left: 20px; }
     .case-list li { margin-bottom: 9px; }
-    .case-card { border: 1px solid #eee; background: #fcfcfc; padding: 18px; margin-bottom: 18px; min-height: 128px; }
+    .case-card, .evidence-card { border: 1px solid #eee; background: #fcfcfc; padding: 18px; margin-bottom: 18px; min-height: 128px; }
     .case-badge { display: inline-block; border: 1px solid #e5e5e5; border-radius: 4px; padding: 4px 9px; margin: 3px; font-size: 12px; background: #fff; }
     .case-actions { margin-top: 24px; }
+    .evidence-card h3 { margin-top: 14px; }
+    .note { color: #777; font-size: 13px; }
   </style>
 </head>
 <body>
@@ -57,6 +59,15 @@
           <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Operational Recovery</h3><p>Restart policy and startup controls reduce partial recovery after reboot.</p></div></div>
         </div>
 
+        <h2>Evidence Gallery</h2>
+        <p class="note">Screenshots should be sanitized before publishing. Hide private addresses, tokens, emails, usernames, and sensitive request values.</p>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6"><div class="evidence-card"><img src="img/portfolio/observability-grafana-container-metrics.png" alt="Grafana container metrics dashboard"><h3>Grafana Dashboards</h3><p>Container metrics dashboard showing CPU, memory, cached memory, and network telemetry across monitored services.</p></div></div>
+          <div class="col-xs-12 col-sm-6"><div class="evidence-card"><img src="img/portfolio/observability-prometheus-targets.png" alt="Prometheus target health"><h3>Prometheus Target Health</h3><p>Target health view showing active scrape coverage across monitoring services, hosts, applications, and exporters.</p></div></div>
+          <div class="col-xs-12 col-sm-6"><div class="evidence-card"><img src="img/portfolio/observability-loki-explore.png" alt="Loki Explore query"><h3>Loki Explore</h3><p>LogQL query view showing log volume, severity levels, fields, labels, and recent container log events.</p></div></div>
+          <div class="col-xs-12 col-sm-6"><div class="evidence-card"><img src="img/portfolio/observability-alertmanager-warning.png" alt="Alertmanager warning"><h3>Alertmanager Routing</h3><p>Alertmanager view showing an active warning routed through the alert workflow for operator review.</p></div></div>
+        </div>
+
         <h2>Leadership Value</h2>
         <p>This case study shows DevOps and SRE leadership through a system that is observable, documented, repeatable, and useful to operators during troubleshooting and incident response.</p>
       </div>
@@ -78,7 +89,11 @@
         <span class="case-badge">Node Exporter</span>
         <span class="case-badge">SNMP Exporter</span>
         <span class="case-badge">PostgreSQL Exporter</span>
+        <span class="case-badge">Home Assistant</span>
         <span class="case-badge">SRE</span>
+
+        <h2>Public-Safe Notes</h2>
+        <p class="note">This page describes the architecture and operational model without exposing secrets or operational access details.</p>
       </aside>
     </div>
 
