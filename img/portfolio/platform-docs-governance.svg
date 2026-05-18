@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Documentation governance</title>
+  <desc id="desc">Diagram summarizing the docs repository structure and validation checks.</desc>
+  <style>
+    .bg { fill: #fffdf8; }
+    .panel { fill: #fff; stroke: #eadbc7; stroke-width: 2; rx: 22; }
+    .title { font: 700 34px Poppins, Arial, sans-serif; fill: #222; }
+    .head { font: 700 25px Poppins, Arial, sans-serif; fill: #333; }
+    .body { font: 500 18px Poppins, Arial, sans-serif; fill: #666; }
+    .accent { fill: #fea621; }
+    .rule { stroke: #f0c389; stroke-width: 4; }
+    .backpill { fill: #fff4e8; stroke: #efc68e; stroke-width: 1.5; rx: 18; }
+    .backtext { font: 700 17px Poppins, Arial, sans-serif; fill: #9d6b1d; }
+  </style>
+  <rect width="1200" height="720" class="bg"/>
+  <a href="../../portfolio-platform-foundation.html">
+    <rect x="856" y="58" width="264" height="42" class="backpill"/>
+    <text x="988" y="85" class="backtext" text-anchor="middle">Back to Portfolio Case Study</text>
+  </a>
+  <text x="72" y="84" class="title">docs Repository</text>
+  <text x="72" y="116" class="body">Architecture governance, decision history, safety boundaries,</text>
+  <text x="72" y="142" class="body">and deployment standards.</text>
+  <rect x="56" y="182" width="340" height="232" class="panel"/>
+  <text x="84" y="230" class="head">Architecture Records</text>
+  <text x="84" y="266" class="body">GitHub as source of truth</text>
+  <text x="84" y="296" class="body">GitHub Actions as CI/CD spine</text>
+  <text x="84" y="326" class="body">Proxmox sandbox strategy</text>
+  <text x="84" y="356" class="body">Public vs private repo boundary</text>
+  <rect x="430" y="182" width="340" height="232" class="panel"/>
+  <text x="458" y="230" class="head">Runbooks and Templates</text>
+  <text x="458" y="266" class="body">Reusable Docker Compose</text>
+  <text x="458" y="296" class="body">deployment pattern</text>
+  <text x="458" y="326" class="body">Cybera and local sandbox ops</text>
+  <text x="458" y="356" class="body">Secrets handling with Infisical</text>
+  <rect x="804" y="182" width="340" height="232" class="panel"/>
+  <text x="832" y="230" class="head">Workflow Enforcement</text>
+  <text x="832" y="266" class="body">Required file structure checks</text>
+  <text x="832" y="296" class="body">Private key and .env blocking</text>
+  <text x="832" y="326" class="body">Token pattern scanning</text>
+  <text x="832" y="356" class="body">Private IP warning gates</text>
+  <line x1="600" y1="438" x2="600" y2="500" class="rule"/>
+  <rect x="232" y="510" width="736" height="152" class="panel"/>
+  <circle cx="288" cy="584" r="18" class="accent"/>
+  <text x="324" y="566" class="head">Outcome</text>
+  <text x="324" y="598" class="body">Platform documentation becomes executable governance,</text>
+  <text x="324" y="626" class="body">not shelfware. Engineers and automation inherit the same public-safe model.</text>
+</svg>

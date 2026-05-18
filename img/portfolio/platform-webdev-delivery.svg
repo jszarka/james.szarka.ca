@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Web application delivery stack</title>
+  <desc id="desc">Diagram of the Django and Groundwork web application repository and its CI workflow.</desc>
+  <style>
+    .bg { fill: #fffdfa; }
+    .title { font: 700 34px Poppins, Arial, sans-serif; fill: #222; }
+    .body { font: 500 18px Poppins, Arial, sans-serif; fill: #666; }
+    .head { font: 700 25px Poppins, Arial, sans-serif; fill: #3c2d18; }
+    .panel { fill: #fff; stroke: #ead9bf; stroke-width: 2; rx: 22; }
+    .line { stroke: #caa26b; stroke-width: 4; fill: none; stroke-linecap: round; }
+    .backpill { fill: #fff6eb; stroke: #dfbf92; stroke-width: 1.5; rx: 18; }
+    .backtext { font: 700 17px Poppins, Arial, sans-serif; fill: #8a6230; }
+  </style>
+  <rect width="1200" height="720" class="bg"/>
+  <a href="../../portfolio-platform-foundation.html">
+    <rect x="856" y="58" width="264" height="42" class="backpill"/>
+    <text x="988" y="85" class="backtext" text-anchor="middle">Back to Portfolio Case Study</text>
+  </a>
+  <text x="72" y="84" class="title">webdev</text>
+  <text x="72" y="116" class="body">A Groundwork starter adapted into a Django app foundation</text>
+  <text x="72" y="142" class="body">with frontend tooling and pull-request validation.</text>
+  <rect x="70" y="190" width="286" height="212" class="panel"/>
+  <text x="98" y="238" class="head">Application Stack</text>
+  <text x="98" y="274" class="body">Django + Django REST</text>
+  <text x="98" y="302" class="body">Framework</text>
+  <text x="98" y="330" class="body">Groundwork core and geo</text>
+  <text x="98" y="358" class="body">PostGIS-ready database wiring</text>
+  <rect x="444" y="190" width="312" height="212" class="panel"/>
+  <text x="472" y="238" class="head">Developer Experience</text>
+  <text x="472" y="274" class="body">Dev containers and Docker</text>
+  <text x="472" y="302" class="body">Poetry + Yarn + Makefile</text>
+  <text x="472" y="330" class="body">TypeScript, Sass, Jest,</text>
+  <text x="472" y="358" class="body">Prettier, Bootstrap, Hotwire</text>
+  <rect x="844" y="190" width="286" height="212" class="panel"/>
+  <text x="872" y="238" class="head">Pull Request CI</text>
+  <text x="872" y="274" class="body">Containerized Actions job</text>
+  <text x="872" y="302" class="body">PostGIS service for validation</text>
+  <text x="872" y="330" class="body">make install</text>
+  <text x="872" y="358" class="body">make ci</text>
+  <path d="M356 296 L444 296" class="line"/>
+  <path d="M756 296 L844 296" class="line"/>
+  <rect x="170" y="492" width="860" height="158" class="panel"/>
+  <text x="206" y="544" class="head">Outcome</text>
+  <text x="206" y="578" class="body">A web project can move from scaffold to disciplined delivery</text>
+  <text x="206" y="606" class="body">with a consistent build, test, and frontend asset pipeline.</text>
+  <text x="206" y="634" class="body">The repository emphasizes a usable engineering baseline instead of an unstructured prototype.</text>
+</svg>

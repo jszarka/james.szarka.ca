@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Platform Engineering Foundation Portfolio - James T. Szarka</title>
+  <link rel="stylesheet" href="css/reset.css" type="text/css">
+  <link rel="stylesheet" href="css/bootstrap-grid.min.css" type="text/css">
+  <link rel="stylesheet" href="css/main.css" type="text/css">
+  <style>
+    html, body { height: auto !important; min-height: 100% !important; overflow-y: auto !important; overflow-x: hidden !important; }
+    body { position: static !important; background: linear-gradient(180deg, #fff7ed 0%, #f5f5f5 100%); }
+    .case-page { max-width: 1140px; margin: 30px auto; background: #fff; padding: 34px; border-radius: 18px; overflow: visible; box-shadow: 0 18px 45px rgba(29, 29, 29, .08); }
+    .top-back-link { display: inline-block; margin-bottom: 18px; color: #fea621; font-weight: 600; }
+    .top-back-link:hover { color: #d98200; }
+    .case-hero { padding: 28px; border-radius: 18px; background: linear-gradient(135deg, #2a1f14 0%, #fe6d72 0%, #fea621 100%); color: #fff; margin-bottom: 26px; }
+    .case-hero-layout { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+    .case-hero-copy { flex: 1 1 360px; }
+    .case-hero-copy h1 { color: #fff; margin-bottom: 12px; font-size: 38px; line-height: 1.15em; }
+    .case-hero-copy p { color: rgba(255,255,255,.94); font-size: 17px; margin-bottom: 0; max-width: 620px; }
+    .case-hero-visual { flex: 1 1 320px; }
+    .case-hero img, .evidence-card img { width: 100%; border: 1px solid #eee; border-radius: 14px; background: #fff; display: block; min-height: 120px; }
+    .case-hero img { border: none; box-shadow: 0 12px 28px rgba(0,0,0,.18); }
+    .hero-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 22px; }
+    .hero-metric { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.22); border-radius: 14px; padding: 14px 16px; }
+    .hero-metric strong { display: block; color: #fff; font-size: 20px; margin-bottom: 6px; }
+    .hero-metric span { color: rgba(255,255,255,.88); font-size: 13px; line-height: 1.35em; display: block; }
+    .evidence-card a { display: block; cursor: pointer; }
+    .case-eyebrow { color: #fea621; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; font-size: 13px; }
+    .case-summary { background: linear-gradient(180deg, #fffdfa 0%, #fcfcfc 100%); border: 1px solid #eee; padding: 24px; margin: 24px 0; border-radius: 16px; }
+    .case-list { margin-left: 20px; }
+    .case-list li { margin-bottom: 11px; }
+    .case-card, .evidence-card { border: 1px solid #eee; background: #fcfcfc; padding: 18px; margin-bottom: 18px; min-height: 128px; border-radius: 14px; box-shadow: 0 8px 22px rgba(27, 27, 27, .04); }
+    .case-card { background: linear-gradient(180deg, #fffdfa 0%, #fbfbfb 100%); }
+    .evidence-card { background: linear-gradient(180deg, #fff 0%, #fcfcfc 100%); }
+    .case-badge { display: inline-block; border: 1px solid #e5e5e5; border-radius: 4px; padding: 4px 9px; margin: 3px; font-size: 12px; background: #fff; }
+    .case-actions { margin-top: 24px; }
+    .evidence-card h3 { margin-top: 14px; }
+    .note { color: #777; font-size: 13px; }
+    .section-kicker { color: #9d6b1d; font-size: 13px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 8px; }
+    .results-list { margin-left: 20px; }
+    .results-list li { margin-bottom: 10px; }
+    .evidence-link { margin-top: 12px; display: inline-block; color: #9d6b1d; font-weight: 600; }
+    .evidence-link:hover { color: #d98200; }
+    .case-sidebar { position: sticky; top: 24px; }
+    .sidebar-panel { background: linear-gradient(180deg, #fffdfa 0%, #fcfcfc 100%); border: 1px solid #eee; border-radius: 16px; padding: 20px; box-shadow: 0 10px 24px rgba(27, 27, 27, .05); }
+    .sidebar-panel h2 { margin-top: 20px; }
+    .sidebar-panel h2:first-of-type { margin-top: 0; }
+    @media (max-width: 768px) {
+      .case-page { margin: 0; padding: 20px; border-radius: 0; }
+      .case-hero-copy h1 { font-size: 30px; }
+      .hero-metrics { grid-template-columns: 1fr; }
+      .case-sidebar { position: static; }
+    }
+  </style>
+</head>
+<body>
+  <main class="case-page">
+    <a class="top-back-link" href="index.html#portfolio">&larr; Back to Portfolio</a>
+    <p class="case-eyebrow">Portfolio Case Study</p>
+    <div class="case-hero">
+      <div class="case-hero-layout">
+        <div class="case-hero-copy">
+          <h1>Platform Engineering Foundation: Docs, Terraform, and Secure Delivery</h1>
+          <p>This project shows how I design platforms the way strong engineering organizations actually need them: documented, reviewable, automated, and safe to operate. It combines architecture governance, Proxmox infrastructure-as-code, and application delivery standards into one practical foundation for scaling teams and environments.</p>
+          <div class="hero-metrics">
+            <div class="hero-metric">
+              <strong>3 Repos</strong>
+              <span>One operating model across documentation, infrastructure, and application delivery.</span>
+            </div>
+            <div class="hero-metric">
+              <strong>End-to-End</strong>
+              <span>From ADRs and runbooks to VM build logic, CI, deployment templates, and validation steps.</span>
+            </div>
+            <div class="hero-metric">
+              <strong>Leadership Signal</strong>
+              <span>Demonstrates platform ownership, safety controls, and repeatable delivery design.</span>
+            </div>
+          </div>
+        </div>
+        <div class="case-hero-visual">
+          <img src="img/portfolio/platform-foundation.svg" alt="Platform foundation architecture illustration">
+        </div>
+      </div>
+    </div>
+
+    <section class="case-summary">
+      <p class="section-kicker">Executive Summary</p>
+      <h2>Project Overview</h2>
+      <p>This case study combines three related repositories: a documentation system of ADRs, runbooks, and GitHub Actions policy checks; a Terraform workspace for Proxmox guest provisioning and inventory planning; and a Django and Groundwork application foundation with frontend tooling and pull-request validation.</p>
+      <p>The real value is in the integration. Instead of treating documentation, infrastructure, CI, and deployment operations as disconnected tasks, this work turns them into a single platform discipline with clearer standards, safer change paths, and stronger operational handoff.</p>
+    </section>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-8">
+        <p class="section-kicker">Scope</p>
+        <h2>What I Built</h2>
+        <ul class="case-list">
+          <li>Documentation-as-code structure with architecture decision records, runbooks, checklists, user stories, and public-safe project summaries.</li>
+          <li>GitHub Actions validation patterns that enforce documentation presence, secret hygiene, and reusable deployment workflow structure.</li>
+          <li>Terraform workspace for Proxmox cluster configuration, cloud image handling, guest inventory collection, and safe import planning.</li>
+          <li>Parameterized guest definition for a Docker host with cloud-init, observability hooks, and environment-specific local inputs.</li>
+          <li>Django and Groundwork application scaffold with Docker, dev containers, TypeScript and Vite assets, and CI-backed lint and test execution.</li>
+          <li>Reusable deployment pattern connecting GitHub Actions, Infisical, SSH orchestration, Docker Compose rollout, and health validation.</li>
+        </ul>
+
+        <p class="section-kicker">Why It Matters</p>
+        <h2>Employer Value</h2>
+        <ul class="results-list">
+          <li>This work demonstrates that I do more than stand up systems. I build the engineering structure that makes teams safer, faster, and easier to scale.</li>
+          <li>It shows cross-functional ownership: architecture, security boundary thinking, infrastructure automation, CI workflow design, deployment standards, and application delivery enablement.</li>
+          <li>It is directly relevant to platform engineering, DevOps leadership, SRE-adjacent delivery, and manager-level roles where repeatability and governance matter as much as technical execution.</li>
+        </ul>
+
+        <p class="section-kicker">Technical Depth</p>
+        <h2>Technical Highlights</h2>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Docs as Control Plane</h3><p>Architecture rules, safety boundaries, and runbooks are kept versioned and validated in GitHub before downstream automation depends on them.</p></div></div>
+          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Infrastructure Reconciliation</h3><p>Terraform is used not only for new builds, but also to inventory and safely model existing Proxmox guests before import and apply.</p></div></div>
+          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>App Delivery Foundation</h3><p>The web application stack pairs Django, Groundwork, PostGIS, TypeScript, and containerized CI so application work starts from a structured baseline.</p></div></div>
+          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Deployment Standardization</h3><p>Reusable GitHub Actions and Docker Compose patterns reduce one-off deployment logic and make secret handling and health checks explicit.</p></div></div>
+        </div>
+
+        <p class="section-kicker">Evidence</p>
+        <h2>Evidence Gallery</h2>
+        <p class="note">These diagrams summarize the repository work in a public-safe format. Each panel opens the full-size diagram in a new tab for easier review.</p>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6"><div class="evidence-card"><a href="img/portfolio/platform-docs-governance.svg" target="_blank" rel="noopener noreferrer"><img src="img/portfolio/platform-docs-governance.svg" alt="Docs repository governance"></a><h3>Documentation Governance</h3><p>The docs repository defines architecture principles, decision records, reusable deployment templates, and safety checks that block obvious secrets and required-structure regressions.</p><a class="evidence-link" href="img/portfolio/platform-docs-governance.svg" target="_blank" rel="noopener noreferrer">Open full-size diagram</a></div></div>
+          <div class="col-xs-12 col-sm-6"><div class="evidence-card"><a href="img/portfolio/platform-terraform-proxmox.svg" target="_blank" rel="noopener noreferrer"><img src="img/portfolio/platform-terraform-proxmox.svg" alt="Terraform Proxmox foundation"></a><h3>Terraform Proxmox Workspace</h3><p>The infrastructure repository models cluster inputs, downloads cloud images, configures VM initialization, and supports guest inventory before state import or change rollout.</p><a class="evidence-link" href="img/portfolio/platform-terraform-proxmox.svg" target="_blank" rel="noopener noreferrer">Open full-size diagram</a></div></div>
+          <div class="col-xs-12 col-sm-6"><div class="evidence-card"><a href="img/portfolio/platform-webdev-delivery.svg" target="_blank" rel="noopener noreferrer"><img src="img/portfolio/platform-webdev-delivery.svg" alt="Web application delivery stack"></a><h3>Web Application Delivery</h3><p>The application repository combines Django, Groundwork, Vite, Jest, dev containers, and pull-request CI so web delivery starts from a repeatable engineering base.</p><a class="evidence-link" href="img/portfolio/platform-webdev-delivery.svg" target="_blank" rel="noopener noreferrer">Open full-size diagram</a></div></div>
+          <div class="col-xs-12 col-sm-6"><div class="evidence-card"><a href="img/portfolio/platform-compose-deployment.svg" target="_blank" rel="noopener noreferrer"><img src="img/portfolio/platform-compose-deployment.svg" alt="Reusable compose deployment pattern"></a><h3>Reusable Deployment Pattern</h3><p>GitHub Actions, Infisical, SSH coordination, rsync sync, Docker Compose rollout, and health checks are documented and templated into a reusable release flow.</p><a class="evidence-link" href="img/portfolio/platform-compose-deployment.svg" target="_blank" rel="noopener noreferrer">Open full-size diagram</a></div></div>
+        </div>
+
+        <p class="section-kicker">Leadership</p>
+        <h2>Leadership Value</h2>
+        <p>This project shows platform leadership through the integration of policy, documentation, infrastructure automation, and application delivery. The value is not just in any single repo, but in the consistency created across planning, provisioning, validation, deployment, and operational handoff.</p>
+        <p>For an employer, this is evidence that I can build the systems behind engineering teams, not just contribute one isolated technical component. I can define standards, codify them, and turn them into workflows that teams can trust.</p>
+      </div>
+
+      <aside class="col-xs-12 col-sm-4">
+        <div class="case-sidebar">
+          <div class="sidebar-panel">
+        <p class="section-kicker">Snapshot</p>
+        <h2>Project Details</h2>
+        <p><strong>Role:</strong> Platform architect, infrastructure builder, and delivery workflow designer</p>
+        <p><strong>Status:</strong> Active foundation and internal platform enablement work</p>
+        <p><strong>Focus:</strong> Governance, infrastructure-as-code, delivery automation, and operational readiness</p>
+        <p><strong>Source:</strong> Private source-controlled repositories with a public-safe portfolio summary</p>
+
+        <h2>Technologies</h2>
+        <span class="case-badge">GitHub Actions</span>
+        <span class="case-badge">ADRs</span>
+        <span class="case-badge">Runbooks</span>
+        <span class="case-badge">Terraform</span>
+        <span class="case-badge">Proxmox</span>
+        <span class="case-badge">Cloud-Init</span>
+        <span class="case-badge">Docker Compose</span>
+        <span class="case-badge">Infisical</span>
+        <span class="case-badge">Django</span>
+        <span class="case-badge">Groundwork</span>
+        <span class="case-badge">PostGIS</span>
+        <span class="case-badge">Vite</span>
+        <span class="case-badge">Jest</span>
+        <span class="case-badge">Platform Engineering</span>
+
+        <h2>Public-Safe Notes</h2>
+        <p class="note">This page summarizes architecture, workflows, and engineering patterns without exposing secrets, environment-specific private values, or internal-only implementation details.</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="case-actions">
+      <a class="btn btn-primary" href="index.html#portfolio">Back to Portfolio</a>
+    </div>
+  </main>
+</body>
+</html>
