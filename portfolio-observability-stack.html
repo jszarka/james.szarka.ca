@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Observability Stack Portfolio - James T. Szarka</title>
+  <link rel="stylesheet" href="css/reset.css" type="text/css">
+  <link rel="stylesheet" href="css/bootstrap-grid.min.css" type="text/css">
+  <link rel="stylesheet" href="css/main.css" type="text/css">
+  <style>
+    body { background: #f5f5f5; }
+    .case-page { max-width: 1120px; margin: 30px auto; background: #fff; padding: 34px; border-radius: 16px; }
+    .case-hero img { width: 100%; border: 1px solid #eee; border-radius: 12px; }
+    .case-eyebrow { color: #fea621; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; font-size: 13px; }
+    .case-summary { background: #fcfcfc; border: 1px solid #eee; padding: 22px; margin: 24px 0; }
+    .case-list { margin-left: 20px; }
+    .case-list li { margin-bottom: 9px; }
+    .case-card { border: 1px solid #eee; background: #fcfcfc; padding: 18px; margin-bottom: 18px; min-height: 128px; }
+    .case-badge { display: inline-block; border: 1px solid #e5e5e5; border-radius: 4px; padding: 4px 9px; margin: 3px; font-size: 12px; background: #fff; }
+    .case-actions { margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <main class="case-page">
+    <p class="case-eyebrow">Portfolio Case Study</p>
+    <h1>Grafana, Loki, Prometheus, Alloy Monitoring Stack</h1>
+    <p>A practical SRE observability platform for metrics, logs, dashboards, alert routing, service recovery, and operational handoff.</p>
+
+    <div class="case-hero">
+      <img src="img/portfolio/observability-stack.svg" alt="Observability stack architecture illustration">
+    </div>
+
+    <section class="case-summary">
+      <h2>Project Overview</h2>
+      <p>This project centralizes infrastructure telemetry with Grafana dashboards, Prometheus metrics, Loki logs, Alloy collection, Alertmanager routing, Docker Compose operations, and documented recovery practices.</p>
+      <p>The purpose is to make the environment easier to operate under real pressure by connecting host, container, database, reverse proxy, network, and application signals into one supportable monitoring platform.</p>
+    </section>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-8">
+        <h2>What I Built</h2>
+        <ul class="case-list">
+          <li>Containerized monitoring stack with persistent service configuration.</li>
+          <li>Repository-managed Grafana dashboard provisioning.</li>
+          <li>Prometheus scrape coverage for hosts, containers, applications, databases, DNS, virtualization, and network devices.</li>
+          <li>Loki log aggregation using Alloy pipelines and consistent labels.</li>
+          <li>Alertmanager routing with practical Prometheus and Loki alert rules.</li>
+          <li>Startup and recovery design so monitoring services return cleanly after restart or reboot.</li>
+          <li>Architecture documentation, topology diagrams, onboarding notes, and operational handoff material.</li>
+        </ul>
+
+        <h2>Technical Highlights</h2>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Source of Truth</h3><p>Configuration, dashboards, alert rules, and documentation are tracked in Git.</p></div></div>
+          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Dashboards as Code</h3><p>Grafana dashboards are provisioned from repository-managed JSON files.</p></div></div>
+          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Metrics and Logs</h3><p>Prometheus and Loki provide complementary views of system behavior.</p></div></div>
+          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Operational Recovery</h3><p>Restart policy and startup controls reduce partial recovery after reboot.</p></div></div>
+        </div>
+
+        <h2>Leadership Value</h2>
+        <p>This case study shows DevOps and SRE leadership through a system that is observable, documented, repeatable, and useful to operators during troubleshooting and incident response.</p>
+      </div>
+
+      <aside class="col-xs-12 col-sm-4">
+        <h2>Project Details</h2>
+        <p><strong>Role:</strong> Architect, builder, and operator</p>
+        <p><strong>Status:</strong> Production-style lab project</p>
+        <p><strong>Repository:</strong> <a href="https://github.com/jszarka/loki-graf-stack">loki-graf-stack</a></p>
+
+        <h2>Technologies</h2>
+        <span class="case-badge">Grafana</span>
+        <span class="case-badge">Prometheus</span>
+        <span class="case-badge">Loki</span>
+        <span class="case-badge">Alloy</span>
+        <span class="case-badge">Alertmanager</span>
+        <span class="case-badge">Docker Compose</span>
+        <span class="case-badge">cAdvisor</span>
+        <span class="case-badge">Node Exporter</span>
+        <span class="case-badge">SNMP Exporter</span>
+        <span class="case-badge">PostgreSQL Exporter</span>
+        <span class="case-badge">SRE</span>
+      </aside>
+    </div>
+
+    <div class="case-actions">
+      <a class="btn btn-primary" href="index.html#portfolio">Back to Portfolio</a>
+      <a class="btn btn-secondary" href="https://github.com/jszarka/loki-graf-stack">View Repository</a>
+    </div>
+  </main>
+</body>
+</html>
