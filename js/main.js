@@ -31,6 +31,38 @@
     }
     // /Portfolio subpage filters
 
+    // Add Observability portfolio card to the existing placeholder section.
+    function portfolio_observability_card_init() {
+        var portfolio_grid = $('.portfolio-grid'),
+            portfolio_filter = $('.portfolio-filters');
+
+        if (!portfolio_grid.length) {
+            return;
+        }
+
+        portfolio_filter.html(
+            '<li class="active">' +
+                '<a class="filter btn btn-sm btn-link" data-group="all">All</a>' +
+            '</li>' +
+            '<li>' +
+                '<a class="filter btn btn-sm btn-link" data-group="devops">DevOps / SRE</a>' +
+            '</li>'
+        );
+
+        portfolio_grid.html(
+            '<figure class="item standard" data-groups=\'["all", "devops"]\'>' +
+                '<div class="portfolio-item-img">' +
+                    '<img src="img/portfolio/observability-stack.svg" alt="Grafana Loki Prometheus Alloy Monitoring Stack" title="Observability Stack" />' +
+                    '<a href="portfolio-observability-stack.html" title="Grafana, Loki, Prometheus, Alloy Monitoring Stack"></a>' +
+                '</div>' +
+                '<i class="far fa-file-alt"></i>' +
+                '<h4 class="name">Grafana, Loki, Prometheus, Alloy Monitoring Stack</h4>' +
+                '<span class="category">DevOps / SRE / Observability</span>' +
+            '</figure>'
+        );
+    }
+    // /Add Observability portfolio card
+
 
     // Hide Mobile menu
     function mobileMenuHide() {
@@ -156,6 +188,9 @@
         $('.sidebar-toggle').on("click", function () {
             $('#blog-sidebar').toggleClass('open');
         });
+
+        // Add portfolio content before initializing the grid
+        portfolio_observability_card_init();
 
         // Initialize Portfolio grid
         var $portfolio_container = $(".portfolio-grid");
