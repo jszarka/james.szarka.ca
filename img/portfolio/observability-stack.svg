@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Observability stack portfolio illustration</title>
+  <desc id="desc">A dark dashboard-style illustration showing Grafana, Prometheus, Loki, Alloy, Alertmanager, and infrastructure telemetry flowing into one monitoring platform.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10131a"/>
+      <stop offset="0.55" stop-color="#1f2633"/>
+      <stop offset="1" stop-color="#302414"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffb13b"/>
+      <stop offset="1" stop-color="#ff6b2b"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.32"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" rx="34" fill="url(#bg)"/>
+  <g opacity="0.15" stroke="#ffffff" stroke-width="1">
+    <path d="M60 140 H1140"/><path d="M60 260 H1140"/><path d="M60 380 H1140"/><path d="M60 500 H1140"/><path d="M60 620 H1140"/>
+    <path d="M180 80 V700"/><path d="M360 80 V700"/><path d="M540 80 V700"/><path d="M720 80 V700"/><path d="M900 80 V700"/><path d="M1080 80 V700"/>
+  </g>
+  <text x="78" y="92" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="700">Observability Stack</text>
+  <text x="80" y="128" fill="#c8ced9" font-family="Inter, Arial, sans-serif" font-size="20">Metrics • Logs • Alerts • Dashboards • Runtime telemetry</text>
+
+  <g filter="url(#shadow)">
+    <rect x="72" y="184" width="314" height="420" rx="24" fill="#171b24" stroke="#333a48"/>
+    <text x="105" y="232" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="700">Signal Sources</text>
+    <g font-family="Inter, Arial, sans-serif" font-size="18">
+      <rect x="105" y="266" width="235" height="50" rx="14" fill="#222938"/><text x="128" y="298" fill="#e8edf6">Docker containers</text>
+      <rect x="105" y="336" width="235" height="50" rx="14" fill="#222938"/><text x="128" y="368" fill="#e8edf6">Linux hosts</text>
+      <rect x="105" y="406" width="235" height="50" rx="14" fill="#222938"/><text x="128" y="438" fill="#e8edf6">Reverse proxy logs</text>
+      <rect x="105" y="476" width="235" height="50" rx="14" fill="#222938"/><text x="128" y="508" fill="#e8edf6">Network devices</text>
+    </g>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="446" y="178" width="308" height="432" rx="24" fill="#171b24" stroke="#333a48"/>
+    <text x="480" y="226" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="700">Collection + Storage</text>
+    <g font-family="Inter, Arial, sans-serif" font-size="18">
+      <rect x="482" y="266" width="235" height="50" rx="14" fill="#222938"/><text x="506" y="298" fill="#e8edf6">Alloy pipelines</text>
+      <rect x="482" y="336" width="235" height="50" rx="14" fill="#222938"/><text x="506" y="368" fill="#e8edf6">Prometheus TSDB</text>
+      <rect x="482" y="406" width="235" height="50" rx="14" fill="#222938"/><text x="506" y="438" fill="#e8edf6">Loki log store</text>
+      <rect x="482" y="476" width="235" height="50" rx="14" fill="#222938"/><text x="506" y="508" fill="#e8edf6">Alertmanager routes</text>
+    </g>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="814" y="184" width="314" height="420" rx="24" fill="#171b24" stroke="#333a48"/>
+    <text x="848" y="232" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="700">Operator Experience</text>
+    <g font-family="Inter, Arial, sans-serif" font-size="18">
+      <rect x="850" y="266" width="235" height="50" rx="14" fill="#222938"/><text x="874" y="298" fill="#e8edf6">Grafana dashboards</text>
+      <rect x="850" y="336" width="235" height="50" rx="14" fill="#222938"/><text x="874" y="368" fill="#e8edf6">Loki Explore</text>
+      <rect x="850" y="406" width="235" height="50" rx="14" fill="#222938"/><text x="874" y="438" fill="#e8edf6">Alert visibility</text>
+      <rect x="850" y="476" width="235" height="50" rx="14" fill="#222938"/><text x="874" y="508" fill="#e8edf6">Recovery runbooks</text>
+    </g>
+  </g>
+
+  <g stroke="url(#accent)" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.9">
+    <path d="M386 392 C418 392 418 392 446 392"/>
+    <path d="M754 392 C786 392 786 392 814 392"/>
+  </g>
+  <g fill="url(#accent)">
+    <circle cx="416" cy="392" r="10"/><circle cx="784" cy="392" r="10"/>
+  </g>
+
+  <g font-family="Inter, Arial, sans-serif" fill="#c8ced9" font-size="16">
+    <text x="78" y="688">Designed as a practical SRE lab: telemetry contracts, dashboards as code, alert routing, startup recovery, and operational handoff.</text>
+  </g>
+</svg>
