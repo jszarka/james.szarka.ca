@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">CloudPlan.ca website portfolio illustration</title>
+  <desc id="desc">Illustration of the CloudPlan.ca business website, Cloud Rescue Audit offer, cloud planning, security, DevOps, backup, and recovery services.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eef8ff"/>
+      <stop offset="100%" stop-color="#fffdf9"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b4f7a"/>
+      <stop offset="100%" stop-color="#fea621"/>
+    </linearGradient>
+    <style>
+      .bg { fill: url(#bg); }
+      .browser { fill: #fff; stroke: #dbe7ef; stroke-width: 2.5; rx: 26; }
+      .bar { fill: #f6f9fb; }
+      .dot { fill: #c8d7df; }
+      .hero { fill: url(#hero); rx: 22; }
+      .title { font: 700 44px Poppins, Arial, sans-serif; fill: #fff; }
+      .sub { font: 500 22px Poppins, Arial, sans-serif; fill: rgba(255,255,255,.92); }
+      .label { font: 700 28px Poppins, Arial, sans-serif; fill: #17344b; }
+      .body { font: 500 19px Poppins, Arial, sans-serif; fill: #5b6b76; }
+      .card { fill: #fff; stroke: #dbe7ef; stroke-width: 2; rx: 18; }
+      .chip { fill: #fff7ed; stroke: #f2cf9b; stroke-width: 1.5; rx: 14; }
+      .chiptext { font: 700 17px Poppins, Arial, sans-serif; fill: #9d6b1d; }
+      .accent { fill: #fea621; }
+      .line { stroke: #0b4f7a; stroke-width: 4; fill: none; stroke-linecap: round; }
+    </style>
+  </defs>
+  <rect width="1200" height="720" class="bg"/>
+  <rect x="74" y="68" width="1052" height="584" class="browser"/>
+  <rect x="74" y="68" width="1052" height="58" class="bar" rx="26"/>
+  <circle cx="118" cy="98" r="9" class="dot"/>
+  <circle cx="148" cy="98" r="9" class="dot"/>
+  <circle cx="178" cy="98" r="9" class="dot"/>
+  <text x="242" y="106" class="body">cloudplan.ca</text>
+
+  <rect x="108" y="158" width="984" height="186" class="hero"/>
+  <text x="148" y="222" class="title">Cloud plans, not cloud chaos.</text>
+  <text x="148" y="266" class="sub">Cloud, DevOps, security, backup, recovery, and cost control</text>
+  <text x="148" y="298" class="sub">planning for Canadian small and mid-sized businesses.</text>
+  <rect x="844" y="208" width="178" height="46" class="chip"/>
+  <text x="882" y="238" class="chiptext">Rescue Audit</text>
+
+  <rect x="128" y="388" width="278" height="150" class="card"/>
+  <circle cx="172" cy="440" r="20" class="accent"/>
+  <text x="206" y="432" class="label">Map</text>
+  <text x="206" y="462" class="body">Inventory systems,</text>
+  <text x="206" y="490" class="body">access, DNS, backups,</text>
+  <text x="206" y="518" class="body">costs, and owners.</text>
+
+  <rect x="462" y="388" width="278" height="150" class="card"/>
+  <circle cx="506" cy="440" r="20" class="accent"/>
+  <text x="540" y="432" class="label">Reduce Risk</text>
+  <text x="540" y="462" class="body">Find cloud waste,</text>
+  <text x="540" y="490" class="body">security gaps, and</text>
+  <text x="540" y="518" class="body">recovery concerns.</text>
+
+  <rect x="796" y="388" width="278" height="150" class="card"/>
+  <circle cx="840" cy="440" r="20" class="accent"/>
+  <text x="874" y="432" class="label">Plan</text>
+  <text x="874" y="462" class="body">Create a practical</text>
+  <text x="874" y="490" class="body">30/60/90-day</text>
+  <text x="874" y="518" class="body">roadmap.</text>
+
+  <path d="M406 463 L462 463" class="line"/>
+  <path d="M740 463 L796 463" class="line"/>
+  <text x="132" y="600" class="body">Static business website • SEO and social metadata • Contact path • PDF offer • Public-safe deployment notes</text>
+</svg>
