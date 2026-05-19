@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CloudPlan.ca Portfolio - James T. Szarka</title>
+  <link rel="stylesheet" href="css/reset.css" type="text/css">
+  <link rel="stylesheet" href="css/bootstrap-grid.min.css" type="text/css">
+  <link rel="stylesheet" href="css/main.css" type="text/css">
+  <style>
+    html, body { height: auto !important; min-height: 100% !important; overflow-y: auto !important; overflow-x: hidden !important; }
+    body { position: static !important; background: linear-gradient(180deg, #eef8ff 0%, #f5f5f5 100%); }
+    .case-page { max-width: 1140px; margin: 30px auto; background: #fff; padding: 34px; border-radius: 18px; overflow: visible; box-shadow: 0 18px 45px rgba(29, 29, 29, .08); }
+    .top-back-link { display: inline-block; margin-bottom: 18px; color: #fea621; font-weight: 600; }
+    .top-back-link:hover { color: #d98200; }
+    .case-hero { padding: 28px; border-radius: 18px; background: linear-gradient(135deg, #0b4f7a 0%, #17344b 48%, #fea621 100%); color: #fff; margin-bottom: 26px; }
+    .case-hero-layout { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+    .case-hero-copy { flex: 1 1 360px; }
+    .case-hero-copy h1 { color: #fff; margin-bottom: 12px; font-size: 38px; line-height: 1.15em; }
+    .case-hero-copy p { color: rgba(255,255,255,.94); font-size: 17px; margin-bottom: 0; max-width: 620px; }
+    .case-hero-visual { flex: 1 1 320px; }
+    .case-hero img { width: 100%; border: none; border-radius: 14px; background: #fff; display: block; box-shadow: 0 12px 28px rgba(0,0,0,.18); }
+    .hero-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 22px; }
+    .hero-metric { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.22); border-radius: 14px; padding: 14px 16px; }
+    .hero-metric strong { display: block; color: #fff; font-size: 20px; margin-bottom: 6px; }
+    .hero-metric span { color: rgba(255,255,255,.88); font-size: 13px; line-height: 1.35em; display: block; }
+    .case-eyebrow { color: #fea621; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; font-size: 13px; }
+    .case-summary { background: linear-gradient(180deg, #fffdfa 0%, #fcfcfc 100%); border: 1px solid #eee; padding: 24px; margin: 24px 0; border-radius: 16px; }
+    .case-list, .results-list { margin-left: 20px; }
+    .case-list li, .results-list li { margin-bottom: 10px; }
+    .case-card { border: 1px solid #eee; background: linear-gradient(180deg, #fffdfa 0%, #fbfbfb 100%); padding: 18px; margin-bottom: 18px; min-height: 128px; border-radius: 14px; box-shadow: 0 8px 22px rgba(27, 27, 27, .04); }
+    .case-badge { display: inline-block; border: 1px solid #e5e5e5; border-radius: 4px; padding: 4px 9px; margin: 3px; font-size: 12px; background: #fff; }
+    .case-actions { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .note { color: #777; font-size: 13px; }
+    .section-kicker { color: #9d6b1d; font-size: 13px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 8px; }
+    .sidebar-panel { background: linear-gradient(180deg, #fffdfa 0%, #fcfcfc 100%); border: 1px solid #eee; border-radius: 16px; padding: 20px; box-shadow: 0 10px 24px rgba(27, 27, 27, .05); }
+    .sidebar-panel h2 { margin-top: 20px; }
+    .sidebar-panel h2:first-of-type { margin-top: 0; }
+    @media (max-width: 768px) { .case-page { margin: 0; padding: 20px; border-radius: 0; } .case-hero-copy h1 { font-size: 30px; } .hero-metrics { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="case-page">
+    <a class="top-back-link" href="index.html#portfolio">&larr; Back to Portfolio</a>
+    <p class="case-eyebrow">Portfolio Website Link</p>
+    <div class="case-hero">
+      <div class="case-hero-layout">
+        <div class="case-hero-copy">
+          <h1>CloudPlan.ca</h1>
+          <p>A static business website for cloud, DevOps, security, backup, recovery, and cloud planning services for Canadian small and mid-sized businesses.</p>
+          <div class="hero-metrics">
+            <div class="hero-metric"><strong>Business MVP</strong><span>Clear service positioning, primary offer, and contact path.</span></div>
+            <div class="hero-metric"><strong>Cloud Rescue Audit</strong><span>Maps environments, risk, cost, backup, security, and operational priorities.</span></div>
+            <div class="hero-metric"><strong>Public-Safe</strong><span>Static HTML, CSS, JavaScript, no database, and no frontend secrets.</span></div>
+          </div>
+        </div>
+        <div class="case-hero-visual"><img src="img/portfolio/cloudplan-site.svg" alt="CloudPlan.ca website illustration"></div>
+      </div>
+    </div>
+
+    <section class="case-summary">
+      <p class="section-kicker">Overview</p>
+      <h2>What this link represents</h2>
+      <p>CloudPlan.ca presents a practical consulting offer for businesses that have cloud services, websites, Microsoft 365, backups, GitHub, Docker, vendors, or deployments, but need a clearer plan for what exists, what is risky, and what to fix first.</p>
+      <p>The site is intentionally simple and reliable: a static landing page with supporting privacy, terms, security, contact, and thank-you pages, plus a downloadable overview for the Cloud Rescue Audit offer.</p>
+    </section>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-8">
+        <p class="section-kicker">Scope</p>
+        <h2>Website Highlights</h2>
+        <ul class="case-list">
+          <li>Homepage messaging focused on cloud planning, DevOps advisory, security baselines, cost control, backup, and recovery planning.</li>
+          <li>Cloud Rescue Audit section with a plain-language final deliverable and 30/60/90-day roadmap positioning.</li>
+          <li>Service cards for fractional DevOps leadership, monitoring and observability, Microsoft 365 and cloud security, and recovery planning.</li>
+          <li>Static implementation suitable for simple web hosting, with no backend database dependency.</li>
+          <li>Public-safe repo documentation that calls out safety rules around secrets, passwords, API tokens, private keys, and hosting credentials.</li>
+        </ul>
+
+        <p class="section-kicker">Employer Value</p>
+        <h2>Why it belongs in the portfolio</h2>
+        <ul class="results-list">
+          <li>Shows the ability to turn technical cloud and DevOps experience into a focused business service offering.</li>
+          <li>Demonstrates clear communication for non-technical business owners while still reflecting senior cloud, security, DevOps, and recovery depth.</li>
+          <li>Connects consulting strategy, website execution, documentation, and operational safety into one real project.</li>
+        </ul>
+
+        <p class="section-kicker">Technical Notes</p>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Static Delivery</h3><p>Built for simple hosting with static HTML, CSS, and JavaScript so the site can run without database operations.</p></div></div>
+          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Service Design</h3><p>The Cloud Rescue Audit gives the website a clear commercial entry point instead of being a generic consulting page.</p></div></div>
+        </div>
+      </div>
+
+      <aside class="col-xs-12 col-sm-4">
+        <div class="sidebar-panel">
+          <p class="section-kicker">Snapshot</p>
+          <h2>Project Details</h2>
+          <p><strong>Role:</strong> Business owner, service designer, and website builder</p>
+          <p><strong>Status:</strong> MVP website</p>
+          <p><strong>Focus:</strong> Cloud planning, DevOps, security, cost control, backup, and recovery readiness</p>
+          <h2>Technologies</h2>
+          <span class="case-badge">HTML</span><span class="case-badge">CSS</span><span class="case-badge">JavaScript</span><span class="case-badge">Static Hosting</span><span class="case-badge">SEO Metadata</span><span class="case-badge">Cloud Consulting</span><span class="case-badge">DevOps</span>
+          <h2>Public-Safe Notes</h2>
+          <p class="note">This page links to the public business website and summarizes the work without exposing private hosting details or credentials.</p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="case-actions">
+      <a class="btn btn-primary" href="https://cloudplan.ca" target="_blank" rel="noopener noreferrer">Open CloudPlan.ca</a>
+      <a class="btn btn-secondary" href="index.html#portfolio">Back to Portfolio</a>
+    </div>
+  </main>
+</body>
+</html>
