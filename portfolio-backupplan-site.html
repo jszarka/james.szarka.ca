@@ -3,111 +3,132 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BackupPlan.ca Business Website | James T. Szarka Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Portfolio case study for BackupPlan.ca, a backup and disaster recovery website focused on business continuity, recovery planning, and practical data protection services.">
-  <meta name="keywords" content="BackupPlan.ca, James Szarka, backup planning, disaster recovery, business continuity, data protection, recovery website, Calgary DevOps">
+  <meta name="description" content="Portfolio case study for BackupPlan.ca, a backup and recovery website focused on continuity, recovery planning, and practical data protection services.">
+  <meta name="keywords" content="BackupPlan.ca, James Szarka, backup planning, recovery planning, business continuity, data protection, recovery website, Calgary DevOps">
   <meta name="author" content="James T. Szarka">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://james.szarka.ca/portfolio-backupplan-site.html">
   <meta property="og:type" content="article">
   <meta property="og:title" content="BackupPlan.ca Business Website | James T. Szarka Portfolio">
-  <meta property="og:description" content="BackupPlan.ca presents backup, disaster recovery, and business continuity services with clear positioning and a simple contact path.">
+  <meta property="og:description" content="BackupPlan.ca presents backup, recovery, and continuity services with clear positioning and a simple contact path.">
   <meta property="og:url" content="https://james.szarka.ca/portfolio-backupplan-site.html">
   <meta property="og:image" content="https://james.szarka.ca/img/portfolio/recoveryplan-site.svg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="BackupPlan.ca Business Website | James T. Szarka Portfolio">
-  <meta name="twitter:description" content="A business website case study focused on backup, recovery planning, disaster recovery, and data protection services.">
+  <meta name="twitter:description" content="A business website case study focused on backup, recovery planning, continuity, and data protection services.">
   <meta name="twitter:image" content="https://james.szarka.ca/img/portfolio/recoveryplan-site.svg">
-  <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="css/reset.css" type="text/css">
   <link rel="stylesheet" href="css/bootstrap-grid.min.css" type="text/css">
-  <link rel="stylesheet" href="css/animations.css" type="text/css">
-  <link rel="stylesheet" href="css/perfect-scrollbar.css" type="text/css">
-  <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
-  <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
   <link rel="stylesheet" href="css/main.css" type="text/css">
-  <style>
-    .portfolio-page-wrap { max-width: 980px; margin: 0 auto; padding: 56px 24px; }
-    .portfolio-hero { margin-bottom: 32px; }
-    .portfolio-hero img { width: 100%; max-height: 260px; object-fit: contain; margin: 24px 0; }
-    .portfolio-meta { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 28px; }
-    .portfolio-meta span { border: 1px solid rgba(255,255,255,.15); border-radius: 20px; padding: 6px 12px; font-size: 13px; }
-    .portfolio-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-    .portfolio-actions .btn { margin: 0; }
-    .portfolio-section { margin-top: 28px; }
-  </style>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "BackupPlan.ca Business Website",
-    "url": "https://james.szarka.ca/portfolio-backupplan-site.html",
-    "image": "https://james.szarka.ca/img/portfolio/recoveryplan-site.svg",
-    "author": { "@type": "Person", "name": "James T. Szarka", "url": "https://james.szarka.ca/" },
-    "about": ["Backup planning", "Disaster recovery", "Business continuity", "Data protection"],
-    "description": "Portfolio case study for BackupPlan.ca, a backup and disaster recovery website."
-  }
+  {"@context":"https://schema.org","@type":"CreativeWork","name":"BackupPlan.ca Business Website","url":"https://james.szarka.ca/portfolio-backupplan-site.html","image":"https://james.szarka.ca/img/portfolio/recoveryplan-site.svg","author":{"@type":"Person","name":"James T. Szarka","url":"https://james.szarka.ca/"},"about":["Backup planning","Recovery planning","Business continuity","Data protection"],"description":"Portfolio case study for BackupPlan.ca, a backup and recovery website."}
   </script>
+  <style>
+    html, body { height: auto !important; min-height: 100% !important; overflow-y: auto !important; overflow-x: hidden !important; }
+    body { position: static !important; background: linear-gradient(180deg, #eef8f3 0%, #f5f5f5 100%); }
+    .case-page { max-width: 1140px; margin: 30px auto; background: #fff; padding: 34px; border-radius: 18px; overflow: visible; box-shadow: 0 18px 45px rgba(29, 29, 29, .08); }
+    .top-back-link { display: inline-block; margin-bottom: 18px; color: #fea621; font-weight: 600; }
+    .top-back-link:hover { color: #d98200; }
+    .case-hero { padding: 28px; border-radius: 18px; background: linear-gradient(135deg, #174236 0%, #1f5a48 48%, #fea621 100%); color: #fff; margin-bottom: 26px; }
+    .case-hero-layout { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+    .case-hero-copy { flex: 1 1 360px; }
+    .case-hero-copy h1 { color: #fff; margin-bottom: 12px; font-size: 38px; line-height: 1.15em; }
+    .case-hero-copy p { color: rgba(255,255,255,.94); font-size: 17px; margin-bottom: 0; max-width: 620px; }
+    .case-hero-visual { flex: 1 1 320px; }
+    .case-hero img { width: 100%; border: none; border-radius: 14px; background: #fff; display: block; box-shadow: 0 12px 28px rgba(0,0,0,.18); }
+    .hero-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 22px; }
+    .hero-metric { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.22); border-radius: 14px; padding: 14px 16px; }
+    .hero-metric strong { display: block; color: #fff; font-size: 20px; margin-bottom: 6px; }
+    .hero-metric span { color: rgba(255,255,255,.88); font-size: 13px; line-height: 1.35em; display: block; }
+    .case-eyebrow { color: #fea621; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; font-size: 13px; }
+    .case-summary { background: linear-gradient(180deg, #fffdfa 0%, #fcfcfc 100%); border: 1px solid #eee; padding: 24px; margin: 24px 0; border-radius: 16px; }
+    .case-list, .results-list { margin-left: 20px; }
+    .case-list li, .results-list li { margin-bottom: 10px; }
+    .case-card { border: 1px solid #eee; background: linear-gradient(180deg, #fffdfa 0%, #fbfbfb 100%); padding: 18px; margin-bottom: 18px; min-height: 128px; border-radius: 14px; box-shadow: 0 8px 22px rgba(27, 27, 27, .04); }
+    .case-badge { display: inline-block; border: 1px solid #e5e5e5; border-radius: 4px; padding: 4px 9px; margin: 3px; font-size: 12px; background: #fff; }
+    .case-actions { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .note { color: #777; font-size: 13px; }
+    .section-kicker { color: #9d6b1d; font-size: 13px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 8px; }
+    .sidebar-panel { background: linear-gradient(180deg, #fffdfa 0%, #fcfcfc 100%); border: 1px solid #eee; border-radius: 16px; padding: 20px; box-shadow: 0 10px 24px rgba(27, 27, 27, .05); }
+    .sidebar-panel h2 { margin-top: 20px; }
+    .sidebar-panel h2:first-of-type { margin-top: 0; }
+    @media (max-width: 768px) { .case-page { margin: 0; padding: 20px; border-radius: 0; } .case-hero-copy h1 { font-size: 30px; } .hero-metrics { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
-  <div class="lm-animated-bg" style="background-image: url(img/main_bg.png);"></div>
-  <div class="page">
-    <div class="page-content">
-      <main class="content-area single-page-area">
-        <div class="portfolio-page-wrap">
-          <article class="section-content">
-            <div class="page-title portfolio-hero">
-              <h1>BackupPlan.ca <span>Business Website</span></h1>
-              <img src="img/portfolio/recoveryplan-site.svg" alt="BackupPlan.ca backup and disaster recovery website portfolio illustration">
-              <p>BackupPlan.ca is a business website concept focused on backup planning, disaster recovery, business continuity, and protecting customer data before an outage becomes a crisis.</p>
-              <div class="portfolio-meta" aria-label="Project tags">
-                <span>Backup Planning</span>
-                <span>Disaster Recovery</span>
-                <span>Business Continuity</span>
-                <span>Data Protection</span>
-              </div>
-            </div>
-
-            <section class="portfolio-section">
-              <h2>Project Goal</h2>
-              <p>The goal was to create a professional service page that explains backup and recovery value in business language. The content needed to connect technical depth with practical customer outcomes: less downtime, safer data, and clearer recovery expectations.</p>
-            </section>
-
-            <section class="portfolio-section">
-              <h2>Work Completed</h2>
-              <ul>
-                <li>Defined messaging for backup planning, recovery readiness, and business continuity consulting.</li>
-                <li>Created a page structure that supports future service pages, audits, and contact form workflows.</li>
-                <li>Used lightweight static-site delivery to keep the website simple, fast, and easy to host.</li>
-                <li>Added the project to the main James Szarka portfolio to show entrepreneurial and technical delivery experience.</li>
-              </ul>
-            </section>
-
-            <section class="portfolio-section">
-              <h2>Professional Value</h2>
-              <p>This project highlights long-term experience in backup, DR, cloud storage, and operational resilience. It also shows how infrastructure leadership can be translated into a focused business offer with practical customer value.</p>
-            </section>
-
-            <div class="portfolio-actions">
-              <a href="https://backupplan.ca/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Visit BackupPlan.ca</a>
-              <a href="index.html#portfolio" class="btn btn-secondary">Back to Portfolio</a>
-            </div>
-          </article>
+  <main class="case-page">
+    <a class="top-back-link" href="index.html#portfolio">&larr; Back to Portfolio</a>
+    <p class="case-eyebrow">Portfolio Website Link</p>
+    <div class="case-hero">
+      <div class="case-hero-layout">
+        <div class="case-hero-copy">
+          <h1>BackupPlan.ca</h1>
+          <p>A static business website focused on backup validation, recovery readiness, resilience, and practical continuity planning for Canadian businesses.</p>
+          <div class="hero-metrics">
+            <div class="hero-metric"><strong>Recovery Audit</strong><span>A focused entry offer for proving what can be restored.</span></div>
+            <div class="hero-metric"><strong>Recovery Planning</strong><span>Plain-language restore order, ownership, runbooks, and test priorities.</span></div>
+            <div class="hero-metric"><strong>Business Ready</strong><span>Simple service pages, contact paths, and clear package positioning.</span></div>
+          </div>
         </div>
-      </main>
+        <div class="case-hero-visual"><img src="img/portfolio/recoveryplan-site.svg" alt="BackupPlan.ca website illustration"></div>
+      </div>
     </div>
-  </div>
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/modernizr.custom.js"></script>
-  <script src="js/animating.js"></script>
-  <script src="js/imagesloaded.pkgd.min.js"></script>
-  <script src="js/perfect-scrollbar.min.js"></script>
-  <script src="js/jquery.shuffle.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/validator.js"></script>
-  <script src="js/main.js?v=3.0.0"></script>
+    <section class="case-summary">
+      <p class="section-kicker">Overview</p>
+      <h2>What this link represents</h2>
+      <p>BackupPlan.ca turns backup and recovery expertise into a clear service website for organizations that need to know what is protected, what has been tested, where recovery assumptions are weak, and what should be improved first.</p>
+      <p>The website presents recovery audit services, recovery planning, restore testing, Microsoft 365 review, monitoring and alerting, and a simple contact path for business inquiries.</p>
+    </section>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-8">
+        <p class="section-kicker">Scope</p>
+        <h2>Website Highlights</h2>
+        <ul class="case-list">
+          <li>Homepage messaging built around trust, recoverability, and proof instead of backup assumptions.</li>
+          <li>Recovery Audit section describing critical system inventory, restore testing, access review, retention, vendor recovery, alerting, and a 30/60/90-day roadmap.</li>
+          <li>Service cards for backup recovery audits, recovery planning, Microsoft 365 review, restore testing, and backup monitoring.</li>
+          <li>Pricing cards for a snapshot review, full recovery audit, and managed recovery advisory option.</li>
+          <li>Static implementation that keeps the launch path simple and maintainable.</li>
+        </ul>
+
+        <p class="section-kicker">Employer Value</p>
+        <h2>Why it belongs in the portfolio</h2>
+        <ul class="results-list">
+          <li>Shows direct alignment between professional backup and recovery experience and a practical business offering.</li>
+          <li>Demonstrates the ability to translate technical resilience work into language that business owners can act on.</li>
+          <li>Connects entrepreneurial thinking, recovery architecture, risk reduction, website delivery, and operational clarity.</li>
+        </ul>
+
+        <p class="section-kicker">Technical Notes</p>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Recovery-Focused Messaging</h3><p>The site positions backup work around restore confidence, ownership, testing, and runbooks.</p></div></div>
+          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Simple Launch Surface</h3><p>The static site structure supports lightweight hosting while keeping the business message easy to maintain.</p></div></div>
+        </div>
+      </div>
+
+      <aside class="col-xs-12 col-sm-4">
+        <div class="sidebar-panel">
+          <p class="section-kicker">Snapshot</p>
+          <h2>Project Details</h2>
+          <p><strong>Role:</strong> Business owner, service designer, and website builder</p>
+          <p><strong>Status:</strong> MVP website</p>
+          <p><strong>Focus:</strong> Backup validation, recovery readiness, restore testing, and continuity</p>
+          <h2>Technologies</h2>
+          <span class="case-badge">HTML</span><span class="case-badge">CSS</span><span class="case-badge">JavaScript</span><span class="case-badge">Static Hosting</span><span class="case-badge">Service Design</span><span class="case-badge">Backup</span><span class="case-badge">Recovery</span>
+          <h2>Public-Safe Notes</h2>
+          <p class="note">This page links to the public business website and summarizes the work without exposing private hosting details or credentials.</p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="case-actions">
+      <a class="btn btn-primary" href="https://backupplan.ca" target="_blank" rel="noopener noreferrer">Open BackupPlan.ca</a>
+      <a class="btn btn-secondary" href="index.html#portfolio">Back to Portfolio</a>
+    </div>
+  </main>
 </body>
 </html>
