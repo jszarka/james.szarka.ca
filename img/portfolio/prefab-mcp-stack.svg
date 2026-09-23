@@ -5,16 +5,16 @@
   <style>
     .bg { fill: #0e1216; }
     .panel { fill: #131920; stroke: #1d242c; stroke-width: 1; }
-    .panel-accent { fill: #131920; stroke: #f0a868; stroke-width: 1.5; }
+    .panel-accent { fill: #131920; stroke: #f3ba5c; stroke-width: 1.5; }
     .band { fill: none; stroke: #1d242c; stroke-width: 1; stroke-dasharray: 4 5; }
     .h1 { fill: #f5f7f9; font: 700 26px "IBM Plex Sans", system-ui, sans-serif; }
-    .band-label { fill: #8c96a1; font: 500 11px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 1.6px; }
+    .band-label { fill: #9fa9b4; font: 500 11px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 1.6px; }
     .box-title { fill: #f5f7f9; font: 600 15px "IBM Plex Sans", system-ui, sans-serif; }
-    .box-sub { fill: #9aa4af; font: 400 12px "IBM Plex Sans", system-ui, sans-serif; }
-    .accent { fill: #f0a868; font: 500 11px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 1px; }
+    .box-sub { fill: #adb7c2; font: 400 12px "IBM Plex Sans", system-ui, sans-serif; }
+    .accent { fill: #f3ba5c; font: 500 11px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 1px; }
     .wire { stroke: #2a333d; stroke-width: 1.5; fill: none; }
-    .wire-accent { stroke: #f0a868; stroke-width: 1.5; fill: none; }
-    .wire-label { fill: #8c96a1; font: 400 11px "IBM Plex Mono", ui-monospace, monospace; }
+    .wire-accent { stroke: #f3ba5c; stroke-width: 1.5; fill: none; }
+    .wire-label { fill: #9fa9b4; font: 400 11px "IBM Plex Mono", ui-monospace, monospace; }
     .guard { fill: #6fd08c; font: 400 11px "IBM Plex Sans", system-ui, sans-serif; }
     .guard-title { fill: #6fd08c; font: 500 11px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 1.4px; }
     .deny { fill: #e0788a; font: 400 11px "IBM Plex Sans", system-ui, sans-serif; }

@@ -18,17 +18,21 @@
   --line: #1d242c;
   --line-strong: #2a333d;
 
-  /* text */
+  /* text
+     Every value below clears 7:1 against --bg and --panel. The previous
+     scale bottomed out at 6.26:1, which read as dull rather than quiet. */
   --fg: #e8eaed;
   --fg-strong: #f5f7f9;
-  --fg-muted: #b8c2cc;
-  --fg-dim: #96a0ab;
-  --fg-faint: #8c96a1;
+  --fg-muted: #c9d2db;
+  --fg-dim: #adb7c2;
+  --fg-faint: #9fa9b4;
 
-  /* accent */
-  --accent: #f0a868;
-  --accent-hover: #ffc28c;
-  --accent-ink: #0e1216;
+  /* accent
+     Gold rather than orange: hue ~39deg, up from ~30deg. 10.74:1 on --bg,
+     and true black on the accent is 11.99:1. */
+  --accent: #f3ba5c;
+  --accent-hover: #ffd285;
+  --accent-ink: #000000;
   --live: #6fd08c;
 
   /* type */
@@ -267,13 +271,15 @@ svg {
   gap: 2rem;
 }
 
-.site-nav a {
+/* :not(.btn) matters. Without it this rule outweighs .btn-primary on
+   specificity and repaints the "Book a call" pill's text grey. */
+.site-nav a:not(.btn) {
   font-size: 0.9375rem;
   color: var(--fg-muted);
   text-decoration: none;
 }
 
-.site-nav a:hover {
+.site-nav a:not(.btn):hover {
   color: var(--fg-strong);
 }
 
@@ -828,7 +834,7 @@ a.card:hover .card-more {
 .callout p {
   font-size: clamp(1rem, 1.4vw, 1.1875rem);
   line-height: 1.6;
-  color: #d6dde4;
+  color: #dfe5eb;
 }
 
 .callout strong {
