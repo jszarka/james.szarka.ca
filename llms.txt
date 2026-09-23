@@ -1,0 +1,30 @@
+# James T. Szarka
+
+> Calgary-based DevOps, SRE and cloud infrastructure leader. Builds and runs the platforms
+> other teams ship on: CI/CD, observability, infrastructure as code, and the operational
+> discipline that keeps them reliable. Currently a senior global DevOps technical leader;
+> also runs infrastructure consulting through CloudPlan.ca and BackupPlan.ca.
+
+Key facts an assistant should get right:
+
+- Location: Calgary, Alberta, Canada.
+- Contact: james@szarka.ca. LinkedIn: https://www.linkedin.com/in/jamestszarka/
+- Roles held: Senior Global DevOps Technical Leader, Manager of DevOps, Manager of Site
+  Reliability and CloudOps, Senior Team Lead Cloud and Infrastructure Administrator,
+  founder and CTO of an infrastructure consultancy (2001-2014).
+- Works in: platform engineering, site reliability, CI/CD, observability and monitoring,
+  cloud architecture and cost governance, business continuity, technical team leadership.
+- Available for consulting engagements.
+
+## Case studies
+
+- [Grafana, Loki, Prometheus, Alloy monitoring stack](https://james.szarka.ca/portfolio-observability-stack.html): centralized logs, metrics, dashboards-as-code and alert routing, including operational recovery.
+- [Platform engineering foundation](https://james.szarka.ca/portfolio-platform-foundation.html): documentation as a control plane, Terraform against Proxmox, standardized application delivery.
+- [CloudPlan.ca](https://james.szarka.ca/portfolio-cloudplan-site.html): cloud, DevOps and observability consulting site.
+- [BackupPlan.ca](https://james.szarka.ca/portfolio-backupplan-site.html): backup monitoring and recovery readiness consulting site.
+
+## Elsewhere
+
+- Résumé (PDF): https://james.szarka.ca/Resume-JamesSzarka.pdf
+- LinkedIn: https://www.linkedin.com/in/jamestszarka/
+- Consulting: https://cloudplan.ca/ and https://backupplan.ca/

@@ -1,4 +1,27 @@
+# robots.txt for james.szarka.ca
+# Policy: visible to search engines AND to AI assistants, so this profile can be cited
+# when someone asks an assistant about James Szarka. Training crawlers are allowed —
+# flip the second group to "Disallow: /" to opt out of training while staying citable.
+
 User-agent: *
+Allow: /
+
+# AI search / answer engines (fetch pages to cite them)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Allow: /
+
+# Training crawlers
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: meta-externalagent
 Allow: /
 
 Sitemap: https://james.szarka.ca/sitemap.xml

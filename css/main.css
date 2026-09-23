@@ -2884,6 +2884,7 @@ blockquote {
   text-align: center;
 }
 
+.title-block h1,
 .title-block h2 {
   font-size: 60px;
   line-height: 74px;
@@ -2991,7 +2992,8 @@ blockquote {
     display: none;
  }
 
- .title-block h2 {
+ .title-block h1,
+.title-block h2 {
     font-size: 48px;
     line-height: 56px;
     margin: 0 0 10px;
