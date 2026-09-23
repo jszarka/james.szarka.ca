@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PREFAB — MCP web development stack | James T. Szarka</title>
+    <meta name="description" content="Case study: PREFAB, a self-hosted MCP stack that lets an AI client review and modernize websites under hard guardrails, shipping changes only as pull requests." />
+    <meta name="keywords" content="James Szarka, MCP, Model Context Protocol, AI tooling, Docker, Caddy, Playwright, DevOps automation, pull request workflow, Calgary DevOps" />
+    <meta name="author" content="James T. Szarka" />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://james.szarka.ca/portfolio-prefab-mcp-stack.html" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="James T. Szarka" />
+    <meta property="og:title" content="PREFAB — giving an AI client hands, and a short leash" />
+    <meta property="og:description" content="A self-hosted MCP stack for web development: authenticated gateway, sandboxed tool servers, and a workflow that cannot deploy — only open pull requests." />
+    <meta property="og:url" content="https://james.szarka.ca/portfolio-prefab-mcp-stack.html" />
+    <meta property="og:image" content="https://james.szarka.ca/img/portfolio/prefab-mcp-stack.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PREFAB — giving an AI client hands, and a short leash" />
+    <meta name="twitter:description" content="A self-hosted MCP stack for web development, built so the blast radius is a pull request." />
+    <meta name="twitter:image" content="https://james.szarka.ca/img/portfolio/prefab-mcp-stack.svg" />
+
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/site.css" type="text/css" />
+
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"CreativeWork","name":"PREFAB — MCP web development stack","url":"https://james.szarka.ca/portfolio-prefab-mcp-stack.html","image":"https://james.szarka.ca/img/portfolio/prefab-mcp-stack.svg","author":{"@type":"Person","name":"James T. Szarka","url":"https://james.szarka.ca/"},"about":["Model Context Protocol","AI tooling","Docker","Caddy","Playwright","DevOps automation","Least privilege","Pull request workflow"],"description":"Case study for PREFAB, a self-hosted Model Context Protocol stack that lets an AI client review and modernize websites under path, branch and network guardrails, shipping changes only as pull requests."}
+    </script>
+
+    <!-- Cloudflare Web Analytics -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1a990b5c92d14bd4b1b491118d3243d7"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="index.html">&larr; James T. Szarka</a>
+        <nav class="site-nav" aria-label="Primary">
+          <a class="nav-link" href="index.html#work">Work</a>
+          <a class="btn btn-primary btn-pill" href="mailto:james@szarka.ca?subject=PREFAB">Book a call</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="case-hero">
+        <div class="wrap case-hero-grid">
+          <div class="case-hero-copy">
+            <p class="eyebrow">Case study &middot; AI tooling and automation</p>
+            <h1>PREFAB: giving an AI client hands, and a short leash</h1>
+            <p class="case-lede">A self-hosted Model Context Protocol stack that lets Claude or Codex read, edit, build, render and audit three live websites &mdash; without a deploy path, and without a credential either model ever sees.</p>
+          </div>
+
+          <dl class="meta-panel">
+            <dt>Role</dt>
+            <dd>Architect, builder and operator</dd>
+            <dt>Status</dt>
+            <dd>Running in production on my own infrastructure</dd>
+            <dt>Stack</dt>
+            <dd>Python, FastMCP, Docker Compose, Caddy, Playwright, GitHub fine-grained PAT</dd>
+            <dt>Result</dt>
+            <dd>This site was rebuilt through it</dd>
+          </dl>
+        </div>
+      </section>
+
+      <section class="wrap">
+        <div class="callout">
+          <p><strong>The problem in one sentence.</strong> An AI assistant is useful on a codebase exactly to the degree that you can bound what it is able to touch &mdash; and the usual answer, handing it a shell and a deploy key, puts the blast radius in the wrong place.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Architecture</h2>
+            <p class="section-note">Two containers, one gateway, no route to production</p>
+          </div>
+          <div class="figures">
+            <figure>
+              <a href="img/portfolio/prefab-mcp-stack.svg"><img src="img/portfolio/prefab-mcp-stack.svg" alt="PREFAB architecture: MCP clients authenticate to a Caddy gateway, which proxies a Python tool server and a headless Playwright browser; changes leave only as pull requests" /></a>
+              <figcaption>Clients authenticate to Caddy with a bearer token before any route is evaluated. Caddy proxies two services and serves a live preview of each site's working copy. The only way a change reaches a live site is a pull request a human merges.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>What I built</h2>
+          </div>
+          <ul class="list-detail">
+            <li>An 18-tool MCP server in Python on FastMCP: clone and sync, branch, list, read, write, targeted replace, delete, search, status, diff, discard, commit, open pull request, build, and audit a page or a whole site.</li>
+            <li>A Caddy gateway that rejects unauthenticated requests with a 401 before any route is considered, strips path prefixes, and answers OAuth discovery probes with a 404 so clients fall back to the bearer token rather than negotiating.</li>
+            <li>A headless Playwright service on the same gateway, so the same session that writes a page can render it, read its console, and check it for overflow at any viewport.</li>
+            <li>Per-site preview servers on dedicated ports, serving each working copy live &mdash; a change is visible in a browser before it is committed.</li>
+            <li>A deploy script with preflight checks, retry and backoff, config validation before reload, digest pinning, and a seven-check smoke test that must pass before the deploy is called done.</li>
+            <li>Operations documentation written for a wiki, covering build, deploy, client configuration, token rotation and failure modes.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>The guardrails are the product</h2>
+            <p class="section-note">Every one of these is enforced in the server, not in a prompt</p>
+          </div>
+          <div class="approach">
+            <div class="approach-item">
+              <span class="num" aria-hidden="true">01</span>
+              <div>
+                <h3>Path confinement</h3>
+                <p>Every file operation resolves the real path and refuses anything outside that site's clone. The <code>.git</code> directory is denied outright, so history cannot be rewritten through a file write.</p>
+              </div>
+            </div>
+
+            <div class="approach-item">
+              <span class="num" aria-hidden="true">02</span>
+              <div>
+                <h3>Branch discipline</h3>
+                <p>Writes are refused unless the checkout is on a branch with the <code>mcp/</code> prefix. There is no code path that commits to the default branch, and no tool that pushes to it.</p>
+              </div>
+            </div>
+
+            <div class="approach-item">
+              <span class="num" aria-hidden="true">03</span>
+              <div>
+                <h3>Egress allowlist</h3>
+                <p>Outbound fetches check the destination against an allowlist, and re-check it on every redirect &mdash; because a permitted URL that redirects to an internal address is the whole server-side request forgery problem in one line.</p>
+              </div>
+            </div>
+
+            <div class="approach-item">
+              <span class="num" aria-hidden="true">04</span>
+              <div>
+                <h3>Container least privilege</h3>
+                <p>All capabilities dropped, no-new-privileges, read-only root filesystem with explicit tmpfs, memory, PID and CPU limits. Credentials arrive as Docker secrets and are redacted from every tool response.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>What it changed</h2>
+          </div>
+          <div class="cards">
+            <div class="card">
+              <h3>Review replaced trust</h3>
+              <p>Because the only output is a pull request, the interesting question stops being "do I trust the model" and becomes "is this diff correct" &mdash; a question with a known answer procedure.</p>
+            </div>
+            <div class="card">
+              <h3>Verification moved in-loop</h3>
+              <p>The audit and browser tools run against the preview in the same session as the edit, so a broken layout or a dropped heading is caught before the commit, not after the merge.</p>
+            </div>
+            <div class="card">
+              <h3>The client stopped mattering</h3>
+              <p>Streamable HTTP with a bearer token means Claude, Codex and anything else speaking MCP attach to the same server. No per-client server, no per-client credential.</p>
+            </div>
+            <div class="card">
+              <h3>It rebuilt this site</h3>
+              <p>The page you are reading was written, previewed, audited and committed through the stack. It is the least ambiguous test I could give it.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="next">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>In progress: a QA automation tier <span class="flag">Not built yet</span></h2>
+          </div>
+
+          <div class="callout callout-pending">
+            <p><strong>Stated plainly:</strong> this section describes work that is designed but not delivered. It is here because the design decision is the interesting part, not because there is a result to claim.</p>
+          </div>
+
+          <div class="prose spaced">
+            <p>The browser tier already renders and inspects pages on demand. The gap is that nothing runs unattended: there is no regression suite, so a change that quietly breaks a page two links away is caught by a human noticing, which is not a control.</p>
+          </div>
+
+          <ul class="list-detail">
+            <li>A regression suite over every published page &mdash; status, heading structure, internal link integrity, and no horizontal overflow at a set of viewports.</li>
+            <li>Accessibility assertions in the same pass, so a contrast or landmark regression fails the run rather than waiting for an audit.</li>
+            <li>Visual diffing against an approved baseline, with the diff attached to the pull request that caused it.</li>
+            <li>The whole suite exposed as MCP tools behind the same gateway, so the agent that makes a change is the one that has to prove it did not break anything.</li>
+          </ul>
+
+          <div class="prose spaced">
+            <p><strong>The open decision is Playwright versus Selenium.</strong> Playwright is already in the stack, is faster in a container, and needs no extra moving parts &mdash; extending it is close to free. A Selenium MCP buys real cross-browser coverage through Grid and matches what most QA organisations already run, at the cost of another service, a browser fleet and more to keep patched. For three static sites that one person maintains, the honest answer is probably to extend what is already there and revisit Selenium when cross-browser evidence is actually being asked for.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <div class="case-actions">
+          <a class="btn btn-primary" href="mailto:james@szarka.ca?subject=PREFAB">Ask me about the guardrails</a>
+          <a class="btn btn-secondary" href="index.html#work">Back to all work</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer wrap">
+      <span>Calgary, Alberta, Canada &middot; &copy; 2026 James T. Szarka</span>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="https://www.linkedin.com/in/jamestszarka/" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="Resume-JamesSzarka.pdf">Résumé</a></li>
+      </ul>
+    </footer>
+  </body>
+</html>

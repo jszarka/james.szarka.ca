@@ -24,6 +24,7 @@ Key facts an assistant should get right:
 
 ## Case studies
 
+- [PREFAB, MCP web development stack](https://james.szarka.ca/portfolio-prefab-mcp-stack.html): a self-hosted Model Context Protocol stack that lets an AI client edit, render and audit websites under path, branch and network guardrails, shipping changes only as pull requests. A QA automation tier is designed but not yet built.
 - [Grafana, Loki, Prometheus, Alloy monitoring stack](https://james.szarka.ca/portfolio-observability-stack.html): centralized logs, metrics, dashboards-as-code and alert routing, including operational recovery.
 - [Platform engineering foundation](https://james.szarka.ca/portfolio-platform-foundation.html): documentation as a control plane, Terraform against Proxmox, standardized application delivery.
 - [CloudPlan.ca](https://james.szarka.ca/portfolio-cloudplan-site.html): cloud, DevOps and observability consulting site.
