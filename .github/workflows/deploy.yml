@@ -50,24 +50,62 @@ jobs:
           test -s _site/.htaccess
           test -s _site/deploy-version.txt
 
-      - name: Smoke-test assembled site
+      - name: Smoke-test through Apache with the real .htaccess
         shell: bash
         run: |
           set -euo pipefail
 
-          python3 -m http.server 8080 --directory _site > /tmp/james-site-http.log 2>&1 &
-          server_pid=$!
-          trap 'kill "$server_pid"' EXIT
+          # python3 -m http.server does not read .htaccess, so it can only prove
+          # files exist. Everything that decides whether production is correct —
+          # the CSP, the dotfile denies, the canonical redirect — lives in
+          # .htaccess and was previously never executed until it was live.
+          # The image in this repo runs the same Apache and the same file.
+          docker build -f dockerfile -t james-site-smoke .
+          docker run -d --name james-site-smoke -p 8080:80 james-site-smoke
+          trap 'docker rm -f james-site-smoke >/dev/null 2>&1 || true' EXIT
 
-          for attempt in 1 2 3 4 5; do
-            if curl --fail --silent --show-error http://127.0.0.1:8080/ > /dev/null; then
-              break
-            fi
-            sleep 1
+          for attempt in 1 2 3 4 5 6 7 8 9 10; do
+            curl --fail --silent --show-error http://127.0.0.1:8080/ > /dev/null && break
+            sleep 2
           done
 
+          echo "--- pages reachable"
+          curl --fail --silent --show-error http://127.0.0.1:8080/ > /dev/null
           curl --fail --silent --show-error http://127.0.0.1:8080/portfolio-observability-stack.html > /dev/null
+          curl --fail --silent --show-error http://127.0.0.1:8080/portfolio-prefab-mcp-stack.html > /dev/null
           curl --fail --silent --show-error http://127.0.0.1:8080/llms.txt > /dev/null
+
+          echo "--- .htaccess is being read"
+          # If AllowOverride is off or a directive is malformed, .htaccess is
+          # silently ignored and every header below disappears. That failure is
+          # invisible in a browser, so assert it here.
+          headers="$(curl --silent --head http://127.0.0.1:8080/)"
+          grep -qi 'content-security-policy'   <<< "$headers"
+          grep -qi 'strict-transport-security' <<< "$headers"
+          grep -qi 'x-content-type-options'    <<< "$headers"
+
+          echo "--- repository files are not published"
+          for path in .git/config AGENTS.md README.md dockerfile docs/deployment.md; do
+            code="$(curl --silent --output /dev/null --write-out '%{http_code}' "http://127.0.0.1:8080/$path")"
+            case "$code" in
+              403|404) ;;
+              *) echo "FAIL: /$path returned $code, expected 403 or 404"; exit 1 ;;
+            esac
+          done
+
+          echo "--- ACME challenges are not blocked by the dotfile rule"
+          # A blanket dot-path deny would break cPanel AutoSSL renewal silently,
+          # three months after anyone would connect the two events.
+          acme="$(curl --silent --output /dev/null --write-out '%{http_code}' \
+            http://127.0.0.1:8080/.well-known/acme-challenge/probe)"
+          if [ "$acme" = "403" ]; then
+            echo "FAIL: /.well-known/ is denied; AutoSSL renewal would break"
+            exit 1
+          fi
+
+          echo "--- canonical redirect, without a loop"
+          redirect="$(curl --silent --output /dev/null --write-out '%{http_code}' http://127.0.0.1:8080/index.html)"
+          test "$redirect" = "301"
 
       - name: Save publish directory for deployment
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -81,7 +119,11 @@ jobs:
   deploy:
     name: Deploy to RackNerd cPanel
     needs: validate
-    if: github.event_name == 'workflow_dispatch' || vars.DEPLOY_ENABLED == 'true'
+    # Branch-pinned. Without the ref check, workflow_dispatch can deploy ANY
+    # branch straight to production from the Actions tab.
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'workflow_dispatch' || vars.DEPLOY_ENABLED == 'true')
     runs-on: ubuntu-latest
     environment:
       name: production
@@ -108,6 +150,19 @@ jobs:
           : "${FTPS_REMOTE_PATH:?Set the production environment variable FTPS_REMOTE_PATH}"
           : "${FTPS_USERNAME:?Set the production environment secret FTPS_USERNAME}"
           : "${FTPS_PASSWORD:?Set the production environment secret FTPS_PASSWORD}"
+
+          # The mirror below runs with --delete, so it removes everything in
+          # FTPS_REMOTE_PATH that is not in _site/. Pointed at the account home
+          # instead of the document root, that deletes mail, logs and cPanel's
+          # own directories. Refuse to run unless the path names a webroot.
+          case "$FTPS_REMOTE_PATH" in
+            */public_html|*/public_html/) ;;
+            *)
+              echo "FTPS_REMOTE_PATH is '$FTPS_REMOTE_PATH'."
+              echo "Refusing: --delete against anything but a public_html path is destructive."
+              exit 1
+              ;;
+          esac
 
       - name: Install FTPS client
         shell: bash
