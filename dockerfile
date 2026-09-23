@@ -1,30 +1,53 @@
-# Official nginx image on Debian bookworm.
+# Local and preview server, mirroring production.
 #
-# Replaces `FROM ubuntu:latest` + `apt-get install nginx`. That pulled a general
-# purpose distribution and a package-manager-built nginx to serve five static
-# files; this is the same Debian base with nginx built and patched by the people
-# who write nginx, and without apt, systemd remnants and the rest of a full
-# userland sitting in the image unexecuted.
+# Production is shared cPanel: Apache (or LiteSpeed, which reads the same
+# .htaccess) serving static files out of public_html. There is no container in
+# production and there cannot be one — shared hosting does not run Docker.
 #
-# Pinned to the stable branch on an explicit Debian release. For a stricter
-# guarantee, pin by digest instead:
-#   FROM nginx:1.30-bookworm@sha256:<digest>
-# and bump it deliberately. A tag can be repointed; a digest cannot.
-FROM nginx:1.30-bookworm
+# So this image exists for exactly one reason: to run the SAME web server and
+# the SAME .htaccess locally, so that a config change can be tested before it is
+# uploaded. It previously ran nginx, which meant the thing being tested locally
+# was a config production never sees, while the config production actually uses
+# was never executed until it was live.
+#
+# Pinned to an explicit Apache and Debian release. For a stricter guarantee,
+# pin by digest instead and bump it deliberately:
+#   FROM httpd:2.4-bookworm@sha256:<digest>
+FROM httpd:2.4-bookworm
 
-# The official image ships its own default.conf; ours replaces it.
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# The official image ships most modules commented out. .htaccess needs these
+# four, and mod_filter for AddOutputFilterByType. cPanel has them enabled; if a
+# module is missing there, the <IfModule> guards in .htaccess skip the block
+# rather than returning 500.
+RUN sed -i \
+      -e 's|^#\(LoadModule rewrite_module\)|\1|' \
+      -e 's|^#\(LoadModule headers_module\)|\1|' \
+      -e 's|^#\(LoadModule expires_module\)|\1|' \
+      -e 's|^#\(LoadModule deflate_module\)|\1|' \
+      -e 's|^#\(LoadModule filter_module\)|\1|' \
+      /usr/local/apache2/conf/httpd.conf \
+ && sed -i 's|AllowOverride None|AllowOverride All|g' \
+      /usr/local/apache2/conf/httpd.conf \
+ && printf '\nServerName localhost\nServerTokens Prod\nServerSignature Off\n' \
+      >> /usr/local/apache2/conf/httpd.conf
+
+# AllowOverride All is what makes .htaccess take effect, matching cPanel.
+# Without it the file is present and silently ignored, which is the worst of
+# both worlds: it looks tested and is not.
 
 # Copy an explicit allowlist of published assets.
 #
 # This used to be `COPY . /usr/share/nginx/html`, which put the whole repository
 # into the webroot: .git/ (from which the full history can be reconstructed),
-# the dockerfile, nginx.conf, start.sh, and the internal docs. Nginx serves
-# dotfiles by default, so nothing stopped /.git/config being fetched. The globs
-# below mean new pages and assets are picked up without editing this file.
-WORKDIR /usr/share/nginx/html
+# the dockerfile, the server config and the internal docs. The globs below mean
+# new pages and assets are picked up without editing this file.
+#
+# Mirror any change here in the cPanel deploy, so the two webroots hold the same
+# set of files.
+WORKDIR /usr/local/apache2/htdocs
 RUN rm -rf ./*
 
+COPY .htaccess ./
 COPY index.html favicon.ico robots.txt sitemap.xml llms.txt ./
 COPY portfolio-*.html ./
 COPY Resume-JamesSzarka.pdf ./
@@ -33,13 +56,4 @@ COPY img/ img/
 
 EXPOSE 80
 
-# start.sh is gone. It was the Lightsail-era entrypoint: it started nginx as a
-# daemon, then blocked forever in a sleep loop waiting for certificate files at
-# /etc/ssl/{certs,private} that are never mounted here. The 443 block it wanted
-# to append therefore never applied, and PID 1 was a sleep loop rather than
-# nginx, so the container had no signal handling or graceful shutdown.
-# TLS terminates at Cloudflare; this container serves HTTP only.
-#
-# The base image already logs to stdout/stderr and runs nginx in the foreground;
-# CMD is stated explicitly so a base image change cannot silently alter it.
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["httpd-foreground"]

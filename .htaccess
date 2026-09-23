@@ -76,8 +76,14 @@ DirectoryIndex index.html
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    # The host exclusions keep this from firing in the local Apache container,
+    # where there is no TLS and no proxy header — without them every local
+    # request 301s to an https:// URL that nothing is listening on.
     RewriteCond %{HTTPS} !=on
     RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteCond %{HTTP_HOST} !^localhost [NC]
+    RewriteCond %{HTTP_HOST} !\.home(:[0-9]+)?$ [NC]
+    RewriteCond %{HTTP_HOST} !^[0-9.]+(:[0-9]+)?$
     RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
     RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
