@@ -45,9 +45,9 @@
 # ---------------------------------------------------------------------------
 # On cPanel this matters more than it does in Docker. A deploy that clones or
 # rsyncs the repo straight into public_html puts .git there, and Apache will
-# serve it — from which the full history can be reconstructed. Prefer a deploy
-# that copies only published files (see .cpanel.yml), and keep this as the
-# backstop for when that goes wrong.
+# serve it — from which the full history can be reconstructed. GitHub Actions
+# therefore copies an explicit publish allowlist; keep this as the backstop for
+# when that goes wrong.
 
 RedirectMatch 404 /\.git(/|$)
 RedirectMatch 404 /\.(env|dockerignore|htaccess|htpasswd)(/|$)

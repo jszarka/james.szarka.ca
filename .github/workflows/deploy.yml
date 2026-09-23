@@ -1,0 +1,152 @@
+name: Validate and deploy website
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: james-szarka-production
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Build publish directory
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@24e73e5a12126edc2adb9e5cd1bf245ce85bde56 # v4
+
+      - name: Assemble static publish directory
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mkdir -p _site/css _site/img
+          cp index.html favicon.ico robots.txt sitemap.xml llms.txt .htaccess _site/
+          cp portfolio-*.html Resume-JamesSzarka.pdf _site/
+          cp -R css/. _site/css/
+          cp -R img/. _site/img/
+
+          printf '%s\n' "$GITHUB_SHA" > _site/deploy-version.txt
+
+      - name: Enforce publish allowlist
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          forbidden_pattern='(^|/)(\.git|\.github|docs|AGENTS\.md|README\.md|dockerfile|nginx\.conf|.*\.(key|pem|p12|pfx|tfvars|env))($|/)'
+          if find _site -mindepth 1 -print | grep -E "$forbidden_pattern"; then
+            echo "A forbidden file entered the publish directory."
+            exit 1
+          fi
+
+          test -s _site/index.html
+          test -s _site/.htaccess
+          test -s _site/deploy-version.txt
+
+      - name: Smoke-test assembled site
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python3 -m http.server 8080 --directory _site > /tmp/james-site-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+
+          for attempt in 1 2 3 4 5; do
+            if curl --fail --silent --show-error http://127.0.0.1:8080/ > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+
+          curl --fail --silent --show-error http://127.0.0.1:8080/portfolio-observability-stack.html > /dev/null
+          curl --fail --silent --show-error http://127.0.0.1:8080/llms.txt > /dev/null
+
+      - name: Save publish directory for deployment
+        uses: actions/upload-artifact@2a0ecf19e8d0087dd2e5d1785dcf764811e79fae # v4
+        with:
+          name: james-szarka-site
+          path: _site/
+          include-hidden-files: true
+          retention-days: 1
+          if-no-files-found: error
+
+  deploy:
+    name: Deploy to RackNerd cPanel
+    needs: validate
+    if: github.event_name == 'workflow_dispatch' || vars.DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://james.szarka.ca
+    steps:
+      - name: Download validated publish directory
+        uses: actions/download-artifact@7fc4fb55c7d0c7b198b1c7466e1efd7c7d05fb26 # v4
+        with:
+          name: james-szarka-site
+          path: _site
+
+      - name: Validate deployment configuration
+        shell: bash
+        env:
+          FTPS_HOST: ${{ vars.FTPS_HOST }}
+          FTPS_PORT: ${{ vars.FTPS_PORT }}
+          FTPS_REMOTE_PATH: ${{ vars.FTPS_REMOTE_PATH }}
+          FTPS_USERNAME: ${{ secrets.FTPS_USERNAME }}
+          FTPS_PASSWORD: ${{ secrets.FTPS_PASSWORD }}
+        run: |
+          set -euo pipefail
+          : "${FTPS_HOST:?Set the production environment variable FTPS_HOST}"
+          : "${FTPS_PORT:?Set the production environment variable FTPS_PORT}"
+          : "${FTPS_REMOTE_PATH:?Set the production environment variable FTPS_REMOTE_PATH}"
+          : "${FTPS_USERNAME:?Set the production environment secret FTPS_USERNAME}"
+          : "${FTPS_PASSWORD:?Set the production environment secret FTPS_PASSWORD}"
+
+      - name: Install FTPS client
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends lftp
+
+      - name: Upload over explicit FTPS
+        shell: bash
+        env:
+          FTPS_HOST: ${{ vars.FTPS_HOST }}
+          FTPS_PORT: ${{ vars.FTPS_PORT }}
+          FTPS_REMOTE_PATH: ${{ vars.FTPS_REMOTE_PATH }}
+          FTPS_USERNAME: ${{ secrets.FTPS_USERNAME }}
+          FTPS_PASSWORD: ${{ secrets.FTPS_PASSWORD }}
+        run: |
+          set -euo pipefail
+
+          lftp <<LFTP
+          set cmd:fail-exit yes
+          set net:max-retries 2
+          set net:timeout 20
+          set ftp:passive-mode yes
+          set ftp:ssl-force yes
+          set ftp:ssl-protect-data yes
+          set ssl:verify-certificate yes
+          open --user "$FTPS_USERNAME","$FTPS_PASSWORD" --port "$FTPS_PORT" "ftp://$FTPS_HOST"
+          mirror --reverse --delete --verbose --parallel=4 --all --exclude-glob=.well-known --exclude-glob=.well-known/** --exclude-glob=.ftpquota --exclude-glob=cgi-bin --exclude-glob=cgi-bin/** "_site/" "$FTPS_REMOTE_PATH"
+          quit
+          LFTP
+
+      - name: Verify the deployed commit
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          deployed_sha="$(
+            curl               --fail               --silent               --show-error               --retry 5               --retry-delay 5               --header 'Cache-Control: no-cache'               "https://james.szarka.ca/deploy-version.txt?commit=$GITHUB_SHA"
+          )"
+
+          test "$deployed_sha" = "$GITHUB_SHA"
