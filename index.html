@@ -1,1165 +1,406 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>James T. Szarka | DevOps, SRE, Cloud & Infrastructure Leader</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Calgary-based DevOps, SRE and cloud infrastructure leader. Platform engineering, CI/CD, observability and business continuity, with case studies." />
-    <meta name="keywords" content="James Szarka, DevOps leader, SRE manager, cloud infrastructure, platform engineering, CI/CD, observability, Terraform, Kubernetes, Calgary DevOps, infrastructure automation, business continuity" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>James T. Szarka | DevOps, SRE, Cloud &amp; Infrastructure Leader</title>
+    <meta name="description" content="Calgary-based DevOps, SRE and infrastructure leader. I design reliability in: monitoring, CI/CD, cloud cost governance, and the teams that run them." />
+    <meta name="keywords" content="James Szarka, DevOps leader, SRE manager, cloud infrastructure, platform engineering, CI/CD, observability, Terraform, Kubernetes, Calgary DevOps, infrastructure automation, business continuity, FinOps" />
     <meta name="author" content="James T. Szarka" />
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="https://james.szarka.ca/" />
+
     <meta property="og:type" content="profile" />
-    <meta property="og:title" content="James T. Szarka | DevOps, SRE, Cloud & Infrastructure Leader" />
-    <meta property="og:description" content="Professional portfolio for James T. Szarka, a Calgary-based DevOps, SRE, cloud, and infrastructure leader focused on reliable platforms, automation, observability, and technical team leadership." />
+    <meta property="og:site_name" content="James T. Szarka" />
+    <meta property="og:title" content="James T. Szarka | DevOps, SRE, Cloud &amp; Infrastructure Leader" />
+    <meta property="og:description" content="Uptime is a design decision. Twenty-five years of infrastructure: monitoring, pipelines, cloud cost governance, and the teams that run them." />
     <meta property="og:url" content="https://james.szarka.ca/" />
     <meta property="og:image" content="https://james.szarka.ca/img/main_photo.jpg" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="James T. Szarka | DevOps, SRE, Cloud & Infrastructure Leader" />
-    <meta name="twitter:description" content="DevOps, SRE, cloud, and infrastructure leadership portfolio for James T. Szarka." />
+    <meta name="twitter:title" content="James T. Szarka | DevOps, SRE, Cloud &amp; Infrastructure Leader" />
+    <meta name="twitter:description" content="Uptime is a design decision. DevOps, SRE, cloud and infrastructure leadership, with case studies." />
     <meta name="twitter:image" content="https://james.szarka.ca/img/main_photo.jpg" />
-    <link rel="shortcut icon" href="favicon.ico">
 
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/site.css" type="text/css" />
 
-    <link rel="stylesheet" href="css/reset.css" type="text/css">
-    <link rel="stylesheet" href="css/bootstrap-grid.min.css" type="text/css">
-    <link rel="stylesheet" href="css/animations.css" type="text/css">
-    <link rel="stylesheet" href="css/perfect-scrollbar.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/main.css" type="text/css">
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"Person","name":"James T. Szarka","url":"https://james.szarka.ca/","image":"https://james.szarka.ca/img/main_photo.jpg","jobTitle":["DevOps Manager","SRE Manager","Cloud and Infrastructure Leader"],"address":{"@type":"PostalAddress","addressLocality":"Calgary","addressRegion":"Alberta","addressCountry":"CA"},"email":"mailto:james@szarka.ca","sameAs":["https://www.linkedin.com/in/jamestszarka/","https://www.facebook.com/JamesTSzarka","https://www.instagram.com/jamesszarka/"],"knowsAbout":["DevOps","Site Reliability Engineering","Cloud infrastructure","Platform engineering","CI/CD","Observability","Terraform","Kubernetes","Business continuity"]}
+    {"@context":"https://schema.org","@type":"Person","name":"James T. Szarka","url":"https://james.szarka.ca/","image":"https://james.szarka.ca/img/main_photo.jpg","jobTitle":["Senior Global DevOps Technical Leader","SRE Manager","Cloud and Infrastructure Leader"],"worksFor":{"@type":"Organization","name":"Finning International"},"address":{"@type":"PostalAddress","addressLocality":"Calgary","addressRegion":"Alberta","addressCountry":"CA"},"email":"mailto:james@szarka.ca","alumniOf":{"@type":"EducationalOrganization","name":"DeVry Institute of Technology"},"sameAs":["https://www.linkedin.com/in/jamestszarka/","https://cloudplan.ca/","https://backupplan.ca/","https://www.facebook.com/JamesTSzarka","https://www.instagram.com/jamesszarka/"],"knowsAbout":["DevOps","Site Reliability Engineering","Cloud infrastructure","Platform engineering","CI/CD","Observability","Terraform","Kubernetes","FinOps","Business continuity"]}
     </script>
-    <style>
-      /* Utility: force left text alignment */
-      .text-left { text-align: left !important; }
-    </style>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebSite","name":"James T. Szarka","url":"https://james.szarka.ca/","inLanguage":"en","author":{"@type":"Person","name":"James T. Szarka"}}
+    </script>
+
     <!-- Cloudflare Web Analytics -->
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1a990b5c92d14bd4b1b491118d3243d7"}'></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1a990b5c92d14bd4b1b491118d3243d7"}'></script>
     <!-- End Cloudflare Web Analytics -->
   </head>
 
   <body>
-    <!-- Animated Background -->
-    <div class="lm-animated-bg" style="background-image: url(img/main_bg.png);"></div>
-    <!-- /Animated Background -->
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Loading animation -->
-    <div class="preloader">
-      <div class="preloader-animation">
-        <div class="preloader-spinner">
-        </div>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="#top">James T. Szarka</a>
+        <nav class="site-nav" aria-label="Primary">
+          <a class="nav-link" href="#work">Work</a>
+          <a class="nav-link" href="#approach">Approach</a>
+          <a class="nav-link" href="#track-record">Track record</a>
+          <a class="btn btn-primary btn-pill" href="mailto:james@szarka.ca?subject=Intro%20call">Book a call</a>
+        </nav>
       </div>
-    </div>
-    <!-- /Loading animation -->
+    </header>
 
-    <div class="page">
-      <div class="page-content">
+    <main id="main">
+      <!-- Hero -->
+      <section class="hero" id="top">
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <p class="status">Calgary, Alberta &middot; open to consulting</p>
+            <h1>Uptime is a design decision.</h1>
+            <p class="hero-lede">Reliability doesn't arrive by accident &mdash; it gets designed in, measured and paid for deliberately. I do that work: the monitoring, the pipelines, the cost governance, and the team that runs it.</p>
+            <p class="hero-sub">Twenty-five years of infrastructure &mdash; currently leading DevOps globally, and still building it myself to prove it works.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="mailto:james@szarka.ca?subject=Intro%20call">Book a 30-minute call</a>
+              <a class="btn btn-secondary" href="Resume-JamesSzarka.pdf">Résumé (PDF)</a>
+            </div>
+          </div>
+          <aside class="hero-aside">
+            <img src="img/main_photo.jpg" width="300" height="340" alt="James T. Szarka" />
+            <p>Senior Global DevOps Technical Leader. Previously manager of DevOps, of SRE and CloudOps, and founder of two infrastructure companies.</p>
+          </aside>
+        </div>
+      </section>
 
-          <header id="site_header" class="header mobile-menu-hide">
-            <div class="header-content">
-              <div class="header-photo">
-                <img src="img/main_photo.jpg" alt="James T. Szarka">
-              </div>
-              <div class="header-titles text-left">
-                <h2>James T. Szarka</h2>
-                <h4>DevOps Manager</h4>
-                <h4>Infrastructure On-Prem/Cloud Manager</h4>
-                <h4>SRE Manager</h4>
+      <!-- Numbers -->
+      <section class="wrap" aria-label="Career at a glance">
+        <dl class="stats">
+          <div class="stat">
+            <dt>2001</dt>
+            <dd>Building and running infrastructure since</dd>
+          </div>
+          <div class="stat">
+            <dt>~$180K</dt>
+            <dd>USD a year in Azure spend removed by cloud financial governance</dd>
+          </div>
+          <div class="stat">
+            <dt>~100</dt>
+            <dd>Onshore and offshore personnel in the largest organisation I have led</dd>
+          </div>
+          <div class="stat">
+            <dt>1</dt>
+            <dd>Company founded, run and sold &mdash; eBackup, acquired by J2 KeepItSafe</dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- Work -->
+      <section class="section" id="work">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Evidence, not adjectives</h2>
+            <p class="section-note">Case studies with dashboards, code and postmortems</p>
+          </div>
+
+          <div class="cards">
+            <a class="card" href="portfolio-observability-stack.html">
+              <span class="eyebrow">Observability</span>
+              <h3>Grafana, Loki, Prometheus and Alloy, run as one stack</h3>
+              <p>Dashboards as code, metrics and logs in one place, and alert routing that reaches a human who can act &mdash; plus the recovery runbook from the day it broke.</p>
+              <span class="card-more">Read the case study &rarr;</span>
+            </a>
+
+            <a class="card" href="portfolio-platform-foundation.html">
+              <span class="eyebrow">Platform engineering</span>
+              <h3>Docs as a control plane, Terraform against Proxmox</h3>
+              <p>Infrastructure reconciled from code, a repeatable delivery pattern for applications, and documentation that stays true because it is the source.</p>
+              <span class="card-more">Read the case study &rarr;</span>
+            </a>
+
+            <a class="card" href="portfolio-cloudplan-site.html">
+              <span class="eyebrow">Consulting practice</span>
+              <h3>CloudPlan.ca</h3>
+              <p>Cloud and observability planning as a productized practice: built, shipped and operated end to end, including the site it runs on.</p>
+              <span class="card-more">Read the case study &rarr;</span>
+            </a>
+
+            <a class="card" href="portfolio-backupplan-site.html">
+              <span class="eyebrow">Consulting practice</span>
+              <h3>BackupPlan.ca</h3>
+              <p>Business continuity work built on a simple premise: a backup nobody has restored is a rumour. Recovery testing, documented and repeatable.</p>
+              <span class="card-more">Read the case study &rarr;</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Approach -->
+      <section class="section" id="approach">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>What changes when I show up</h2>
+          </div>
+
+          <div class="approach">
+            <div class="approach-item">
+              <span class="num" aria-hidden="true">01</span>
+              <div>
+                <h3>Someone is accountable for reliability</h3>
+                <p>Service level objectives that match what the business actually feels, on-call people can sustain, and incident reviews that change the system rather than blame the operator.</p>
               </div>
             </div>
 
-            <ul class="main-menu">
-              <li class="active">
-                <a href="#home" class="nav-anim">
-                  <span class="menu-icon lnr lnr-home"></span>
-                  <span class="link-text">Home</span>
-                </a>
-              </li>
-              <li>
-                <a href="#about-me" class="nav-anim">
-                  <span class="menu-icon lnr lnr-user"></span>
-                  <span class="link-text">About Me</span>
-                </a>
-              </li>
-              <li>
-                <a href="#resume" class="nav-anim">
-                  <span class="menu-icon lnr lnr-graduation-hat"></span>
-                  <span class="link-text">Resume</span>
-                </a>
-              </li>
-              <li>
-                <a href="#portfolio" class="nav-anim">
-                  <span class="menu-icon lnr lnr-briefcase"></span>
-                  <span class="link-text">Portfolio</span>
-                </a>
-              </li>
-            <!---  <li>
-                <a href="#blog" class="nav-anim">
-                  <span class="menu-icon lnr lnr-book"></span>
-                  <span class="link-text">Contracts</span>
-                </a>
-              </li>-->
-              <li>
-                <a href="#contact" class="nav-anim">
-                  <span class="menu-icon lnr lnr-envelope"></span>
-                  <span class="link-text">Contact</span>
-                </a>
-              </li>
-            </ul>
+            <div class="approach-item">
+              <span class="num" aria-hidden="true">02</span>
+              <div>
+                <h3>Releases stop being events</h3>
+                <p>Pipelines that build the same way every time, environments defined in code, containers and orchestration where they earn their keep, and a rollback path nobody has to think about at 2am.</p>
+              </div>
+            </div>
 
-            <div class="social-links">
+            <div class="approach-item">
+              <span class="num" aria-hidden="true">03</span>
+              <div>
+                <h3>The cloud bill has an owner and a story</h3>
+                <p>Spend attributed to teams, the obvious waste right-sized first, and governance so it does not quietly climb back next quarter. At TransAlta that was about $180K USD a year.</p>
+              </div>
+            </div>
+
+            <div class="approach-item">
+              <span class="num" aria-hidden="true">04</span>
+              <div>
+                <h3>The team gets better, not just busier</h3>
+                <p>Engineers who can run what they build, follow-the-sun coverage instead of heroics, documentation people actually open, and enough senior judgement in the room to say no to the wrong project.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonial -->
+      <section class="section" aria-label="Testimonial">
+        <div class="wrap">
+          <blockquote class="quote">
+            <p>&ldquo;James was essential to the operations of the technical, infrastructure, and support side of the business. His ability to manage the complexities of a cloud storage backup business and keep it all running with minimal downtime &mdash; nearly zero &mdash; demonstrates his depth of knowledge and skill. I would have never been able to run the business without him.&rdquo;</p>
+            <footer>
+              <cite>CEO and former business partner</cite>
+              Cloud storage and backup
+            </footer>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- Track record -->
+      <section class="section" id="track-record">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Track record</h2>
+            <p class="section-note"><a href="Resume-JamesSzarka.pdf">Full résumé (PDF) &rarr;</a></p>
+          </div>
+
+          <div class="roles">
+            <article class="role">
+              <p class="role-when">May 2023 &mdash; present<span>Finning International</span></p>
+              <div class="role-what">
+                <h3>Senior Global DevOps Technical Leader</h3>
+              </div>
+              <p class="role-outcome">Global digital transformation. CI/CD across platform application environments, and service level agreements built with the data and analytics teams.</p>
+            </article>
+
+            <article class="role">
+              <p class="role-when">2022 &mdash; 2023<span>Symend</span></p>
+              <div class="role-what">
+                <h3>Manager of DevOps</h3>
+              </div>
+              <p class="role-outcome">Azure DevOps, Kubernetes and microservices adopted across the organisation, with DevOps practice and SLAs established behind them.</p>
+            </article>
+
+            <article class="role">
+              <p class="role-when">2022<span>Absorb Software</span></p>
+              <div class="role-what">
+                <h3>Manager of Site Reliability and CloudOps</h3>
+              </div>
+              <p class="role-outcome">Led 10 SRE and DevOps engineers. Follow-the-sun framework for 24-hour incident response, a formal incident management process, and migration to AWS RDS for database stability.</p>
+            </article>
+
+            <article class="role">
+              <p class="role-when">2019 &mdash; 2022<span>TransAlta Energy Corp.</span></p>
+              <div class="role-what">
+                <h3>Senior Team Lead, Cloud and Infrastructure</h3>
+              </div>
+              <p class="role-outcome">About 30 onshore and 70 offshore personnel. Cloud financial governance across multi-region Azure saved roughly $180K USD a year; designed highly available backup and recovery; Hydro Dam Command Centre retooling improved project metrics by over 80%.</p>
+            </article>
+
+            <article class="role">
+              <p class="role-when">2014 &mdash; present<span>Backup Plan Inc. &amp; Cloud Plan Inc.</span></p>
+              <div class="role-what">
+                <h3>Infrastructure and DevOps Consultant</h3>
+              </div>
+              <p class="role-outcome">Senior consulting for midsize and enterprise clients including OculusVision Tech and CGI. Business continuity across AWS, Azure and SoftLayer, plus budgets, RFPs and vendor contracts.</p>
+            </article>
+
+            <article class="role">
+              <p class="role-when">2008 &mdash; 2015<span>Globalworx Inc.</span></p>
+              <div class="role-what">
+                <h3>Founder &amp; Chief Technology Officer</h3>
+              </div>
+              <p class="role-outcome">OpenStack and cloud workspace environments for customer onboarding, hybrid cloud for web applications, and an IaaS platform built to give DevOps teams room to move.</p>
+            </article>
+
+            <article class="role">
+              <p class="role-when">2001 &mdash; 2014<span>eBackup Inc.</span></p>
+              <div class="role-what">
+                <h3>Founder &amp; Chief Technology Officer</h3>
+              </div>
+              <p class="role-outcome">Built Western Canada's largest cloud storage provider &mdash; networking, storage, security, the physical data centre, help desk and training. Acquired by J2 KeepItSafe, and retained through the customer integration to 2017.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Capabilities -->
+      <section class="section" id="capabilities">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>What I work with</h2>
+          </div>
+
+          <div class="columns">
+            <div class="column">
+              <h3>Platform and delivery</h3>
               <ul>
-                <li><a href="https://www.linkedin.com/in/jamestszarka/" target="_blank" rel="noopener noreferrer" aria-label="James T. Szarka on LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
-                <li><a href="https://www.facebook.com/JamesTSzarka" target="_blank" rel="noopener noreferrer" aria-label="James T. Szarka on Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="https://www.instagram.com/jamesszarka/" target="_blank" rel="noopener noreferrer" aria-label="James T. Szarka on Instagram"><i class="fab fa-instagram"></i></a></li>
+                <li>CI/CD pipeline design and release management</li>
+                <li>Kubernetes, AKS and containerization</li>
+                <li>Azure DevOps, Terraform, Ansible</li>
+                <li>Microservices and platform delivery patterns</li>
               </ul>
             </div>
 
-            <div class="header-buttons">
-              <a href="Resume-JamesSzarka.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Download CV</a>
+            <div class="column">
+              <h3>Reliability</h3>
+              <ul>
+                <li>SLOs, SLAs and error budgets</li>
+                <li>Incident management and postmortems</li>
+                <li>Grafana, Prometheus, Loki, Splunk, DataDog</li>
+                <li>Toil reduction and multi-region redundancy</li>
+              </ul>
             </div>
 
-            <div class="copyrights">© 2026 All rights reserved. ⚙ version 2.99</div>
-          </header>
+            <div class="column">
+              <h3>Cloud and cost</h3>
+              <ul>
+                <li>AWS, Azure and GCP architecture</li>
+                <li>FinOps and cloud financial governance</li>
+                <li>HA/DR design and business continuity</li>
+                <li>Reserved instance and right-sizing strategy</li>
+              </ul>
+            </div>
 
-          <!-- Mobile Navigation -->
-          <div class="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
+            <div class="column">
+              <h3>Leadership</h3>
+              <ul>
+                <li>Building and mentoring engineering teams</li>
+                <li>Follow-the-sun and global operating models</li>
+                <li>Technical roadmaps and governance</li>
+                <li>Vendor management, RFPs and contracts</li>
+              </ul>
+            </div>
           </div>
-          <!-- End Mobile Navigation -->
 
-          <!-- Arrows Nav -->
-          <div class="lmpixels-arrows-nav">
-            <div class="lmpixels-arrow-right"><i class="lnr lnr-chevron-right"></i></div>
-            <div class="lmpixels-arrow-left"><i class="lnr lnr-chevron-left"></i></div>
-          </div>
-          <!-- End Arrows Nav -->
-
-          <main class="content-area" id="main">
-            <div class="animated-sections">
-              <!-- Home Subpage -->
-              <section data-id="home" class="animated-section start-page">
-                <div class="section-content vcentered">
-
-                    <div class="row">
-                      <div class="col-sm-12 col-md-12 col-lg-12">
-                        <div class="title-block">
-                          <h1>James T. Szarka</h1>
-                          <div class="owl-carousel text-rotation">
-                            <div class="item">
-                              <div class="sp-subtitle">DevOps Manager</div>
-                            </div>
-                              <div class="item">
-                              <div class="sp-subtitle">Infrastructure On-Prem/Cloud Manager</div>
-                              </div>
-                              <div class="item">
-                              <div class="sp-subtitle">SRE Manager</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                </div>
-              </section>
-              <!-- End of Home Subpage -->
-
-              <!-- About Me Subpage -->
-              <section data-id="about-me" class="animated-section">
-                <div class="section-content">
-                  <div class="page-title">
-                    <h2>About <span>Me</span></h2>
-                  </div>
-
-                  <!-- Personal Information -->
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-7">
-                      <p>Experienced Manager focused on DevOps, Infrastructure, and Site Reliability Engineering. I leverage a robust portfolio of technical knowledge to lead high-performing teams, translating technical complexity into strategic business value. I am a driven and reliable partner, committed to creating scalable, 'as-a-service' solutions that drive operational efficiency. I excel at forging results-driven relationships to effectively integrate solutions that ensure maximum system uptime and success in high-growth, fast-paced environments.</p>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-5">
-                      <div class="info-list">
-                        <ul>
-                          <li>
-                            <span class="title">Age</span>
-                            <span class="value">57</span>
-                          </li>
-
-                          <li>
-                            <span class="title">Residence</span>
-                            <span class="value">Canada</span>
-                          </li>
-
-                          <li>
-                            <span class="title">Area</span>
-                            <span class="value">Calgary, Alberta</span>
-                          </li>
-
-                          <li>
-                            <span class="title">e-mail</span>
-                            <span class="value"><a href="mailto:james@szarka.ca">james (at) szarka.ca</a></span>
-                          </li>
-
-                          <li>
-                            <span class="title">Phone</span>
-                            <span class="value">email for number</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End of Personal Information -->
-
-                  <div class="white-space-50"></div>
-
-                  <!-- Services -->
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-12">
-                      <div class="block-title">
-                        <h3>What <span>I Do</span></h3>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-6">
-                      <div class="col-inner">
-                        <div class="info-list-w-icon">
-                          <div class="info-block-w-icon">
-                            <div class="ci-icon">
-                              <i class="lnr lnr-store"></i>
-                            </div>
-                            <div class="ci-text">
-                              <h4>Strategic Technical Leadership</h4>
-                              <p>I lead and mentor cross-functional, high-performing engineering teams (DevOps, SRE, and Infrastructure) to drive digital transformation initiatives. My leadership focuses on cultivating a culture of technical proficiency, innovation, and accountability, ensuring team output aligns directly with organizational strategy. By combining technical acumen with sound business insight, I effectively manage global operations, enforce technical quality assurance, and design organizational frameworks—such as 'follow-the-sun' models—to maximize team performance and 24/7 operational coverage.</p>
-                            </div>
-                          </div>
-                          <div class="info-block-w-icon">
-                            <div class="ci-icon">
-                              <i class="lnr lnr-laptop-phone"></i>
-                            </div><div class="ci-text">
-                              <h4>Site Reliability and Operational Resilience</h4>
-                              <p>My core mandate is to ensure the reliability, availability, and performance of mission-critical systems. I champion the Site Reliability Engineering (SRE) discipline by defining, monitoring, and enforcing rigorous Service Level Objectives (SLOs) and Service Level Agreements (SLAs). This includes developing proactive problem detection strategies, managing end-to-end incident response processes, and leading toil reduction efforts to drive systemic improvements and protect service continuity. I continuously look for ways to architect resilient, multi-region redundancy to mitigate failure and increase system confidence.</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-6">
-                      <div class="col-inner">
-                        <div class="info-list-w-icon">
-                          <div class="info-block-w-icon">
-                            <div class="ci-icon">
-                              <i class="lnr lnr-pencil"></i>
-                            </div>
-                            <div class="ci-text">
-                              <h4>DevOps, Automation, and CI/CD</h4>
-                              <p>I specialize in designing and implementing fully automated CI/CD pipelines that streamline the software build, deployment, and release cycle. My expertise includes modern containerization strategies using platforms like Kubernetes and Microservices, leveraging cutting-edge tools (Azure DevOps, Ansible, Terraform) to achieve high deployment frequency with minimal failure rates. This focus on automation accelerates the path from development to production, enhancing delivery predictability and significantly boosting organizational speed and efficiency in high-growth environments.</p>
-                            </div>
-                          </div>
-                          <div class="info-block-w-icon">
-                            <div class="ci-icon">
-                              <i class="lnr lnr-flag"></i>
-                            </div><div class="ci-text">
-                              <h4>Cloud Architecture and Financial Governance</h4>
-                              <p>I architect and optimize complex cloud infrastructure solutions across major platforms including AWS, Azure, and GCP. A key component of my work involves leading cloud financial governance initiatives to ensure responsible and cost-effective resource utilization. This has included executing large-scale projects to right-size, govern, and reduce excessive cloud spend—resulting in significant annual savings—while simultaneously designing highly available backup, disaster recovery (HA/DR) plans, and reserved instance strategies to drive stability, consistency, and long-term cost control.</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End of Services -->
-
-                  <div class="white-space-30"></div>
-
-                  <!-- Testimonials -->
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-12">
-                      <div class="block-title">
-                        <h3>Testimonials</h3>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-12">
-                      <div class="testimonials owl-carousel">
-                        <!-- Testimonial 1 -->
-                        <div class="testimonial">
-                          <div class="img">
-                            <img src="img/testimonials/testimonial-1.jpg" alt="James T. Szarka">
-                          </div>
-                          <div class="text">
-                            <p>James was my manager for over 2 years, and we saw every type of issue and problem that you can have with infrastructure. James never panicked, and we just worked through the issue one step at a time to find a solution. He was outstanding and taught me a lot about using data and analytics to decide how to proceed, rather than making choices based solely on instinct. He was a great manager, and we had a lot of fun times. He was very understanding when you needed help and always took the time to listen to you.
-Any company would benefit from having James on their team. </p>
-                          </div>
-
-                          <div class="author-info">
-                            <h4 class="author">Infrastructure and QA Lead | AWS Certified</h4>
-                            <h5 class="company">Past Working Peer</h5>
-                            <div class="icon">
-                              <i class="fas fa-quote-right"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- End of Testimonial 1 -->
-                        <!-- Testimonial 1 -->
-                        <div class="testimonial">
-                          <div class="img">
-                            <img src="img/testimonials/testimonial-1.jpg" alt="James T. Szarka">
-                          </div>
-                          <div class="text">
-                            <p>I had the privilege of observing James as he skillfully managed two of his team members. His leadership style is both inspiring and effective, fostering collaboration and growth within the team. He has truly motivated me to improve my own leadership skills.</p>
-                          </div>
-
-                          <div class="author-info">
-                            <h4 class="author">❄️Data Engineering Leader | AI/ML | MA/D.Min | Author</h4>
-                            <h5 class="company">Past Working Peer</h5>
-                            <div class="icon">
-                              <i class="fas fa-quote-right"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- End of Testimonial 1 -->
-
-                        <!-- Testimonial 2 -->
-                        <div class="testimonial">
-                          <div class="img">
-                            <img src="img/testimonials/testimonial-2.jpg" alt="James T. Szarka">
-                          </div>
-                          <div class="text">
-                            <p>"James's skills and knowledge were unparalleled. He brought an energy and dependability that made him crucial to our company, guiding engineering efforts while we upgraded our infrastructure to microservices and APIs. A reliable and highly capable employee, I can't recommend him highly enough."</p>
-                          </div>
-
-                          <div class="author-info">
-                            <h4 class="author">CISO Fintech</h4>
-                            <h5 class="company">Past Leader</h5>
-                            <div class="icon">
-                              <i class="fas fa-quote-right"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- End of Testimonial 2 -->
-
-                        <!-- Testimonial 3 -->
-                        <div class="testimonial">
-                          <div class="img">
-                            <img src="img/testimonials/testimonial-3.jpg" alt="James T. Szarka">
-                          </div>
-                          <div class="text">
-                            <p>"James was essential to the operations of the technical, infrastructure, and support side of the business. His ability to manage the complexities of a cloud storage backup business and keep it all running with minimal downtime (nearly zero) demonstrates his depth of knowledge and skill. I would have never been able to run the business without him!"</p>
-                          </div>
-
-                          <div class="author-info">
-                            <h4 class="author">CEO and Former Business Partner</h4>
-                            <h5 class="company">Past Partner</h5>
-                            <div class="icon">
-                              <i class="fas fa-quote-right"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- End of Testimonial 3 -->
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End of Testimonials -->
-
-                  <div class="white-space-50"></div>
-
-                  <!-- Clients -->
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-12">
-                      <div class="block-title">
-                        <h3>Clients</h3>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-12">
-                      <div class="clients owl-carousel">
-
-                        <div class="client-block">
-                          <a href="#" target="_blank" rel="noopener noreferrer" title="Client logo">
-                            <img src="img/clients/client-1.png" alt="Client logo">
-                          </a>
-                        </div>
-
-                        <div class="client-block">
-                          <a href="#" target="_blank" rel="noopener noreferrer" title="eBackup client logo">
-                            <img src="img/clients/ebackup.png" alt="eBackup client logo">
-                          </a>
-                        </div>
-
-                        <div class="client-block">
-                          <a href="#" target="_blank" rel="noopener noreferrer" title="Client logo">
-                            <img src="img/clients/client-2.png" alt="Client logo">
-                          </a>
-                        </div>
-
-                        <div class="client-block">
-                          <a href="#" target="_blank" rel="noopener noreferrer" title="Client logo">
-                            <img src="img/clients/client-4.png" alt="Client logo">
-                          </a>
-                        </div>
-
-                        <div class="client-block">
-                          <a href="#" target="_blank" rel="noopener noreferrer" title="Client logo">
-                            <img src="img/clients/client-5.png" alt="Client logo">
-                          </a>
-                        </div>
-
-                        <div class="client-block">
-                          <a href="#" target="_blank" rel="noopener noreferrer" title="Client logo">
-                            <img src="img/clients/client-6.png" alt="Client logo">
-                          </a>
-                        </div>
-
-                        <div class="client-block">
-                          <a href="#" target="_blank" rel="noopener noreferrer" title="Client logo">
-                            <img src="img/clients/client-3.png" alt="Client logo">
-                          </a>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End of Clients -->
-
-                  <div class="white-space-50"></div>
-
-                  <!-- Pricing -->
-                  <!--<div class="row">
-                    <div class="col-xs-12 col-sm-12">
-
-                      <div class="block-title">
-                        <h3>Pricing</h3>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class=" col-xs-12 col-sm-12 ">
-                      <div class="fw-pricing clearfix row">
-
-                        <div class="fw-package-wrap col-md-6 ">
-                          <div class="fw-package">
-                            <div class="fw-heading-row">
-                              <span>Silver</span>
-                            </div>
-
-                            <div class="fw-pricing-row">
-                              <span>$64</span>
-                              <small>per month</small>
-                            </div>
-
-                            <div class="fw-button-row">
-                              <a href="#" target="_self" class="btn btn-secondary">Free Trial</a>
-                            </div>
-
-                            <div class="fw-default-row">Lorem ipsum dolor</div>
-                            <div class="fw-default-row">Pellentesque scelerisque</div>
-                            <div class="fw-default-row">Morbi eu sagittis</div>
-                          </div>
-                        </div>
-
-                        <div class="fw-package-wrap col-md-6 highlight-col ">
-                          <div class="fw-package">
-                            <div class="fw-heading-row">
-                              <span>Gold</span>
-                            </div>
-
-                            <div class="fw-pricing-row">
-                              <span>$128</span>
-                              <small>per month</small>
-                            </div>
-
-                            <div class="fw-button-row">
-                              <a href="#" target="_self" class="btn btn-primary">Free Trial</a>
-                            </div>
-
-                            <div class="fw-default-row">Lorem ipsum dolor</div>
-                            <div class="fw-default-row">Pellentesque scelerisque</div>
-                            <div class="fw-default-row">Morbi eu sagittis</div>
-                            <div class="fw-default-row">Donec non diam</div>
-                            <div class="fw-default-row"></div>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                   End of Pricing -->
-
-                  <div class="white-space-50"></div>
-
-                  <!-- Fun Facts -->
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-12">
-
-                      <div class="block-title">
-                        <h3>Fun <span>Facts</span></h3>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-4">
-                      <div class="fun-fact gray-default">
-                        <i class="lnr lnr-heart"></i>
-                        <h4>People I have talked to</h4>
-                        <span class="fun-fact-block-value">10,000+ Clients, colleagues, and public members</span>
-                        <span class="fun-fact-block-value">(often to the annoyance of my children).</span>
-                        <span class="fun-fact-block-text"></span>
-                      </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-4">
-                      <div class="fun-fact gray-default">
-                        <i class="lnr lnr-clock"></i>
-                        <h4>Estimated Total Working & Learning Hours</h4>
-                        <span class="fun-fact-block-value">~82,875 hours.</span>
-                        <span class="fun-fact-block-value">Since age 18.</span>
-                        <span class="fun-fact-block-text"></span>
-                      </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-4 ">
-                      <div class="fun-fact gray-default">
-                        <i class="lnr lnr-star"></i>
-                        <h4>Awards Won Including childhood trophies</h4>
-                        <span class="fun-fact-block-value">47</span>
-                        <span class="fun-fact-block-value">My mom still has some.</span>
-                        <span class="fun-fact-block-text"></span>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End of Fun Facts -->
-
-                </div>
-              </section>
-              <!-- End of About Me Subpage -->
-
-              <!-- Resume Subpage -->
-              <section data-id="resume" class="animated-section">
-                <div class="section-content">
-                  <div class="page-title">
-                    <h2>Resume</h2>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-7">
-
-                      <div class="block-title">
-                        <h3>Experience</h3>
-                      </div>
-
-                      <div class="timeline timeline-second-style clearfix">
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">May 2023 - Present</h5>
-                            <span class="item-company">Finning International</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">Senior Global DevOps Technical Leader</h4>
-                            <p>I lead and mentor a cross-functional DevOps team, driving adherence to DevOps best practices and fostering continuous innovation. I manage the entire software release cycle through advanced CI/CD techniques, streamlining software build and deployments across platform-based application environments. Additionally, I develop strong Service Level Agreements (SLAs) and evaluate new processes to ensure scalability and reliability for data and analytics teams, contributing to our Global Digital Transformation.</p>
-                          </div>
-                        </div>
-
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">September 2022 - March 2023</h5>
-                            <span class="item-company">Symend</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">Manager of DevOps</h4>
-                            <p>As a DevOps Manager, I provide strategic oversight and operational leadership for high-performing engineering teams. My primary focus is translating business goals into resilient, automated solutions, leading initiatives to implement MS Azure DevOps, Kubernetes, and Microservices across the organization. I drive continuous innovation by establishing DevOps best practices and developing robust Service Level Agreements (SLAs), ensuring service availability, scalability, and predictable software delivery through advanced CI/CD techniques.</p>
-                          </div>
-                        </div>
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">January 2022 - September 2022</h5>
-                            <span class="item-company">Absorb Software</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">Manager of Site Reliability and CloudOps </h4>
-                            <p>As Manager of Site Reliability and CloudOps, I successfully led a team of 10 SRE and DevOps Engineers focused on defining, monitoring, and enforcing Service Level Agreements (SLAs) for all critical services. I maximized team performance and increased 24/hour response capability for incidents by implementing a follow-the-sun framework, which leveraged our global workforce and significantly reduced toil. Furthermore, I developed and implemented the formal Incident Management Process and initiated a key migration to AWS RDS services to ensure database stability and consistency.</p>
-                          </div>
-                        </div>
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">September 2019 - January 2022</h5>
-                            <span class="item-company">TransAlta Energy Corp.</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">Senior Team Lead Cloud and Infrastructure Administrator</h4>
-                            <p>As the Senior Team Lead for Cloud and Infrastructure, I was retained to lead a large-scale, high-performing team of ~30 onshore and 70 offshore IT personnel. I was instrumental in guiding complex projects, including leading the comprehensive backup and disaster planning for all of the company’s largest assets. My most significant achievement was leading a cloud financial governance initiative across multi-geo Azure regions, resulting in a measurable savings of ~$180K USD per annum by right-sizing infrastructure and optimizing usage. Additionally, I designed a Highly Available (HA) backup and recovery plan and contributed to critical process optimization for the Hydro Dam Command Centre retooling, improving project metrics by over 80%.</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="white-space-50"></div>
-
-                      <div class="block-title">
-                        <h3>Entrepreneurial & Technical Executive Experience</h3>
-                      </div>
-                      <div class="timeline timeline-second-style clearfix">
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">January 2014 - Present</h5>
-                            <span class="item-company">Backup Plan Inc. & Cloud Plan Inc. </span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">Infrastructure and DevOps Consultant</h4>
-                            <p>As an Infrastructure and DevOps Consultant for Backup Plan Inc. & Cloud Plan Inc., I provided senior technical consulting to midsize and enterprise clients, including OculusVision Tech Inc. and CGI Inc. My primary focus was assisting customers in ensuring their data assets were completely protected in the most efficient ways possible. I maintained full responsibility for budget development, vendor management (RFPs), and contract negotiations. Highlighted contributions include architecting a cloud platform for a blockchain video and document watermarking management SaaS Application, fully automating Desktop as a Service for a large MSP, and completing product testing for a Disaster Recovery as an international service product, alongside architecting and implementing comprehensive business continuity plans across AWS, Azure, and SoftLayer.</p>
-                          </div>
-                        </div>
-                        <div class="timeline timeline-second-style clearfix">
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">February 2001 - January 2014</h5>
-                            <span class="item-company">eBackup Inc.</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">Founder, Chief Technology Officer (CTO) & Owner </h4>
-                            <p>As the Founder, Chief Technology Officer (CTO), and Owner of eBackup Inc., I led Western Canada’s largest cloud storage provider, delivering data protection solutions to small businesses and enterprise-scale corporations. Under my leadership, I successfully oversaw the acquisition of eBackup Inc. by J2 KeepItSafe and was retained to manage the complex integration of customer assets from 2014 to 2017. As CTO, I maintained comprehensive management of all technical infrastructures, including designing networking, storage, security, the physical data center, help desk operations, and the training center, driving all foundational technical strategy for the company.</p>
-                          </div>
-                        </div>
-                        </div>
-                        <div class="timeline timeline-second-style clearfix">
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">March 2008 - December 2015</h5>
-                            <span class="item-company">Globalworx Inc.</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">Chief Technology Officer (CTO) & Owner</h4>
-                            <p>As the Founder, Chief Technology Officer (CTO), and Owner of Globalworx Inc., a custom computer programming service company, I was responsible for establishing the technical and strategic vision and developing product roadmaps from inception. I built and managed all aspects of technology development, including formulating policies to ensure compliance and consistency in practice. My technical work involved building OpenStack and Cloud Workspace environments for customer onboarding, creating custom hybrid cloud solutions for web applications, and designing a universally available IaaS platform to enable greater flexibility for DevOps teams.</p>
-                          </div>
-                        </div>
-                        </div>
-
-                      </div>
-                      <div class="white-space-50"></div>
-
-                      <div class="block-title">
-                        <h3>Certifications</h3>
-                      </div>
-
-                      <div class="timeline timeline-second-style clearfix">
-
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">2023</h5>
-                            <span class="item-company">AWS</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">AWS Exam Readiness – AWS Certified SysOps Administrator</h4>
-                          </div>
-                        </div>
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">2022</h5>
-                            <span class="item-company">AWS</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">AWS Architecting on AWS</h4>
-                          </div>
-                        </div>
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">2021</h5>
-                            <span class="item-company">Splunk</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">Splunk Cloud Administration</h4>
-                          </div>
-                        </div>
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">2019</h5>
-                            <span class="item-company">Microsoft</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">Microsoft Azure – Administration and Architect AZ300 and AZ-301</h4>
-                          </div>
-                        </div>
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">2011</h5>
-                            <span class="item-company">Mirantis</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">OpenStack Administration</h4>
-                          </div>
-                        </div>
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">2010</h5>
-                            <span class="item-company">LSI Corporation</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">OnStor Grid Storage Administration</h4>
-                          </div>
-                        </div>
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">2009</h5>
-                            <span class="item-company">Digium</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">Asterisk System Administration</h4>
-                          </div>
-                        </div>
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">2004</h5>
-                            <span class="item-company">Autonomy</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">Zantaz Email Archiving</h4>
-                          </div>
-                        </div>
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">2004</h5>
-                            <span class="item-company">Asigra</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">Asigra Certified Administrator</h4>
-                          </div>
-                        </div>
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">2002</h5>
-                            <span class="item-company">Sun</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">Sun Certified Solaris Administrator (SCSA) Certification</h4>
-                          </div>
-                        </div>
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">2001</h5>
-                            <span class="item-company">Global Knowledge</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">A+ Certified Engineer</h4>
-                          </div>
-                        </div>
-
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">2001</h5>
-                            <span class="item-company">Microsoft</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">Microsoft Server & Workstation</h4>
-                            <p></p>
-                          </div>
-                        </div>
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">2001</h5>
-                            <span class="item-company">Microsoft</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">Microsoft Small Business Server</h4>
-                            <p></p>
-                          </div>
-                        </div>
-
-                        <div class="timeline-item clearfix">
-                          <div class="left-part">
-                            <h5 class="item-period">1996</h5>
-                            <span class="item-company">DeVry Institute of Technology</span>
-                          </div>
-                          <div class="divider"></div>
-                          <div class="right-part">
-                            <h4 class="item-title">Diploma in Electronic Engineering</h4>
-                            <p></p>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    <!-- Skills & Certificates -->
-                    <div class="col-xs-12 col-sm-5">
-                      <!-- Design Skills -->
-                      <div class="block-title">
-                        <h3>DevOps <span>Skills</span></h3>
-                      </div>
-
-                      <div class="skills-info skills-second-style">
-                        <!-- Skill 1 -->
-                        <div class="skill clearfix">
-                          <h4>CI/CD</h4>
-                          <div class="skill-value">95%</div>
-                        </div>
-                        <div class="skill-container skill-1">
-                          <div class="skill-percentage"></div>
-                        </div>
-                        <!-- End of Skill 1 -->
-
-                        <!-- Skill 2 -->
-                        <div class="skill clearfix">
-                          <h4>SRE & Observability (Site Reliability Engineering)</h4>
-                          <div class="skill-value">85%</div>
-                        </div>
-                        <div class="skill-container skill-2">
-                          <div class="skill-percentage"></div>
-                        </div>
-                        <!-- End of Skill 2 -->
-
-                        <!-- Skill 3 -->
-                        <div class="skill clearfix">
-                          <h4>Containerization & Orchestration</h4>
-                          <div class="skill-value">95%</div>
-                        </div>
-                        <div class="skill-container skill-3">
-                          <div class="skill-percentage"></div>
-                        </div>
-                        <!-- End of Skill 3 -->
-
-                        <!-- Skill 4 -->
-                        <div class="skill clearfix">
-                          <h4>Infrastructure as Code (IaC) & Cloud Governance</h4>
-                          <div class="skill-value">90%</div>
-                        </div>
-                        <div class="skill-container skill-4">
-                          <div class="skill-percentage"></div>
-                        </div>
-                        <!-- End of Skill 4 -->
-
-                      </div>
-                      <!-- End of Design Skills -->
-
-                      <div class="white-space-10"></div>
-
-                      <!-- Coding Skills -->
-                      <div class="block-title">
-                        <h3>Management & Leadership <span>Skills</span></h3>
-                      </div>
-
-                      <div class="skills-info skills-second-style">
-                        <!-- Skill 5 -->
-                        <div class="skill clearfix">
-                          <h4>Strategic Technical Vision & Roadmapping</h4>
-                          <div class="skill-value">95%</div>
-                        </div>
-                        <div class="skill-container skill-5">
-                          <div class="skill-percentage"></div>
-                        </div>
-                        <!-- End of Skill 5 -->
-
-                        <!-- Skill 6 -->
-                        <div class="skill clearfix">
-                          <h4>Team Mentorship & Performance Optimization</h4>
-                          <div class="skill-value">95%</div>
-                        </div>
-                        <div class="skill-container skill-6">
-                          <div class="skill-percentage"></div>
-                        </div>
-                        <!-- End of Skill 6 -->
-
-                        <!-- Skill 7 -->
-                        <div class="skill clearfix">
-                          <h4>Operational Governance & Risk Management</h4>
-                          <div class="skill-value">100%</div>
-                        </div>
-                        <div class="skill-container skill-7">
-                          <div class="skill-percentage"></div>
-                        </div>
-                        <!-- End of Skill 7 -->
-
-                        <!-- Skill 8 -->
-                        <div class="skill clearfix">
-                          <h4>Incident & Service Level Management</h4>
-                          <div class="skill-value">75%</div>
-                        </div>
-                        <div class="skill-container skill-8">
-                          <div class="skill-percentage"></div>
-                        </div>
-                        <!-- End of Skill 8 -->
-
-                        <!-- Skill 9 -->
-                        <div class="skill clearfix">
-                          <h4>Business Continuity & Resilience</h4>
-                          <div class="skill-value">100%</div>
-                        </div>
-                        <div class="skill-container skill-9">
-                          <div class="skill-percentage"></div>
-                        </div>
-                        <!-- End of Skill 9 -->
-                      </div>
-                      <!-- End of Coding Skills -->
-
-                      <div class="white-space-10"></div>
-
-                      <!-- Knowledges -->
-                      <div class="block-title">
-                        <h3>Tags</h3>
-                      </div>
-
-                      <ul class="knowledges">
-                        <li>CI/CD</li>
-                        <li>SRE</li>
-                        <li>Observability</li>
-                        <li>Containerization</li>
-                        <li>DataDog</li>
-                        <li>AKS</li>
-                        <li>ADO</li>
-                        <li>K8S</li>
-                        <li>IaC</li>
-                        <li>Terraform</li>
-                        <li>Ansible</li>
-                        <li>AWS</li>
-                        <li>Azure</li>
-                        <li>GCP</li>
-                        <li>FinOps</li>
-                        <li>Leadership</li>
-                      </ul>
-                      <!-- End of Knowledges -->
-                    </div>
-                    <!-- End of Skills & Certificates -->
-                  </div>
-
-                  <div class="white-space-50"></div>
-
-                  <!-- Certificates -->
-                  <div class="row">
-                    <div class="col-xs-12 col-sm-12">
-                      <div class="block-title">
-                        <h3>Certificates</h3>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <!-- Certificate 1 -->
-                    <div class="col-xs-12 col-sm-6">
-                      <div class="certificate-item clearfix">
-                        <div class="certi-logo">
-                          <img src="img/clients/grafana.jpeg" alt="Grafana certificate logo">
-                        </div>
-
-                        <div class="certi-content">
-                          <div class="certi-title">
-                            <h4>Grafana, Prometheus, Loki Alerting and Monitoring</h4>
-                          </div>
-                          <div class="certi-id">
-                            <span></span>
-                          </div>
-                          <div class="certi-date">
-                            <span>Currently</span>
-                          </div>
-                          <div class="certi-company">
-                            <span></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End of Certificate 1 -->
-
-                    <!-- Certificate 2 -->
-                    <div class="col-xs-12 col-sm-6">
-                      <div class="certificate-item clearfix">
-                        <div class="certi-logo">
-                          <img src="img/clients/splunk.png" alt="Splunk certificate logo">
-                        </div>
-
-                        <div class="certi-content">
-                          <div class="certi-title">
-                            <h4>Splunk Advanced Administration</h4>
-                          </div>
-                          <div class="certi-id">
-                            <span></span>
-                          </div>
-                          <div class="certi-date">
-                            <span>April 2021</span>
-                          </div>
-                          <div class="certi-company">
-                            <span></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- End of Certificate 2 -->
-
-                  </div>
-                  <!-- End of Certificates -->
-                </div>
-              </section>
-              <!-- End of Resume Subpage -->
-
-              <!-- Portfolio Subpage -->
-<section data-id="portfolio" class="animated-section">
-  <div class="section-content">
-    <div class="page-title">
-      <h2>Portfolio</h2>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-12 col-sm-12">
-        <div class="portfolio-content">
-          <ul class="portfolio-filters">
-            <li class="active">
-              <a class="filter btn btn-sm btn-link" data-group="all">All</a>
-            </li>
-            <li>
-              <a class="filter btn btn-sm btn-link" data-group="devops">DevOps / SRE</a>
-            </li>
-            <li>
-              <a class="filter btn btn-sm btn-link" data-group="business-sites">Business Sites</a>
-            </li>
+          <ul class="tags" aria-label="Technology tags">
+            <li>CI/CD</li>
+            <li>SRE</li>
+            <li>Observability</li>
+            <li>Kubernetes</li>
+            <li>Terraform</li>
+            <li>Ansible</li>
+            <li>AWS</li>
+            <li>Azure</li>
+            <li>GCP</li>
+            <li>Proxmox</li>
+            <li>Docker</li>
+            <li>FinOps</li>
           </ul>
+        </div>
+      </section>
 
-          <div class="portfolio-grid three-columns">
-            <figure class="item standard" data-groups='["all", "devops"]'>
-              <div class="portfolio-item-img">
-                <img src="img/portfolio/observability-stack.svg" alt="Grafana Loki Prometheus Alloy Monitoring Stack" title="Observability Stack" />
-                <a href="portfolio-observability-stack.html" title="Grafana, Loki, Prometheus, Alloy Monitoring Stack"></a>
-              </div>
-              <i class="far fa-file-alt"></i>
-              <h4 class="name">Grafana, Loki, Prometheus, Alloy Monitoring Stack</h4>
-              <span class="category">DevOps / SRE / Observability</span>
-            </figure>
-            <figure class="item standard" data-groups='["all", "devops"]'>
-              <div class="portfolio-item-img">
-                <img src="img/portfolio/platform-foundation.svg" alt="Platform foundation across docs, Terraform Proxmox, and web delivery" title="Platform Foundation" />
-                <a href="portfolio-platform-foundation.html" title="Platform Engineering Foundation: Docs, Terraform, and Secure Delivery"></a>
-              </div>
-              <i class="far fa-file-alt"></i>
-              <h4 class="name">Platform Engineering Foundation: Docs, Terraform, and Secure Delivery</h4>
-              <span class="category">Platform Engineering / DevOps / CI/CD</span>
-            </figure>
-            <figure class="item standard" data-groups='["all", "business-sites"]'>
-              <div class="portfolio-item-img">
-                <img src="img/portfolio/cloudplan-site.svg" alt="CloudPlan.ca consulting website illustration" title="CloudPlan.ca" />
-                <a href="portfolio-cloudplan-site.html" title="CloudPlan.ca Business Website"></a>
-              </div>
-              <i class="far fa-file-alt"></i>
-              <h4 class="name">CloudPlan.ca Business Website</h4>
-              <span class="category">Cloud Consulting / Business Website</span>
-            </figure>
-            <figure class="item standard" data-groups='["all", "business-sites"]'>
-              <div class="portfolio-item-img">
-                <img src="img/portfolio/recoveryplan-site.svg" alt="BackupPlan.ca recovery website illustration" title="BackupPlan.ca" />
-                <a href="portfolio-backupplan-site.html" title="BackupPlan.ca Business Website"></a>
-              </div>
-              <i class="far fa-file-alt"></i>
-              <h4 class="name">BackupPlan.ca Business Website</h4>
-              <span class="category">Backup / Recovery / Business Website</span>
-            </figure>
+      <!-- Certifications -->
+      <section class="section" id="certifications">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Certifications and training</h2>
+          </div>
+
+          <div class="certs">
+            <div class="cert">
+              <span class="cert-year">2023</span>
+              <span class="cert-name">AWS Certified SysOps Administrator &mdash; exam readiness<span>Amazon Web Services</span></span>
+            </div>
+            <div class="cert">
+              <span class="cert-year">2022</span>
+              <span class="cert-name">Architecting on AWS<span>Amazon Web Services</span></span>
+            </div>
+            <div class="cert">
+              <span class="cert-year">2021</span>
+              <span class="cert-name">Splunk Cloud Administration and Advanced Administration<span>Splunk</span></span>
+            </div>
+            <div class="cert">
+              <span class="cert-year">2019</span>
+              <span class="cert-name">Azure Administration and Architecture, AZ-300 and AZ-301<span>Microsoft</span></span>
+            </div>
+            <div class="cert">
+              <span class="cert-year">2011</span>
+              <span class="cert-name">OpenStack Administration<span>Mirantis</span></span>
+            </div>
+            <div class="cert">
+              <span class="cert-year">2010</span>
+              <span class="cert-name">OnStor Grid Storage Administration<span>LSI Corporation</span></span>
+            </div>
+            <div class="cert">
+              <span class="cert-year">2009</span>
+              <span class="cert-name">Asterisk System Administration<span>Digium</span></span>
+            </div>
+            <div class="cert">
+              <span class="cert-year">2004</span>
+              <span class="cert-name">Asigra Certified Administrator<span>Asigra</span></span>
+            </div>
+            <div class="cert">
+              <span class="cert-year">2002</span>
+              <span class="cert-name">Sun Certified Solaris Administrator<span>Sun Microsystems</span></span>
+            </div>
+            <div class="cert">
+              <span class="cert-year">1996</span>
+              <span class="cert-name">Diploma in Electronic Engineering<span>DeVry Institute of Technology</span></span>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-              <!-- End of Portfolio Subpage -->
+      </section>
 
-              <!-- Contact Subpage -->
-              <section data-id="contact" class="animated-section">
-                <div class="section-content">
-                  <div class="page-title">
-                    <h2>Contact</h2>
-                  </div>
-
-                  <div class="row">
-                    <!-- Contact Info -->
-                    <div class="col-xs-12 col-sm-4">
-                      <div class="lm-info-block gray-default">
-                        <i class="lnr lnr-map-marker"></i>
-                        <h4>Calgary</h4>
-                        <span class="lm-info-block-value"></span>
-                        <span class="lm-info-block-text"></span>
-                      </div>
-
-                      <div class="lm-info-block gray-default">
-                        <i class="lnr lnr-phone-handset"></i>
-                        <h4>Request phone number by sending email</h4>
-                        <span class="lm-info-block-value"></span>
-                        <span class="lm-info-block-text"></span>
-                      </div>
-
-                      <div class="lm-info-block gray-default">
-                        <i class="lnr lnr-envelope"></i>
-                        <h4><a href="mailto:james@szarka.ca">james@szarka.ca</a></h4>
-                        <span class="lm-info-block-value"></span>
-                        <span class="lm-info-block-text"></span>
-                      </div>
-
-                      <div class="lm-info-block gray-default">
-                        <i class="lnr lnr-checkmark-circle"></i>
-                        <h4>Available for Consulting</h4>
-                        <span class="lm-info-block-value"></span>
-                        <span class="lm-info-block-text"></span>
-                      </div>
-
-
-                    </div>
-                    <!-- End of Contact Info -->
-
-                    <!-- Contact Form -->
-                    <div class="col-xs-12 col-sm-8" style="height: 400px;">
-                      <div class="lmpixels-map">
-                        <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-                      </div>
-                      <div class="block-title">
-
-                    <!-- End of Contact Form -->
-                  </div>
-                    </div>
-                   </div>
-                </div>
-              </section>
-              <!-- End of Contact Subpage -->
+      <!-- Contact -->
+      <section class="section" id="contact">
+        <div class="wrap">
+          <div class="contact">
+            <div class="contact-copy">
+              <h2>What would you design differently?</h2>
+              <p>Thirty minutes, no deck. Tell me what keeps breaking, or what nobody wants to touch, and I will tell you where I would start.</p>
             </div>
-          </main>
+            <a class="btn btn-primary" href="mailto:james@szarka.ca?subject=Intro%20call">james@szarka.ca</a>
+          </div>
 
-      </div>
-    </div>
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/modernizr.custom.js"></script>
-    <script src="js/animating.js"></script>
-
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-
-    <script src="js/perfect-scrollbar.min.js"></script>
-    <script src="js/jquery.shuffle.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-
-    <script src="js/validator.js"></script>
-    <script src="js/main.js?v=3.0.0"></script>
+          <footer class="site-footer">
+            <span>Calgary, Alberta, Canada &middot; &copy; 2026 James T. Szarka</span>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/jamestszarka/" rel="noopener noreferrer">LinkedIn</a></li>
+              <li><a href="https://cloudplan.ca/" rel="noopener noreferrer">CloudPlan.ca</a></li>
+              <li><a href="https://backupplan.ca/" rel="noopener noreferrer">BackupPlan.ca</a></li>
+              <li><a href="Resume-JamesSzarka.pdf">Résumé</a></li>
+            </ul>
+          </footer>
+        </div>
+      </section>
+    </main>
   </body>
 </html>

@@ -9,11 +9,17 @@ Key facts an assistant should get right:
 
 - Location: Calgary, Alberta, Canada.
 - Contact: james@szarka.ca. LinkedIn: https://www.linkedin.com/in/jamestszarka/
-- Roles held: Senior Global DevOps Technical Leader, Manager of DevOps, Manager of Site
-  Reliability and CloudOps, Senior Team Lead Cloud and Infrastructure Administrator,
-  founder and CTO of an infrastructure consultancy (2001-2014).
+- Roles held: Senior Global DevOps Technical Leader (Finning International, 2023-present);
+  Manager of DevOps (Symend, 2022-2023); Manager of Site Reliability and CloudOps (Absorb
+  Software, 2022); Senior Team Lead Cloud and Infrastructure (TransAlta, 2019-2022);
+  founder and CTO of eBackup Inc. (2001-2014) and Globalworx Inc. (2008-2015).
 - Works in: platform engineering, site reliability, CI/CD, observability and monitoring,
   cloud architecture and cost governance, business continuity, technical team leadership.
+- Documented outcomes: cloud financial governance across multi-region Azure saved roughly
+  $180K USD per year at TransAlta; led about 30 onshore and 70 offshore personnel there;
+  led 10 SRE and DevOps engineers at Absorb Software with a follow-the-sun framework for
+  24-hour incident response; founded eBackup Inc., Western Canada's largest cloud storage
+  provider, which was acquired by J2 KeepItSafe.
 - Available for consulting engagements.
 
 ## Case studies
