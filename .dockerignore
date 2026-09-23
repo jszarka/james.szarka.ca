@@ -1,0 +1,43 @@
+# Belt and braces. The dockerfile copies an explicit allowlist, so nothing here
+# should ever reach the image anyway — this exists so that if someone later
+# reverts to `COPY . .`, the repository does not become the webroot.
+
+.git
+.git/**
+.gitignore
+.github
+
+# Server and build configuration. Publishing these tells an attacker exactly
+# which headers are set, where certificates are expected, and what is not covered.
+dockerfile
+Dockerfile
+.dockerignore
+nginx.conf
+start.sh
+
+# Internal documentation. Written for us, not for visitors.
+*.md
+docs
+AGENTS.md
+README.md
+
+# Editor and OS noise
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Anything that smells like a credential. None of these are in the repo today;
+# the pattern is here so an accident does not become a publication.
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+id_rsa*
+*.tfvars
+secrets*
