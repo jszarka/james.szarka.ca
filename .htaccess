@@ -1,0 +1,116 @@
+# Apache / LiteSpeed configuration for cPanel production.
+#
+# This is the production counterpart to nginx.conf. nginx.conf applies only to
+# the Docker image used for local and preview serving; on cPanel the web server
+# reads this file instead. The two must be kept in step: a header added to one
+# and not the other exists in preview and not in production, or the reverse.
+#
+# Every block is wrapped in <IfModule> so that a host without the module falls
+# through rather than returning 500 on every request.
+
+# ---------------------------------------------------------------------------
+# Security headers
+# ---------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+
+    # Content-Security-Policy
+    #
+    # Every page is static HTML with no inline <style>, no style="..." attribute
+    # and no inline <script>, which is why this needs no 'unsafe-inline'. If you
+    # add an inline style or script, this policy will block it — fix the page
+    # rather than weakening the policy.
+    #
+    # Allowlisted third parties:
+    #   static.cloudflareinsights.com  Cloudflare Web Analytics beacon (script)
+    #   cloudflareinsights.com         where that beacon reports (connect)
+    #   fonts.googleapis.com           Google Fonts stylesheet
+    #   fonts.gstatic.com              Google Fonts font files
+    #
+    # WARNING: Cloudflare Rocket Loader injects inline script and will be blocked
+    # by this policy. Confirm it is off before relying on this.
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+
+    # Shared hosting commonly advertises the stack in every response.
+    Header unset X-Powered-By
+    Header always unset X-Powered-By
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Do not publish the repository
+# ---------------------------------------------------------------------------
+# On cPanel this matters more than it does in Docker. A deploy that clones or
+# rsyncs the repo straight into public_html puts .git there, and Apache will
+# serve it — from which the full history can be reconstructed. Prefer a deploy
+# that copies only published files (see .cpanel.yml), and keep this as the
+# backstop for when that goes wrong.
+
+RedirectMatch 404 /\.git(/|$)
+RedirectMatch 404 /\.(env|dockerignore|htaccess|htpasswd)(/|$)
+RedirectMatch 404 \.(md|conf|sh|yml|yaml|bak|log|sql|tfvars)$
+RedirectMatch 404 ^/(dockerfile|Dockerfile|nginx\.conf|docs/)
+
+<IfModule mod_authz_core.c>
+    <FilesMatch "^\.|\.(md|conf|sh|yml|yaml|bak|log|sql|tfvars)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Directory behaviour
+# ---------------------------------------------------------------------------
+Options -Indexes -MultiViews
+ServerSignature Off
+DirectoryIndex index.html
+
+# ---------------------------------------------------------------------------
+# Canonical host and scheme
+# ---------------------------------------------------------------------------
+# Cloudflare already forces HTTPS at the edge. This is the origin-side backstop
+# for traffic that reaches Apache over HTTP, and it collapses /index.html to /
+# so the two do not compete as separate URLs in an index.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+    RewriteRule ^(.*/)?index\.html$ /%1 [R=301,L]
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Caching
+# ---------------------------------------------------------------------------
+# Long cache on immutable assets, short on HTML so a content fix goes live
+# without waiting out a cache. css/site.css is not fingerprinted, so it gets the
+# shorter window; give it a year only once the filename carries a hash.
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/html                 "access plus 10 minutes"
+    ExpiresByType text/css                  "access plus 1 day"
+    ExpiresByType image/svg+xml             "access plus 1 month"
+    ExpiresByType image/png                 "access plus 1 month"
+    ExpiresByType image/jpeg                "access plus 1 month"
+    ExpiresByType application/pdf           "access plus 1 day"
+    ExpiresByType application/xml           "access plus 1 hour"
+    ExpiresByType text/plain                "access plus 1 hour"
+</IfModule>
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml image/svg+xml application/xml
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Content types
+# ---------------------------------------------------------------------------
+<IfModule mod_mime.c>
+    AddType text/plain .txt
+    AddType application/xml .xml
+    AddCharset UTF-8 .html .css .txt .xml
+</IfModule>
