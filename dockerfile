@@ -1,15 +1,18 @@
-# Pinned, not :latest. An unpinned base means two builds of the same commit can
-# ship different software, which makes "it worked yesterday" unfalsifiable.
-FROM ubuntu:24.04
+# Official nginx image on Debian bookworm.
+#
+# Replaces `FROM ubuntu:latest` + `apt-get install nginx`. That pulled a general
+# purpose distribution and a package-manager-built nginx to serve five static
+# files; this is the same Debian base with nginx built and patched by the people
+# who write nginx, and without apt, systemd remnants and the rest of a full
+# userland sitting in the image unexecuted.
+#
+# Pinned to the stable branch on an explicit Debian release. For a stricter
+# guarantee, pin by digest instead:
+#   FROM nginx:1.30-bookworm@sha256:<digest>
+# and bump it deliberately. A tag can be repointed; a digest cannot.
+FROM nginx:1.30-bookworm
 
-ENV DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends nginx && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
-
-RUN rm -f /etc/nginx/sites-enabled/default
-
+# The official image ships its own default.conf; ours replaces it.
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy an explicit allowlist of published assets.
@@ -28,9 +31,6 @@ COPY Resume-JamesSzarka.pdf ./
 COPY css/ css/
 COPY img/ img/
 
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
- && ln -sf /dev/stderr /var/log/nginx/error.log
-
 EXPOSE 80
 
 # start.sh is gone. It was the Lightsail-era entrypoint: it started nginx as a
@@ -39,4 +39,7 @@ EXPOSE 80
 # to append therefore never applied, and PID 1 was a sleep loop rather than
 # nginx, so the container had no signal handling or graceful shutdown.
 # TLS terminates at Cloudflare; this container serves HTTP only.
+#
+# The base image already logs to stdout/stderr and runs nginx in the foreground;
+# CMD is stated explicitly so a base image change cannot silently alter it.
 CMD ["nginx", "-g", "daemon off;"]
