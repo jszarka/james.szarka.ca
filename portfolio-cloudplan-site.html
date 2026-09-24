@@ -1,137 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CloudPlan.ca Business Website | James T. Szarka Portfolio</title>
-  <meta name="description" content="Portfolio case study for CloudPlan.ca, a cloud administration and DevOps consulting website built to present practical cloud operations, automation, and infrastructure services.">
-  <meta name="keywords" content="CloudPlan.ca, James Szarka, cloud administration, DevOps consulting, cloud consulting website, infrastructure automation, Calgary DevOps">
-  <meta name="author" content="James T. Szarka">
-  <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://james.szarka.ca/portfolio-cloudplan-site.html">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="CloudPlan.ca Business Website | James T. Szarka Portfolio">
-  <meta property="og:description" content="CloudPlan.ca positions cloud administration and DevOps consulting services with a focused business landing page and clear contact path.">
-  <meta property="og:url" content="https://james.szarka.ca/portfolio-cloudplan-site.html">
-  <meta property="og:image" content="https://james.szarka.ca/img/portfolio/cloudplan-site.svg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CloudPlan.ca Business Website | James T. Szarka Portfolio">
-  <meta name="twitter:description" content="A business website case study focused on cloud administration, DevOps services, and infrastructure automation.">
-  <meta name="twitter:image" content="https://james.szarka.ca/img/portfolio/cloudplan-site.svg">
-  <link rel="stylesheet" href="css/reset.css" type="text/css">
-  <link rel="stylesheet" href="css/bootstrap-grid.min.css" type="text/css">
-  <link rel="stylesheet" href="css/main.css" type="text/css">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"CreativeWork","name":"CloudPlan.ca Business Website","url":"https://james.szarka.ca/portfolio-cloudplan-site.html","image":"https://james.szarka.ca/img/portfolio/cloudplan-site.svg","author":{"@type":"Person","name":"James T. Szarka","url":"https://james.szarka.ca/"},"about":["Cloud administration","DevOps consulting","Infrastructure automation"],"description":"Portfolio case study for CloudPlan.ca, a cloud administration and DevOps consulting website."}
-  </script>
-  <style>
-    html, body { height: auto !important; min-height: 100% !important; overflow-y: auto !important; overflow-x: hidden !important; }
-    body { position: static !important; background: linear-gradient(180deg, #eef8ff 0%, #f5f5f5 100%); }
-    .case-page { max-width: 1140px; margin: 30px auto; background: #fff; padding: 34px; border-radius: 18px; overflow: visible; box-shadow: 0 18px 45px rgba(29, 29, 29, .08); }
-    .top-back-link { display: inline-block; margin-bottom: 18px; color: #fea621; font-weight: 600; }
-    .top-back-link:hover { color: #d98200; }
-    .case-hero { padding: 28px; border-radius: 18px; background: linear-gradient(135deg, #0b4f7a 0%, #17344b 48%, #fea621 100%); color: #fff; margin-bottom: 26px; }
-    .case-hero-layout { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
-    .case-hero-copy { flex: 1 1 360px; }
-    .case-hero-copy h1 { color: #fff; margin-bottom: 12px; font-size: 38px; line-height: 1.15em; }
-    .case-hero-copy p { color: rgba(255,255,255,.94); font-size: 17px; margin-bottom: 0; max-width: 620px; }
-    .case-hero-visual { flex: 1 1 320px; }
-    .case-hero img { width: 100%; border: none; border-radius: 14px; background: #fff; display: block; box-shadow: 0 12px 28px rgba(0,0,0,.18); }
-    .hero-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 22px; }
-    .hero-metric { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.22); border-radius: 14px; padding: 14px 16px; }
-    .hero-metric strong { display: block; color: #fff; font-size: 20px; margin-bottom: 6px; }
-    .hero-metric span { color: rgba(255,255,255,.88); font-size: 13px; line-height: 1.35em; display: block; }
-    .case-eyebrow { color: #fea621; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; font-size: 13px; }
-    .case-summary { background: linear-gradient(180deg, #fffdfa 0%, #fcfcfc 100%); border: 1px solid #eee; padding: 24px; margin: 24px 0; border-radius: 16px; }
-    .case-list, .results-list { margin-left: 20px; }
-    .case-list li, .results-list li { margin-bottom: 10px; }
-    .case-card { border: 1px solid #eee; background: linear-gradient(180deg, #fffdfa 0%, #fbfbfb 100%); padding: 18px; margin-bottom: 18px; min-height: 128px; border-radius: 14px; box-shadow: 0 8px 22px rgba(27, 27, 27, .04); }
-    .case-badge { display: inline-block; border: 1px solid #e5e5e5; border-radius: 4px; padding: 4px 9px; margin: 3px; font-size: 12px; background: #fff; }
-    .case-actions { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
-    .note { color: #777; font-size: 13px; }
-    .section-kicker { color: #9d6b1d; font-size: 13px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 8px; }
-    .sidebar-panel { background: linear-gradient(180deg, #fffdfa 0%, #fcfcfc 100%); border: 1px solid #eee; border-radius: 16px; padding: 20px; box-shadow: 0 10px 24px rgba(27, 27, 27, .05); }
-    .sidebar-panel h2 { margin-top: 20px; }
-    .sidebar-panel h2:first-of-type { margin-top: 0; }
-    @media (max-width: 768px) { .case-page { margin: 0; padding: 20px; border-radius: 0; } .case-hero-copy h1 { font-size: 30px; } .hero-metrics { grid-template-columns: 1fr; } }
-  </style>
-  <!-- Cloudflare Web Analytics -->
-  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1a990b5c92d14bd4b1b491118d3243d7"}'></script>
-  <!-- End Cloudflare Web Analytics -->
-</head>
-<body>
-  <main class="case-page">
-    <a class="top-back-link" href="index.html#portfolio">&larr; Back to Portfolio</a>
-    <p class="case-eyebrow">Portfolio Website Link</p>
-    <div class="case-hero">
-      <div class="case-hero-layout">
-        <div class="case-hero-copy">
-          <h1>CloudPlan.ca</h1>
-          <p>A static business website for cloud, DevOps, security, backup, recovery, and cloud planning services for Canadian small and mid-sized businesses.</p>
-          <div class="hero-metrics">
-            <div class="hero-metric"><strong>Business MVP</strong><span>Clear service positioning, primary offer, and contact path.</span></div>
-            <div class="hero-metric"><strong>Cloud Rescue Audit</strong><span>Maps environments, risk, cost, backup, security, and operational priorities.</span></div>
-            <div class="hero-metric"><strong>Public-Safe</strong><span>Static HTML, CSS, JavaScript, no database, and no frontend secrets.</span></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CloudPlan.ca | James T. Szarka</title>
+    <meta name="description" content="Case study: CloudPlan.ca, a cloud and DevOps consulting practice built around the Cloud Rescue Audit — service design, site build and operations." />
+    <meta name="keywords" content="James Szarka, CloudPlan, cloud consulting, DevOps advisory, cloud rescue audit, Calgary cloud consultant, static site" />
+    <meta name="author" content="James T. Szarka" />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://james.szarka.ca/portfolio-cloudplan-site.html" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="James T. Szarka" />
+    <meta property="og:title" content="CloudPlan.ca — a consulting practice, built end to end" />
+    <meta property="og:description" content="Cloud and observability planning turned into a productized offer, with the site and operations behind it." />
+    <meta property="og:url" content="https://james.szarka.ca/portfolio-cloudplan-site.html" />
+    <meta property="og:image" content="https://james.szarka.ca/img/portfolio/cloudplan-site.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CloudPlan.ca — a consulting practice, built end to end" />
+    <meta name="twitter:description" content="Cloud and observability planning as a productized consulting offer." />
+    <meta name="twitter:image" content="https://james.szarka.ca/img/portfolio/cloudplan-site.svg" />
+
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/site.css" type="text/css" />
+
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"CreativeWork","name":"CloudPlan.ca","url":"https://james.szarka.ca/portfolio-cloudplan-site.html","image":"https://james.szarka.ca/img/portfolio/cloudplan-site.svg","author":{"@type":"Person","name":"James T. Szarka","url":"https://james.szarka.ca/"},"about":["Cloud consulting","DevOps advisory","Cloud cost control","Security baselines","Recovery planning"],"description":"Case study for CloudPlan.ca, a cloud and DevOps consulting practice built around the Cloud Rescue Audit offer."}
+    </script>
+
+    <!-- Cloudflare Web Analytics -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1a990b5c92d14bd4b1b491118d3243d7"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="index.html">&larr; James T. Szarka</a>
+        <nav class="site-nav" aria-label="Primary">
+          <a class="nav-link" href="index.html#work">Work</a>
+          <a class="btn btn-primary btn-pill" href="https://cloudplan.ca" rel="noopener noreferrer">Open CloudPlan.ca</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="case-hero">
+        <div class="wrap case-hero-grid">
+          <div class="case-hero-copy">
+            <p class="eyebrow">Case study &middot; consulting practice</p>
+            <h1>CloudPlan.ca</h1>
+            <p class="case-lede">Cloud and DevOps advisory for Canadian small and mid-sized businesses, productized around one entry offer: a Cloud Rescue Audit that maps what exists, what is risky, and what to fix first.</p>
+          </div>
+
+          <div class="case-hero-side">
+            <img src="img/portfolio/cloudplan-site.svg" alt="Illustration of the CloudPlan.ca website" />
+            <dl class="meta-panel">
+              <dt>Role</dt>
+              <dd>Owner, service designer and builder</dd>
+              <dt>Status</dt>
+              <dd>MVP website, live</dd>
+              <dt>Stack</dt>
+              <dd>Static HTML, CSS and JavaScript. No database, no frontend secrets</dd>
+              <dt>Live</dt>
+              <dd><a href="https://cloudplan.ca" rel="noopener noreferrer">cloudplan.ca</a></dd>
+            </dl>
           </div>
         </div>
-        <div class="case-hero-visual"><img src="img/portfolio/cloudplan-site.svg" alt="CloudPlan.ca website illustration"></div>
-      </div>
-    </div>
+      </section>
 
-    <section class="case-summary">
-      <p class="section-kicker">Overview</p>
-      <h2>What this link represents</h2>
-      <p>CloudPlan.ca presents a practical consulting offer for businesses that have cloud services, websites, Microsoft 365, backups, GitHub, Docker, vendors, or deployments, but need a clearer plan for what exists, what is risky, and what to fix first.</p>
-      <p>The site is intentionally simple and reliable: a static landing page with supporting privacy, terms, security, contact, and thank-you pages, plus a downloadable overview for the Cloud Rescue Audit offer.</p>
-    </section>
+      <section class="wrap">
+        <div class="callout">
+          <p><strong>The problem in one sentence.</strong> Plenty of businesses already have cloud services, Microsoft 365, backups, GitHub, Docker and a list of vendors &mdash; what they do not have is anyone who can say which of it is load-bearing, which of it is a risk, and what to do about it on Monday.</p>
+        </div>
+      </section>
 
-    <div class="row">
-      <div class="col-xs-12 col-sm-8">
-        <p class="section-kicker">Scope</p>
-        <h2>Website Highlights</h2>
-        <ul class="case-list">
-          <li>Homepage messaging focused on cloud planning, DevOps advisory, security baselines, cost control, backup, and recovery planning.</li>
-          <li>Cloud Rescue Audit section with a plain-language final deliverable and 30/60/90-day roadmap positioning.</li>
-          <li>Service cards for fractional DevOps leadership, monitoring and observability, Microsoft 365 and cloud security, and recovery planning.</li>
-          <li>Static implementation suitable for simple web hosting, with no backend database dependency.</li>
-          <li>Public-safe repo documentation that calls out safety rules around secrets, passwords, API tokens, private keys, and hosting credentials.</li>
-        </ul>
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>What I built</h2>
+          </div>
+          <ul class="list-detail">
+            <li>Homepage messaging focused on cloud planning, DevOps advisory, security baselines, cost control, and backup and recovery planning.</li>
+            <li>A Cloud Rescue Audit section with a plain-language deliverable and a 30/60/90-day roadmap, so the buyer knows exactly what arrives.</li>
+            <li>Service positioning for fractional DevOps leadership, monitoring and observability, Microsoft 365 and cloud security, and recovery planning.</li>
+            <li>A static implementation that runs on simple hosting with no backend dependency to maintain or patch.</li>
+            <li>Repository documentation stating the safety rules around secrets, passwords, API tokens, private keys and hosting credentials.</li>
+          </ul>
+        </div>
+      </section>
 
-        <p class="section-kicker">Employer Value</p>
-        <h2>Why it belongs in the portfolio</h2>
-        <ul class="results-list">
-          <li>Shows the ability to turn technical cloud and DevOps experience into a focused business service offering.</li>
-          <li>Demonstrates clear communication for non-technical business owners while still reflecting senior cloud, security, DevOps, and recovery depth.</li>
-          <li>Connects consulting strategy, website execution, documentation, and operational safety into one real project.</li>
-        </ul>
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>How it is built</h2>
+          </div>
+          <div class="cards">
+            <div class="card">
+              <h3>A named offer, not a brochure</h3>
+              <p>The Cloud Rescue Audit gives the site a commercial entry point. A generic consulting page asks the visitor to invent the engagement; a named audit does not.</p>
+            </div>
+            <div class="card">
+              <h3>Static on purpose</h3>
+              <p>No database, no application server, no admin login. The smallest attack surface that can still do the job, and nothing to patch at 2am.</p>
+            </div>
+            <div class="card">
+              <h3>Written for the buyer</h3>
+              <p>Plain language for business owners, with the senior cloud, security and recovery depth sitting underneath rather than on the surface.</p>
+            </div>
+            <div class="card">
+              <h3>Public-safe by policy</h3>
+              <p>The repository states what may never appear in it. That rule is the reason the site can be public and the work behind it can stay private.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <p class="section-kicker">Technical Notes</p>
-        <div class="row">
-          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Static Delivery</h3><p>Built for simple hosting with static HTML, CSS, and JavaScript so the site can run without database operations.</p></div></div>
-          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Service Design</h3><p>The Cloud Rescue Audit gives the website a clear commercial entry point instead of being a generic consulting page.</p></div></div>
+      <section class="section">
+        <div class="wrap prose">
+          <div class="section-head">
+            <h2>Why it is in the portfolio</h2>
+          </div>
+          <p>Running the practice is the point. It is one thing to hold a senior infrastructure role; it is another to define the offer, price it, build the thing that sells it, and carry the operational responsibility for keeping it up.</p>
+          <p>It also keeps me honest. Advice I give to a team is advice I have had to take myself, on my own budget.</p>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <div class="case-actions">
+          <a class="btn btn-primary" href="https://cloudplan.ca" rel="noopener noreferrer">Open CloudPlan.ca</a>
+          <a class="btn btn-secondary" href="index.html#work">Back to all work</a>
         </div>
       </div>
+    </main>
 
-      <aside class="col-xs-12 col-sm-4">
-        <div class="sidebar-panel">
-          <p class="section-kicker">Snapshot</p>
-          <h2>Project Details</h2>
-          <p><strong>Role:</strong> Business owner, service designer, and website builder</p>
-          <p><strong>Status:</strong> MVP website</p>
-          <p><strong>Focus:</strong> Cloud planning, DevOps, security, cost control, backup, and recovery readiness</p>
-          <h2>Technologies</h2>
-          <span class="case-badge">HTML</span><span class="case-badge">CSS</span><span class="case-badge">JavaScript</span><span class="case-badge">Static Hosting</span><span class="case-badge">SEO Metadata</span><span class="case-badge">Cloud Consulting</span><span class="case-badge">DevOps</span>
-          <h2>Public-Safe Notes</h2>
-          <p class="note">This page links to the public business website and summarizes the work without exposing private hosting details or credentials.</p>
-        </div>
-      </aside>
-    </div>
-
-    <div class="case-actions">
-      <a class="btn btn-primary" href="https://cloudplan.ca" target="_blank" rel="noopener noreferrer">Open CloudPlan.ca</a>
-      <a class="btn btn-secondary" href="index.html#portfolio">Back to Portfolio</a>
-    </div>
-  </main>
-</body>
+    <footer class="site-footer wrap">
+      <span>Calgary, Alberta, Canada &middot; &copy; 2026 James T. Szarka</span>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="https://www.linkedin.com/in/jamestszarka/" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="Resume-JamesSzarka.pdf">Résumé</a></li>
+      </ul>
+    </footer>
+  </body>
 </html>

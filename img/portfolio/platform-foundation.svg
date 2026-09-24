@@ -8,7 +8,7 @@
     </linearGradient>
     <linearGradient id="hero" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#fe6d72"/>
-      <stop offset="100%" stop-color="#fea621"/>
+      <stop offset="100%" stop-color="#f3ba5c"/>
     </linearGradient>
     <style>
       .label { font: 700 42px Poppins, Arial, sans-serif; fill: #1d1d1d; }

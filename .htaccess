@@ -1,0 +1,84 @@
+# Shared-hosting configuration for james.szarka.ca.
+# RackNerd's cPanel stack serves this file through Apache/LiteSpeed.
+#
+# This is the production web server config. There is no nginx.conf any more —
+# the local Docker image runs Apache with this same file, so what is tested
+# locally is what runs in production.
+
+Options -Indexes -MultiViews
+DirectoryIndex index.html
+ServerSignature Off
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Deny dot paths, but never /.well-known/. cPanel AutoSSL and any ACME client
+  # answer challenges under /.well-known/acme-challenge/, so a blanket dotfile
+  # deny does not fail loudly — it fails 90 days later when the certificate
+  # cannot renew.
+  RewriteRule "(^|/)\.(?!well-known(?:/|$))" - [F,L]
+
+  # Works both directly and when Cloudflare supplies the original scheme.
+  #
+  # The host exclusions keep this from firing in the local Apache container,
+  # where there is no TLS and no proxy header. Without them every local request
+  # 301s to an https:// URL that nothing is listening on, and the CI smoke test
+  # cannot reach the site it is meant to be testing.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+  RewriteCond %{HTTP_HOST} !^localhost [NC]
+  RewriteCond %{HTTP_HOST} !\.home(:[0-9]+)?$ [NC]
+  RewriteCond %{HTTP_HOST} !^[0-9.]+(:[0-9]+)?$
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # Collapse /index.html to / so the two do not compete as separate URLs.
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+  RewriteRule ^(.*/)?index\.html$ /%1 [R=301,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+
+  # Every page is static HTML with no inline <style>, no style="..." attribute
+  # and no inline <script>, which is why this needs no 'unsafe-inline'. If you
+  # add one, this policy will block it — fix the page, not the policy.
+  #
+  # Cloudflare Rocket Loader injects inline script and will be blocked. It is
+  # currently off on the szarka.ca zone; keep it that way.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+
+  # Shared hosting advertises the stack in every response.
+  Header always unset X-Powered-By
+</IfModule>
+
+# Answers 403 rather than 404, and that is correct. Directives in a .htaccess
+# cannot run in Apache's translate_name phase — Apache has to resolve the path
+# to a directory before it can find this file — so an authorization-phase deny
+# is the earliest and hardest-to-bypass control available here. A 404 would only
+# avoid confirming that a rule covers the path, which is worth much less.
+<FilesMatch "(?i)\.(md|conf|sh|ya?ml|env|bak|log|sql|tfvars)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Short on HTML so a content fix goes live without waiting out a cache.
+  # site.css is not fingerprinted, so it gets a day rather than a year; give it
+  # a year once the filename carries a hash.
+  ExpiresByType text/html       "access plus 10 minutes"
+  ExpiresByType text/css        "access plus 1 day"
+  ExpiresByType image/svg+xml   "access plus 1 month"
+  ExpiresByType image/png       "access plus 1 month"
+  ExpiresByType image/jpeg      "access plus 1 month"
+  ExpiresByType application/pdf "access plus 1 day"
+  ExpiresByType text/plain      "access plus 1 hour"
+  ExpiresByType application/xml "access plus 1 hour"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml image/svg+xml application/xml
+</IfModule>

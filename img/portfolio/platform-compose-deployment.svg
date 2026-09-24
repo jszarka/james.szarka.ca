@@ -7,9 +7,9 @@
     .body { font: 500 18px Poppins, Arial, sans-serif; fill: #666; }
     .head { font: 700 23px Poppins, Arial, sans-serif; fill: #2e2e2e; }
     .node { fill: #fff; stroke: #e5d8c6; stroke-width: 2; rx: 20; }
-    .flow { stroke: #fea621; stroke-width: 5; fill: none; stroke-linecap: round; }
+    .flow { stroke: #f3ba5c; stroke-width: 5; fill: none; stroke-linecap: round; }
     .backpill { fill: #fff4e8; stroke: #efc68e; stroke-width: 1.5; rx: 18; }
-    .backtext { font: 700 17px Poppins, Arial, sans-serif; fill: #9d6b1d; }
+    .backtext { font: 700 17px Poppins, Arial, sans-serif; fill: #8a6a18; }
   </style>
   <rect width="1200" height="720" class="bg"/>
   <a href="../../portfolio-platform-foundation.html">

@@ -1,84 +1,72 @@
-# James T. Szarka - Personal Portfolio Website
+# James T. Szarka — personal portfolio
 
-This repository contains the source code for my professional portfolio website, showcasing my experience as a DevOps and IT Infrastructure expert.
+Source for [james.szarka.ca](https://james.szarka.ca), a static professional
+portfolio and collection of infrastructure and DevOps case studies.
 
-## Overview
+## Stack
 
-A responsive single-page portfolio website built with HTML5, CSS3, and JavaScript, featuring:
-- Professional summary
-- Work experience timeline
-- Skills and expertise
-- Portfolio of projects
-- Contact information
+- Static HTML and CSS
+- Apache/LiteSpeed on RackNerd shared cPanel hosting
+- Cloudflare for public DNS, TLS edge termination, and analytics
+- Nginx container for local and preview environments
+- GitHub Actions for validation and production delivery
 
-## Local Development
+## Local development
 
-### Prerequisites
-- Web browser
-- Text editor (VS Code recommended)
-- Basic HTTP server (optional)
+Serve the files directly:
 
-### Running Locally
-1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/james.szarka.ca.git
-cd james.szarka.ca
-```
-
-2. Open `index.html` in your browser or serve using a local HTTP server:
-```bash
-# Using Python 3
 python3 -m http.server 8080
 ```
 
-3. Visit `http://localhost:8080` in your browser
+Then open `http://localhost:8080`.
 
-## Project Structure
-```
-james.szarka.ca/
-├── css/               # Stylesheets
-├── js/               # JavaScript files
-├── img/              # Image assets
-├── start.sh           # container startup script (adds SSL block)
-├── nginx.conf         # base HTTP server configuration
-└── index.html        # Main entry point
+To exercise the Nginx preview configuration:
+
+```bash
+docker build -f dockerfile -t james-szarka-site .
+docker run --rm -p 8080:80 james-szarka-site
 ```
 
-## HTTPS / TLS
+## Repository structure
 
-The image is capable of serving HTTPS directly if you mount your own
-certificate/key pair at `/etc/ssl/certs/certificate.pem` and
-`/etc/ssl/private/private.pem`.  In that case the `start.sh` script
-appends a `server` block to `nginx.conf` and enforces **TLS 1.2 and
-higher** via `ssl_protocols TLSv1.2 TLSv1.3;`.
+- `index.html`: home page
+- `portfolio-*.html`: case studies
+- `css/`, `img/`: published assets
+- `.htaccess`: RackNerd Apache/LiteSpeed production configuration
+- `nginx.conf`, `dockerfile`: local and preview container
+- `.github/workflows/deploy.yml`: validation and cPanel API deployment
+- `scripts/deploy-cpanel.sh`: guarded cPanel upload client
+- `docs/deployment.md`: cPanel and GitHub setup and recovery runbook
 
-When the container is deployed to an AWS Lightsail *container service*
-HTTPS termination happens upstream on the managed load balancer, and the
-container only ever sees plain HTTP.  Lightsail currently does not expose
-any setting to restrict the TLS policy of the front‑end balancer –
-if you need to force TLS 1.2+ you must either:
+## Deployment
 
-1. Put another proxy (CloudFront, ALB, etc.) in front of the service and
-   configure its security policy, or
-2. Run the container somewhere where you control the TLS termination
-   (EC2/VM, Kubernetes, Docker on a host, etc.) and mount your own
-   certs.
+Pull requests build and smoke-test an explicit publish allowlist. After the
+production environment is configured, pushes to `main` deploy the allowlisted
+files through cPanel's HTTPS API with a dedicated API token. FTP and SSH are not
+required.
 
-The bundled `ssl_protocols` settings in `start.sh`/`nginx.conf` ensure a
-secure fallback when nginx does handle TLS.
+The deployment verifies the live commit through Cloudflare before reporting
+success. Production credentials belong in the GitHub `production` environment,
+never in the repository.
 
-## Technologies Used
-- HTML5
-- CSS3
-- JavaScript
-- jQuery
-- Modern CSS Grid/Flexbox
-- Responsive Design
+See [docs/deployment.md](docs/deployment.md) for the one-time cPanel setup,
+GitHub variables and secrets, first release, troubleshooting, and rollback plan.
+
+## Security
+
+- Do not commit credentials or private keys.
+- Do not upload the repository root to the web document root.
+- Keep `.htaccess` and `nginx.conf` security headers aligned.
+- Use Cloudflare **Full (strict)** TLS and **Always Use HTTPS**.
+- Keep Cloudflare Rocket Loader disabled unless the Content Security Policy is
+  deliberately revised and tested.
 
 ## License
-Copyright © 2023 James T. Szarka. All rights reserved.
+
+Copyright © 2023–2026 James T. Szarka. All rights reserved.
 
 ## Contact
-For questions or collaboration opportunities:
+
 - Email: james@szarka.ca
 - Location: Calgary, Canada

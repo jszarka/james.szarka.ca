@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" width="1200" height="720" role="img" aria-labelledby="prefabTitle prefabDesc">
+  <title id="prefabTitle">PREFAB architecture: MCP clients through an authenticated gateway to sandboxed tool servers, which open pull requests</title>
+  <desc id="prefabDesc">Claude and Codex connect over HTTPS with a bearer token to a Caddy gateway. The gateway proxies two container services: a Python MCP server exposing eighteen web development tools, and a headless Playwright browser. The MCP server works on local clones of three site repositories and can only open pull requests, never deploy. Caddy also serves a preview of each working copy.</desc>
+
+  <style>
+    .bg { fill: #0e1216; }
+    .panel { fill: #131920; stroke: #1d242c; stroke-width: 1; }
+    .panel-accent { fill: #131920; stroke: #f3ba5c; stroke-width: 1.5; }
+    .band { fill: none; stroke: #1d242c; stroke-width: 1; stroke-dasharray: 4 5; }
+    .h1 { fill: #f5f7f9; font: 700 26px "IBM Plex Sans", system-ui, sans-serif; }
+    .band-label { fill: #9fa9b4; font: 500 11px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 1.6px; }
+    .box-title { fill: #f5f7f9; font: 600 15px "IBM Plex Sans", system-ui, sans-serif; }
+    .box-sub { fill: #adb7c2; font: 400 12px "IBM Plex Sans", system-ui, sans-serif; }
+    .accent { fill: #f3ba5c; font: 500 11px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 1px; }
+    .wire { stroke: #2a333d; stroke-width: 1.5; fill: none; }
+    .wire-accent { stroke: #f3ba5c; stroke-width: 1.5; fill: none; }
+    .wire-label { fill: #9fa9b4; font: 400 11px "IBM Plex Mono", ui-monospace, monospace; }
+    .guard { fill: #6fd08c; font: 400 11px "IBM Plex Sans", system-ui, sans-serif; }
+    .guard-title { fill: #6fd08c; font: 500 11px "IBM Plex Mono", ui-monospace, monospace; letter-spacing: 1.4px; }
+    .deny { fill: #e0788a; font: 400 11px "IBM Plex Sans", system-ui, sans-serif; }
+  </style>
+
+  <rect class="bg" width="1200" height="720" />
+
+  <text class="h1" x="40" y="52">PREFAB — MCP web development stack</text>
+  <text class="box-sub" x="40" y="76">Two containers on docker05, behind one authenticated gateway. Changes leave only as pull requests.</text>
+
+  <!-- Band guides -->
+  <rect class="band" x="32" y="110" width="236" height="470" rx="14" />
+  <rect class="band" x="324" y="110" width="212" height="470" rx="14" />
+  <rect class="band" x="592" y="110" width="272" height="470" rx="14" />
+  <rect class="band" x="920" y="110" width="248" height="470" rx="14" />
+
+  <text class="band-label" x="48" y="136">CLIENTS</text>
+  <text class="band-label" x="340" y="136">GATEWAY</text>
+  <text class="band-label" x="608" y="136">TOOL SERVERS</text>
+  <text class="band-label" x="936" y="136">TARGETS</text>
+
+  <!-- Clients -->
+  <rect class="panel" x="52" y="158" width="196" height="76" rx="12" />
+  <text class="box-title" x="72" y="188">Claude desktop</text>
+  <text class="box-sub" x="72" y="210">stdio → mcp-proxy bridge</text>
+
+  <rect class="panel" x="52" y="256" width="196" height="76" rx="12" />
+  <text class="box-title" x="72" y="286">Codex CLI</text>
+  <text class="box-sub" x="72" y="308">native streamable HTTP</text>
+
+  <rect class="panel" x="52" y="354" width="196" height="76" rx="12" />
+  <text class="box-title" x="72" y="384">Any MCP client</text>
+  <text class="box-sub" x="72" y="406">client-agnostic by design</text>
+
+  <!-- Client → gateway wires -->
+  <path class="wire-accent" d="M248 196 H286 V330 H324" />
+  <path class="wire-accent" d="M248 294 H286" />
+  <path class="wire-accent" d="M248 392 H286 V330" />
+  <text class="wire-label" x="252" y="348">bearer token</text>
+
+  <!-- Gateway -->
+  <rect class="panel-accent" x="344" y="246" width="172" height="168" rx="12" />
+  <text class="accent" x="364" y="278">CADDY :8480</text>
+  <text class="box-title" x="364" y="304">Auth gateway</text>
+  <text class="box-sub" x="364" y="326">401 before any route</text>
+  <text class="box-sub" x="364" y="346">path-prefix routing</text>
+  <text class="box-sub" x="364" y="366">/webdev · /browser</text>
+  <text class="box-sub" x="364" y="392">no OAuth discovery</text>
+
+  <!-- Gateway → servers -->
+  <path class="wire" d="M516 300 H556 V228 H592" />
+  <path class="wire" d="M516 360 H556 V440 H592" />
+
+  <!-- Tool servers -->
+  <rect class="panel" x="612" y="176" width="232" height="132" rx="12" />
+  <text class="accent" x="632" y="206">WEBDEV-MCP</text>
+  <text class="box-title" x="632" y="232">18 tools, Python</text>
+  <text class="box-sub" x="632" y="254">read · write · search · diff</text>
+  <text class="box-sub" x="632" y="274">commit · open PR · audit</text>
+  <text class="box-sub" x="632" y="294">non-root, read-only rootfs</text>
+
+  <rect class="panel" x="612" y="388" width="232" height="112" rx="12" />
+  <text class="accent" x="632" y="418">PLAYWRIGHT-MCP</text>
+  <text class="box-title" x="632" y="444">Headless Chromium</text>
+  <text class="box-sub" x="632" y="466">render · snapshot · console</text>
+  <text class="box-sub" x="632" y="486">verifies what was built</text>
+
+  <!-- Servers → targets -->
+  <path class="wire" d="M844 212 H884 V196 H920" />
+  <path class="wire" d="M844 258 H884 V330 H920" />
+  <path class="wire" d="M844 444 H884 V464 H920" />
+
+  <!-- Targets -->
+  <rect class="panel" x="940" y="158" width="208" height="86" rx="12" />
+  <text class="box-title" x="960" y="188">GitHub</text>
+  <text class="box-sub" x="960" y="210">3 repos, fine-grained PAT</text>
+  <text class="accent" x="960" y="232">PULL REQUESTS ONLY</text>
+
+  <rect class="panel" x="940" y="286" width="208" height="86" rx="12" />
+  <text class="box-title" x="960" y="316">Working copies</text>
+  <text class="box-sub" x="960" y="338">cloned per site, branch</text>
+  <text class="box-sub" x="960" y="358">prefix mcp/ enforced</text>
+
+  <rect class="panel" x="940" y="414" width="208" height="86" rx="12" />
+  <text class="box-title" x="960" y="444">Preview servers</text>
+  <text class="box-sub" x="960" y="466">:8091 :8092 :8093</text>
+  <text class="box-sub" x="960" y="486">served by the same Caddy</text>
+
+  <!-- Guardrails -->
+  <text class="guard-title" x="40" y="626">GUARDRAILS</text>
+  <text class="guard" x="40" y="650">✓ Paths confined to the site clone; .git is denied</text>
+  <text class="guard" x="40" y="670">✓ Writes refused unless the branch starts with mcp/</text>
+  <text class="guard" x="40" y="690">✓ Outbound fetches re-check the allowlist on every redirect</text>
+
+  <text class="guard" x="592" y="650">✓ cap_drop ALL, no-new-privileges, memory and PID limits</text>
+  <text class="guard" x="592" y="670">✓ Tokens injected as Docker secrets, redacted from all output</text>
+  <text class="deny" x="592" y="690">✗ No deploy path. The stack cannot publish to a live site.</text>
+</svg>

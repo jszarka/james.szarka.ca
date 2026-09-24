@@ -1,0 +1,158 @@
+name: Validate and deploy website
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: james-szarka-production
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Build publish directory
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Assemble static publish directory
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mkdir -p _site/css _site/img
+          cp index.html favicon.ico robots.txt sitemap.xml llms.txt .htaccess _site/
+          cp portfolio-*.html Resume-JamesSzarka.pdf _site/
+          cp -R css/. _site/css/
+          cp -R img/. _site/img/
+
+          printf '%s\n' "$GITHUB_SHA" > _site/deploy-version.txt
+
+      - name: Enforce publish allowlist
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          forbidden_pattern='(^|/)(\.git|\.github|docs|AGENTS\.md|README\.md|dockerfile|nginx\.conf|.*\.(key|pem|p12|pfx|tfvars|env))($|/)'
+          if find _site -mindepth 1 -print | grep -E "$forbidden_pattern"; then
+            echo "A forbidden file entered the publish directory."
+            exit 1
+          fi
+
+          test -s _site/index.html
+          test -s _site/.htaccess
+          test -s _site/deploy-version.txt
+          bash -n scripts/deploy-cpanel.sh
+
+      - name: Smoke-test through Apache with the real .htaccess
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          docker build -f dockerfile -t james-site-smoke .
+          docker run -d --name james-site-smoke -p 8080:80 james-site-smoke
+          trap 'docker rm -f james-site-smoke >/dev/null 2>&1 || true' EXIT
+
+          for attempt in 1 2 3 4 5 6 7 8 9 10; do
+            curl --fail --silent --show-error http://127.0.0.1:8080/ > /dev/null && break
+            sleep 2
+          done
+
+          echo "--- pages reachable"
+          curl --fail --silent --show-error http://127.0.0.1:8080/ > /dev/null
+          curl --fail --silent --show-error http://127.0.0.1:8080/portfolio-observability-stack.html > /dev/null
+          curl --fail --silent --show-error http://127.0.0.1:8080/portfolio-prefab-mcp-stack.html > /dev/null
+          curl --fail --silent --show-error http://127.0.0.1:8080/llms.txt > /dev/null
+
+          echo "--- .htaccess is being read"
+          headers="$(curl --silent --head http://127.0.0.1:8080/)"
+          grep -qi 'content-security-policy'   <<< "$headers"
+          grep -qi 'strict-transport-security' <<< "$headers"
+          grep -qi 'x-content-type-options'    <<< "$headers"
+
+          echo "--- repository files are not published"
+          for path in .git/config AGENTS.md README.md dockerfile docs/deployment.md; do
+            code="$(curl --silent --output /dev/null --write-out '%{http_code}' "http://127.0.0.1:8080/$path")"
+            case "$code" in
+              403|404) ;;
+              *) echo "FAIL: /$path returned $code, expected 403 or 404"; exit 1 ;;
+            esac
+          done
+
+          echo "--- ACME challenges are not blocked by the dotfile rule"
+          acme="$(curl --silent --output /dev/null --write-out '%{http_code}' \
+            http://127.0.0.1:8080/.well-known/acme-challenge/probe)"
+          if [ "$acme" = "403" ]; then
+            echo "FAIL: /.well-known/ is denied; AutoSSL renewal would break"
+            exit 1
+          fi
+
+          echo "--- canonical redirect, without a loop"
+          redirect="$(curl --silent --output /dev/null --write-out '%{http_code}' http://127.0.0.1:8080/index.html)"
+          test "$redirect" = "301"
+
+      - name: Save publish directory for deployment
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: james-szarka-site
+          path: _site/
+          include-hidden-files: true
+          retention-days: 1
+          if-no-files-found: error
+
+  deploy:
+    name: Deploy to RackNerd cPanel
+    needs: validate
+    # workflow_dispatch is also pinned to main so another branch cannot be sent
+    # straight to production from the Actions tab.
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'workflow_dispatch' || vars.DEPLOY_ENABLED == 'true')
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://james.szarka.ca
+    steps:
+      - name: Check out deployment client
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Download validated publish directory
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: james-szarka-site
+          path: _site
+
+      - name: Upload through the cPanel API
+        shell: bash
+        env:
+          CPANEL_HOST: ${{ vars.CPANEL_HOST }}
+          CPANEL_USERNAME: ${{ vars.CPANEL_USERNAME }}
+          CPANEL_REMOTE_DIR: ${{ vars.CPANEL_REMOTE_DIR }}
+          CPANEL_API_TOKEN: ${{ secrets.CPANEL_API_TOKEN }}
+          PUBLISH_DIR: _site
+        run: bash scripts/deploy-cpanel.sh
+
+      - name: Verify the deployed commit
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          deployed_sha="$(
+            curl \
+              --fail \
+              --silent \
+              --show-error \
+              --retry 5 \
+              --retry-delay 5 \
+              --header 'Cache-Control: no-cache' \
+              "https://james.szarka.ca/deploy-version.txt?commit=$GITHUB_SHA"
+          )"
+
+          test "$deployed_sha" = "$GITHUB_SHA"

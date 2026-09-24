@@ -1,146 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Grafana Loki Prometheus Observability Stack | James T. Szarka Portfolio</title>
-  <meta name="description" content="Portfolio case study for a Grafana, Loki, Prometheus, and Alloy observability stack covering logs, metrics, alerting, dashboards, and operational visibility.">
-  <meta name="keywords" content="James Szarka, Grafana, Loki, Prometheus, Alloy, observability, SRE, DevOps monitoring, Calgary DevOps">
-  <meta name="author" content="James T. Szarka">
-  <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://james.szarka.ca/portfolio-observability-stack.html">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="Grafana Loki Prometheus Observability Stack | James T. Szarka Portfolio">
-  <meta property="og:description" content="A DevOps and SRE case study showing centralized monitoring, logging, metrics, and alerting with Grafana, Loki, Prometheus, and Alloy.">
-  <meta property="og:url" content="https://james.szarka.ca/portfolio-observability-stack.html">
-  <meta property="og:image" content="https://james.szarka.ca/img/portfolio/observability-stack.svg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Grafana Loki Prometheus Observability Stack | James T. Szarka Portfolio">
-  <meta name="twitter:description" content="Observability case study covering Grafana, Loki, Prometheus, Alloy, dashboards, logs, metrics, and alerting.">
-  <meta name="twitter:image" content="https://james.szarka.ca/img/portfolio/observability-stack.svg">
-  <link rel="stylesheet" href="css/reset.css" type="text/css">
-  <link rel="stylesheet" href="css/bootstrap-grid.min.css" type="text/css">
-  <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-  <link rel="stylesheet" href="css/main.css" type="text/css">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"CreativeWork","name":"Grafana Loki Prometheus Observability Stack","url":"https://james.szarka.ca/portfolio-observability-stack.html","image":"https://james.szarka.ca/img/portfolio/observability-stack.svg","author":{"@type":"Person","name":"James T. Szarka","url":"https://james.szarka.ca/"},"about":["Observability","SRE","DevOps monitoring","Grafana","Prometheus","Loki"],"description":"Portfolio case study for a Grafana, Loki, Prometheus, and Alloy observability stack."}
-  </script>
-  <style>
-    html, body { height: auto !important; min-height: 100% !important; overflow-y: auto !important; overflow-x: hidden !important; }
-    body { position: static !important; background: #f5f5f5; }
-    .case-page { max-width: 1120px; margin: 30px auto; background: #fff; padding: 34px; border-radius: 16px; overflow: visible; }
-    .top-back-link { display: inline-block; margin-bottom: 18px; color: #fea621; font-weight: 600; }
-    .top-back-link:hover { color: #d98200; }
-    .case-hero img, .evidence-card img { width: 100%; border: 1px solid #eee; border-radius: 12px; background: #fff; display: block; min-height: 120px; }
-    .evidence-card a { display: block; cursor: zoom-in; }
-    .case-eyebrow { color: #fea621; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; font-size: 13px; }
-    .case-summary { background: #fcfcfc; border: 1px solid #eee; padding: 22px; margin: 24px 0; }
-    .case-list { margin-left: 20px; }
-    .case-list li { margin-bottom: 9px; }
-    .case-card, .evidence-card { border: 1px solid #eee; background: #fcfcfc; padding: 18px; margin-bottom: 18px; min-height: 128px; }
-    .case-badge { display: inline-block; border: 1px solid #e5e5e5; border-radius: 4px; padding: 4px 9px; margin: 3px; font-size: 12px; background: #fff; }
-    .case-actions { margin-top: 24px; }
-    .evidence-card h3 { margin-top: 14px; }
-    .note { color: #777; font-size: 13px; }
-    @media (max-width: 768px) { .case-page { margin: 0; padding: 20px; border-radius: 0; } }
-  </style>
-  <!-- Cloudflare Web Analytics -->
-  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1a990b5c92d14bd4b1b491118d3243d7"}'></script>
-  <!-- End Cloudflare Web Analytics -->
-</head>
-<body>
-  <main class="case-page">
-    <a class="top-back-link" href="index.html#portfolio">&larr; Back to Portfolio</a>
-    <p class="case-eyebrow">Portfolio Case Study</p>
-    <h1>Grafana, Loki, Prometheus, Alloy Monitoring Stack</h1>
-    <p>A practical SRE observability platform for metrics, logs, dashboards, alert routing, service recovery, and operational handoff.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grafana, Loki &amp; Prometheus Stack | James T. Szarka</title>
+    <meta name="description" content="Case study: a Grafana, Loki, Prometheus and Alloy observability stack — metrics, logs, dashboards as code, alert routing and documented recovery." />
+    <meta name="keywords" content="James Szarka, Grafana, Loki, Prometheus, Alloy, observability, SRE, DevOps monitoring, Calgary DevOps" />
+    <meta name="author" content="James T. Szarka" />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://james.szarka.ca/portfolio-observability-stack.html" />
 
-    <div class="case-hero">
-      <img src="img/portfolio/observability-stack.svg" alt="Observability stack architecture illustration">
-    </div>
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="James T. Szarka" />
+    <meta property="og:title" content="Grafana, Loki, Prometheus and Alloy, run as one stack" />
+    <meta property="og:description" content="Centralized metrics and logs, dashboards as code, alert routing that reaches a human who can act, and the recovery runbook from the day it broke." />
+    <meta property="og:url" content="https://james.szarka.ca/portfolio-observability-stack.html" />
+    <meta property="og:image" content="https://james.szarka.ca/img/portfolio/observability-stack.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Grafana, Loki, Prometheus and Alloy, run as one stack" />
+    <meta name="twitter:description" content="Observability case study: metrics, logs, dashboards as code and alert routing." />
+    <meta name="twitter:image" content="https://james.szarka.ca/img/portfolio/observability-stack.svg" />
 
-    <section class="case-summary">
-      <h2>Project Overview</h2>
-      <p>This project centralizes infrastructure telemetry with Grafana dashboards, Prometheus metrics, Loki logs, Alloy collection, Alertmanager routing, Docker Compose operations, and documented recovery practices.</p>
-      <p>The purpose is to make the environment easier to operate under real pressure by connecting host, container, database, reverse proxy, network, and application signals into one supportable monitoring platform.</p>
-    </section>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/site.css" type="text/css" />
 
-    <div class="row">
-      <div class="col-xs-12 col-sm-8">
-        <h2>What I Built</h2>
-        <ul class="case-list">
-          <li>Containerized monitoring stack with persistent service configuration.</li>
-          <li>Repository-managed Grafana dashboard provisioning.</li>
-          <li>Prometheus scrape coverage for hosts, containers, applications, databases, DNS, virtualization, and network devices.</li>
-          <li>Loki log aggregation using Alloy pipelines and consistent labels.</li>
-          <li>Alertmanager routing with practical Prometheus and Loki alert rules.</li>
-          <li>Startup and recovery design so monitoring services return cleanly after restart or reboot.</li>
-          <li>Architecture documentation, topology diagrams, onboarding notes, and operational handoff material.</li>
-        </ul>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"CreativeWork","name":"Grafana, Loki, Prometheus and Alloy monitoring stack","url":"https://james.szarka.ca/portfolio-observability-stack.html","image":"https://james.szarka.ca/img/portfolio/observability-stack.svg","author":{"@type":"Person","name":"James T. Szarka","url":"https://james.szarka.ca/"},"about":["Observability","Site Reliability Engineering","DevOps monitoring","Grafana","Prometheus","Loki","Alertmanager"],"description":"Case study for a Grafana, Loki, Prometheus and Alloy observability stack covering metrics, logs, dashboards as code, alert routing and documented recovery."}
+    </script>
 
-        <h2>Technical Highlights</h2>
-        <div class="row">
-          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Source of Truth</h3><p>Configuration, dashboards, alert rules, and documentation are tracked in Git.</p></div></div>
-          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Dashboards as Code</h3><p>Grafana dashboards are provisioned from repository-managed JSON files.</p></div></div>
-          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Metrics and Logs</h3><p>Prometheus and Loki provide complementary views of system behavior.</p></div></div>
-          <div class="col-xs-12 col-sm-6"><div class="case-card"><h3>Operational Recovery</h3><p>Restart policy and startup controls reduce partial recovery after reboot.</p></div></div>
-        </div>
+    <!-- Cloudflare Web Analytics -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1a990b5c92d14bd4b1b491118d3243d7"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+  </head>
 
-        <h2>Evidence Gallery</h2>
-        <p class="note">Screenshots are published as a cleaned public view. Click any screenshot to enlarge it.</p>
-        <div class="row">
-          <div class="col-xs-12 col-sm-6"><div class="evidence-card"><a class="evidence-lightbox" href="img/portfolio/observability-grafana-container-metrics.png" title="Grafana container metrics dashboard"><img src="img/portfolio/observability-grafana-container-metrics.png" alt="Grafana container metrics dashboard"></a><h3>Grafana Dashboards</h3><p>Container metrics dashboard showing CPU, memory, cached memory, and network telemetry across monitored services.</p></div></div>
-          <div class="col-xs-12 col-sm-6"><div class="evidence-card"><a class="evidence-lightbox" href="img/portfolio/observability-prometheus-targets.png" title="Prometheus target health"><img src="img/portfolio/observability-prometheus-targets.png" alt="Prometheus target health"></a><h3>Prometheus Target Health</h3><p>Target health view showing active scrape coverage across monitoring services, hosts, applications, and exporters.</p></div></div>
-          <div class="col-xs-12 col-sm-6"><div class="evidence-card"><a class="evidence-lightbox" href="img/portfolio/observability-loki-explore.png" title="Loki Explore query"><img src="img/portfolio/observability-loki-explore.png" alt="Loki Explore query"></a><h3>Loki Explore</h3><p>LogQL query view showing log volume, severity levels, fields, labels, and recent container log events.</p></div></div>
-          <div class="col-xs-12 col-sm-6"><div class="evidence-card"><a class="evidence-lightbox" href="img/portfolio/observability-alertmanager-warning.png" title="Alertmanager warning"><img src="img/portfolio/observability-alertmanager-warning.png" alt="Alertmanager warning"></a><h3>Alertmanager Routing</h3><p>Alertmanager view showing an active warning routed through the alert workflow for operator review.</p></div></div>
-        </div>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-        <h2>Leadership Value</h2>
-        <p>This case study shows DevOps and SRE leadership through a system that is observable, documented, repeatable, and useful to operators during troubleshooting and incident response.</p>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="index.html">&larr; James T. Szarka</a>
+        <nav class="site-nav" aria-label="Primary">
+          <a class="nav-link" href="index.html#work">Work</a>
+          <a class="btn btn-primary btn-pill" href="mailto:james@szarka.ca?subject=Observability">Book a call</a>
+        </nav>
       </div>
+    </header>
 
-      <aside class="col-xs-12 col-sm-4">
-        <h2>Project Details</h2>
-        <p><strong>Role:</strong> Architect, builder, and operator</p>
-        <p><strong>Status:</strong> Production-style lab project</p>
-        <p><strong>Source:</strong> Source-controlled internal project with a public case-study summary</p>
+    <main id="main">
+      <section class="case-hero">
+        <div class="wrap case-hero-grid">
+          <div class="case-hero-copy">
+            <p class="eyebrow">Case study &middot; observability</p>
+            <h1>Grafana, Loki, Prometheus and Alloy, run as one stack</h1>
+            <p class="case-lede">Centralized metrics and logs, dashboards defined as code, alert routing that reaches a human who can act &mdash; plus the recovery runbook from the day it broke.</p>
+          </div>
 
-        <h2>Technologies</h2>
-        <span class="case-badge">Grafana</span>
-        <span class="case-badge">Prometheus</span>
-        <span class="case-badge">Loki</span>
-        <span class="case-badge">Alloy</span>
-        <span class="case-badge">Alertmanager</span>
-        <span class="case-badge">Docker Compose</span>
-        <span class="case-badge">cAdvisor</span>
-        <span class="case-badge">Node Exporter</span>
-        <span class="case-badge">SNMP Exporter</span>
-        <span class="case-badge">PostgreSQL Exporter</span>
-        <span class="case-badge">Home Assistant</span>
-        <span class="case-badge">SRE</span>
+          <dl class="meta-panel">
+            <dt>Role</dt>
+            <dd>Architect, builder and operator</dd>
+            <dt>Status</dt>
+            <dd>Production-style lab, running continuously</dd>
+            <dt>Stack</dt>
+            <dd>Grafana, Prometheus, Loki, Alloy, Alertmanager, Docker Compose, Proxmox</dd>
+            <dt>Source</dt>
+            <dd>Private repository, public-safe summary</dd>
+          </dl>
+        </div>
+      </section>
 
-        <h2>Public-Safe Notes</h2>
-        <p class="note">This page describes the architecture and operational model without exposing internal implementation details.</p>
-      </aside>
-    </div>
+      <section class="wrap">
+        <div class="callout">
+          <p><strong>The problem in one sentence.</strong> Host, container, database, reverse proxy, network and application signals each lived in their own tool, so every incident started with ten minutes of deciding where to look before anyone could start fixing anything.</p>
+        </div>
+      </section>
 
-    <div class="case-actions">
-      <a class="btn btn-primary" href="index.html#portfolio">Back to Portfolio</a>
-    </div>
-  </main>
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>What I built</h2>
+          </div>
+          <ul class="list-detail">
+            <li>A containerized monitoring stack with persistent service configuration, brought up and torn down as one unit.</li>
+            <li>Grafana dashboards provisioned from JSON in the repository, so a rebuild is a deploy rather than an afternoon of clicking.</li>
+            <li>Prometheus scrape coverage across hosts, containers, applications, databases, DNS, virtualization and network devices.</li>
+            <li>Loki log aggregation through Alloy pipelines, using label conventions consistent with the metrics side so a query crosses both.</li>
+            <li>Alertmanager routing with Prometheus and Loki rules written to page a person who can act, with the noisy ones deleted rather than muted.</li>
+            <li>Startup and restart design so monitoring comes back cleanly after a reboot instead of half-recovering and lying about it.</li>
+            <li>Architecture documentation, topology diagrams and onboarding notes, written for the person holding the pager at 3am.</li>
+          </ul>
+        </div>
+      </section>
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script>
-    jQuery(function($) {
-      $('.evidence-lightbox').magnificPopup({
-        type: 'image',
-        gallery: { enabled: true },
-        removalDelay: 300,
-        mainClass: 'mfp-fade'
-      });
-    });
-  </script>
-</body>
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>How it is built</h2>
+          </div>
+          <div class="cards">
+            <div class="card">
+              <h3>Source of truth</h3>
+              <p>Configuration, dashboards, alert rules and documentation are tracked in Git. If it is not in the repository, it does not exist.</p>
+            </div>
+            <div class="card">
+              <h3>Dashboards as code</h3>
+              <p>Grafana is provisioned from repository-managed JSON. Nobody's private dashboard becomes load-bearing.</p>
+            </div>
+            <div class="card">
+              <h3>Metrics and logs together</h3>
+              <p>Prometheus and Loki give complementary views of the same event, so an incident is one query away rather than one tool away.</p>
+            </div>
+            <div class="card">
+              <h3>Recovery is designed</h3>
+              <p>Restart policy and startup ordering are explicit, because partial recovery after a reboot is worse than none at all.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Evidence</h2>
+            <p class="section-note">Published as a cleaned public view. Open any image for full size.</p>
+          </div>
+          <div class="figures">
+            <figure>
+              <a href="img/portfolio/observability-grafana-container-metrics.png"><img src="img/portfolio/observability-grafana-container-metrics.png" alt="Grafana dashboard showing container CPU, memory and network metrics" loading="lazy" /></a>
+              <figcaption>Container metrics &mdash; the dashboard on-call opens first. CPU, memory, cached memory and network across every monitored service.</figcaption>
+            </figure>
+            <figure>
+              <a href="img/portfolio/observability-prometheus-targets.png"><img src="img/portfolio/observability-prometheus-targets.png" alt="Prometheus target health page showing active scrape coverage" loading="lazy" /></a>
+              <figcaption>Target health. Active scrape coverage across monitoring services, hosts, applications and exporters &mdash; the page that tells you the monitoring itself is healthy.</figcaption>
+            </figure>
+            <figure>
+              <a href="img/portfolio/observability-loki-explore.png"><img src="img/portfolio/observability-loki-explore.png" alt="Loki Explore view showing a LogQL query and recent log events" loading="lazy" /></a>
+              <figcaption>Loki Explore. A LogQL query showing log volume, severity, fields, labels and recent container events.</figcaption>
+            </figure>
+            <figure>
+              <a href="img/portfolio/observability-alertmanager-warning.png"><img src="img/portfolio/observability-alertmanager-warning.png" alt="Alertmanager showing an active warning routed for operator review" loading="lazy" /></a>
+              <figcaption>Alertmanager routing. An active warning moving through the alert workflow to an operator.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap prose">
+          <div class="section-head">
+            <h2>Why it matters</h2>
+          </div>
+          <p>Monitoring is easy to stand up and hard to keep honest. The work here is the part that survives contact with a real incident: labels that agree across tools, alerts somebody actually wants to receive, dashboards that can be rebuilt from source, and a documented path back when the monitoring stack is itself the thing that broke.</p>
+          <p>The same discipline scales. It is what I put in place for teams, and the reason I keep running one myself.</p>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <div class="case-actions">
+          <a class="btn btn-primary" href="mailto:james@szarka.ca?subject=Observability">Talk about your monitoring</a>
+          <a class="btn btn-secondary" href="index.html#work">Back to all work</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer wrap">
+      <span>Calgary, Alberta, Canada &middot; &copy; 2026 James T. Szarka</span>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="https://www.linkedin.com/in/jamestszarka/" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="Resume-JamesSzarka.pdf">Résumé</a></li>
+      </ul>
+    </footer>
+  </body>
 </html>

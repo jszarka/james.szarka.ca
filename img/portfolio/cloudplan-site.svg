@@ -8,7 +8,7 @@
     </linearGradient>
     <linearGradient id="hero" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0b4f7a"/>
-      <stop offset="100%" stop-color="#fea621"/>
+      <stop offset="100%" stop-color="#f3ba5c"/>
     </linearGradient>
     <style>
       .bg { fill: url(#bg); }
@@ -22,8 +22,8 @@
       .body { font: 500 19px Poppins, Arial, sans-serif; fill: #5b6b76; }
       .card { fill: #fff; stroke: #dbe7ef; stroke-width: 2; rx: 18; }
       .chip { fill: #fff7ed; stroke: #f2cf9b; stroke-width: 1.5; rx: 14; }
-      .chiptext { font: 700 17px Poppins, Arial, sans-serif; fill: #9d6b1d; }
-      .accent { fill: #fea621; }
+      .chiptext { font: 700 17px Poppins, Arial, sans-serif; fill: #8a6a18; }
+      .accent { fill: #f3ba5c; }
       .line { stroke: #0b4f7a; stroke-width: 4; fill: none; stroke-linecap: round; }
     </style>
   </defs>
