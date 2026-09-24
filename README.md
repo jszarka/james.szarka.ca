@@ -37,7 +37,8 @@ docker run --rm -p 8080:80 james-szarka-site
 - `nginx.conf`, `dockerfile`: local and preview container
 - `.github/workflows/deploy.yml`: validation and cPanel API deployment
 - `scripts/deploy-cpanel.sh`: guarded cPanel upload client
-- `docs/deployment.md`: cPanel and GitHub setup and recovery runbook
+- `docs/deployment.md`: cPanel integration design and setup
+- `docs/runbooks/cicd-operations.md`: operator release, deployment, and rollback runbook
 
 ## Deployment
 
