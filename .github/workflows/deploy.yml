@@ -49,17 +49,13 @@ jobs:
           test -s _site/index.html
           test -s _site/.htaccess
           test -s _site/deploy-version.txt
+          bash -n scripts/deploy-cpanel.sh
 
       - name: Smoke-test through Apache with the real .htaccess
         shell: bash
         run: |
           set -euo pipefail
 
-          # python3 -m http.server does not read .htaccess, so it can only prove
-          # files exist. Everything that decides whether production is correct —
-          # the CSP, the dotfile denies, the canonical redirect — lives in
-          # .htaccess and was previously never executed until it was live.
-          # The image in this repo runs the same Apache and the same file.
           docker build -f dockerfile -t james-site-smoke .
           docker run -d --name james-site-smoke -p 8080:80 james-site-smoke
           trap 'docker rm -f james-site-smoke >/dev/null 2>&1 || true' EXIT
@@ -76,9 +72,6 @@ jobs:
           curl --fail --silent --show-error http://127.0.0.1:8080/llms.txt > /dev/null
 
           echo "--- .htaccess is being read"
-          # If AllowOverride is off or a directive is malformed, .htaccess is
-          # silently ignored and every header below disappears. That failure is
-          # invisible in a browser, so assert it here.
           headers="$(curl --silent --head http://127.0.0.1:8080/)"
           grep -qi 'content-security-policy'   <<< "$headers"
           grep -qi 'strict-transport-security' <<< "$headers"
@@ -94,8 +87,6 @@ jobs:
           done
 
           echo "--- ACME challenges are not blocked by the dotfile rule"
-          # A blanket dot-path deny would break cPanel AutoSSL renewal silently,
-          # three months after anyone would connect the two events.
           acme="$(curl --silent --output /dev/null --write-out '%{http_code}' \
             http://127.0.0.1:8080/.well-known/acme-challenge/probe)"
           if [ "$acme" = "403" ]; then
@@ -119,8 +110,8 @@ jobs:
   deploy:
     name: Deploy to RackNerd cPanel
     needs: validate
-    # Branch-pinned. Without the ref check, workflow_dispatch can deploy ANY
-    # branch straight to production from the Actions tab.
+    # workflow_dispatch is also pinned to main so another branch cannot be sent
+    # straight to production from the Actions tab.
     if: >-
       github.ref == 'refs/heads/main' &&
       (github.event_name == 'workflow_dispatch' || vars.DEPLOY_ENABLED == 'true')
@@ -129,71 +120,24 @@ jobs:
       name: production
       url: https://james.szarka.ca
     steps:
+      - name: Check out deployment client
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
       - name: Download validated publish directory
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           name: james-szarka-site
           path: _site
 
-      - name: Validate deployment configuration
+      - name: Upload through the cPanel API
         shell: bash
         env:
-          FTPS_HOST: ${{ vars.FTPS_HOST }}
-          FTPS_PORT: ${{ vars.FTPS_PORT }}
-          FTPS_REMOTE_PATH: ${{ vars.FTPS_REMOTE_PATH }}
-          FTPS_USERNAME: ${{ secrets.FTPS_USERNAME }}
-          FTPS_PASSWORD: ${{ secrets.FTPS_PASSWORD }}
-        run: |
-          set -euo pipefail
-          : "${FTPS_HOST:?Set the production environment variable FTPS_HOST}"
-          : "${FTPS_PORT:?Set the production environment variable FTPS_PORT}"
-          : "${FTPS_REMOTE_PATH:?Set the production environment variable FTPS_REMOTE_PATH}"
-          : "${FTPS_USERNAME:?Set the production environment secret FTPS_USERNAME}"
-          : "${FTPS_PASSWORD:?Set the production environment secret FTPS_PASSWORD}"
-
-          # The mirror below runs with --delete, so it removes everything in
-          # FTPS_REMOTE_PATH that is not in _site/. Pointed at the account home
-          # instead of the document root, that deletes mail, logs and cPanel's
-          # own directories. Refuse to run unless the path names a webroot.
-          case "$FTPS_REMOTE_PATH" in
-            */public_html|*/public_html/) ;;
-            *)
-              echo "FTPS_REMOTE_PATH is '$FTPS_REMOTE_PATH'."
-              echo "Refusing: --delete against anything but a public_html path is destructive."
-              exit 1
-              ;;
-          esac
-
-      - name: Install FTPS client
-        shell: bash
-        run: |
-          set -euo pipefail
-          sudo apt-get update
-          sudo apt-get install --yes --no-install-recommends lftp
-
-      - name: Upload over explicit FTPS
-        shell: bash
-        env:
-          FTPS_HOST: ${{ vars.FTPS_HOST }}
-          FTPS_PORT: ${{ vars.FTPS_PORT }}
-          FTPS_REMOTE_PATH: ${{ vars.FTPS_REMOTE_PATH }}
-          FTPS_USERNAME: ${{ secrets.FTPS_USERNAME }}
-          FTPS_PASSWORD: ${{ secrets.FTPS_PASSWORD }}
-        run: |
-          set -euo pipefail
-
-          lftp <<LFTP
-          set cmd:fail-exit yes
-          set net:max-retries 2
-          set net:timeout 20
-          set ftp:passive-mode yes
-          set ftp:ssl-force yes
-          set ftp:ssl-protect-data yes
-          set ssl:verify-certificate yes
-          open --user "$FTPS_USERNAME","$FTPS_PASSWORD" --port "$FTPS_PORT" "ftp://$FTPS_HOST"
-          mirror --reverse --delete --verbose --parallel=4 --all --exclude-glob=.well-known --exclude-glob=.well-known/** --exclude-glob=.ftpquota --exclude-glob=cgi-bin --exclude-glob=cgi-bin/** "_site/" "$FTPS_REMOTE_PATH"
-          quit
-          LFTP
+          CPANEL_HOST: ${{ vars.CPANEL_HOST }}
+          CPANEL_USERNAME: ${{ vars.CPANEL_USERNAME }}
+          CPANEL_REMOTE_DIR: ${{ vars.CPANEL_REMOTE_DIR }}
+          CPANEL_API_TOKEN: ${{ secrets.CPANEL_API_TOKEN }}
+          PUBLISH_DIR: _site
+        run: bash scripts/deploy-cpanel.sh
 
       - name: Verify the deployed commit
         shell: bash
@@ -201,7 +145,14 @@ jobs:
           set -euo pipefail
 
           deployed_sha="$(
-            curl               --fail               --silent               --show-error               --retry 5               --retry-delay 5               --header 'Cache-Control: no-cache'               "https://james.szarka.ca/deploy-version.txt?commit=$GITHUB_SHA"
+            curl \
+              --fail \
+              --silent \
+              --show-error \
+              --retry 5 \
+              --retry-delay 5 \
+              --header 'Cache-Control: no-cache' \
+              "https://james.szarka.ca/deploy-version.txt?commit=$GITHUB_SHA"
           )"
 
           test "$deployed_sha" = "$GITHUB_SHA"

@@ -35,15 +35,16 @@ docker run --rm -p 8080:80 james-szarka-site
 - `css/`, `img/`: published assets
 - `.htaccess`: RackNerd Apache/LiteSpeed production configuration
 - `nginx.conf`, `dockerfile`: local and preview container
-- `.github/workflows/deploy.yml`: validation and FTPS deployment
+- `.github/workflows/deploy.yml`: validation and cPanel API deployment
+- `scripts/deploy-cpanel.sh`: guarded cPanel upload client
 - `docs/deployment.md`: cPanel and GitHub setup and recovery runbook
 
 ## Deployment
 
 Pull requests build and smoke-test an explicit publish allowlist. After the
 production environment is configured, pushes to `main` deploy the allowlisted
-files to a dedicated, document-root-jailed cPanel account using explicit FTPS.
-Plain FTP is not used.
+files through cPanel's HTTPS API with a dedicated API token. FTP and SSH are not
+required.
 
 The deployment verifies the live commit through Cloudflare before reporting
 success. Production credentials belong in the GitHub `production` environment,
